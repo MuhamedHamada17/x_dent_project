@@ -97,7 +97,7 @@ class TextStyles {
   static TextStyle font14BlueRegular= GoogleFonts.inter(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
-    color: ColorsManager.Grey,
+    color: ColorsManager.Blue,
   );
   static TextStyle font22WhiteMedium = GoogleFonts.inter(
     fontSize: 22.sp,
@@ -119,5 +119,6 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: ColorsManager.white,
   );
+
 
 }
