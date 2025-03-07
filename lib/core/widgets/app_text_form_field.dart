@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../theiming/colors.dart';
 import '../theiming/styles.dart';
+
 class AppTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final InputBorder? focusedBorder;
   final InputBorder? enabledBorder;
   final TextStyle? inputTextStyle;
   final TextStyle? hintStyle;
-  final String hintText;
+  final String? hintText;
   final bool? isObscureText;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final Color? backgroundColor;
   final TextEditingController? controller;
-  final Function(String?) validator;
+  final Function(String?)? validator;
+
   const AppTextFormField({
     super.key,
     this.contentPadding,
@@ -21,12 +24,13 @@ class AppTextFormField extends StatelessWidget {
     this.enabledBorder,
     this.inputTextStyle,
     this.hintStyle,
-    required this.hintText,
+    this.hintText,
     this.isObscureText,
     this.suffixIcon,
+    this.prefixIcon,
     this.backgroundColor,
     this.controller,
-    required this.validator,
+    this.validator,
   });
 
   @override
@@ -39,7 +43,7 @@ class AppTextFormField extends StatelessWidget {
             EdgeInsets.symmetric(horizontal: 20.w, vertical: 18.h),
         focusedBorder: focusedBorder ??
             OutlineInputBorder(
-              borderSide:  BorderSide(
+              borderSide: BorderSide(
                 color: ColorsManager.white,
                 width: 1.3,
               ),
@@ -70,14 +74,13 @@ class AppTextFormField extends StatelessWidget {
         hintStyle: hintStyle ?? TextStyles.font10BlueRegular,
         hintText: hintText,
         suffixIcon: suffixIcon,
+        prefixIcon: prefixIcon,
         fillColor: backgroundColor ?? ColorsManager.white,
         filled: true,
       ),
       obscureText: isObscureText ?? false,
       style: TextStyles.font10BlueRegular,
-      validator: (value) {
-        return validator(value);
-      },
+      validator: validator != null ? (value) => validator!(value) : null,
     );
   }
 }
