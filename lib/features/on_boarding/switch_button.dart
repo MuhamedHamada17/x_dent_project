@@ -32,7 +32,7 @@ class SwitchButtonScreenState extends State<SwitchButtonScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
+          SizedBox(
             width: 80.w,
             height: 50.h,
             child: FittedBox(
@@ -51,10 +51,7 @@ class SwitchButtonScreenState extends State<SwitchButtonScreen> {
           RichText(
             text: TextSpan(
               children: [
-                TextSpan(
-                  text: "I'm a ",
-                  style: TextStyles.font34BlackBoldOpen,
-                ),
+                TextSpan(text: "I'm a ", style: TextStyles.font34BlackBoldOpen),
                 TextSpan(
                   text: _isSwitched ? "Patient" : "Doctor",
                   style: TextStyles.font34BlueBoldOpen,
