@@ -84,7 +84,9 @@ class LoginDoctorScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    context.pushNamed(Routes.forgetScreen);
+                  },
                   child: Text("Forget Password?", style: TextStyles.font12BlackRegular),
                 ),
               ),
