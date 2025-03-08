@@ -6,6 +6,7 @@ import 'package:x_dent_project/x_dent_app.dart';
 void main() {
   // test the push
   int x = 5;
+  var k = 15;
   setupGetIt();
   runApp(xDentApp(appRouter: AppRouter()) as Widget);
 }
