@@ -1,14 +1,18 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 part 'api_error_model.g.dart';
 
 @JsonSerializable()
 class ApiErrorModel {
-  final String? message;
-  final int? code;
+  final bool? success;
+  final String message;
+  @JsonKey(name: 'status_code')
+  final int statusCode;
 
   ApiErrorModel({
+    this.success,
     required this.message,
-    this.code,
+    required this.statusCode,
   });
 
   factory ApiErrorModel.fromJson(Map<String, dynamic> json) =>
