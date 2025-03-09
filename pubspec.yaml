@@ -81,6 +81,8 @@ flutter:
      - assets/png/on_boarding.png
      - assets/svg/onBoarding.svg
      - assets/png/
+     - assets/png/Apple.png
+     - assets/png/google.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
