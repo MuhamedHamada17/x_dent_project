@@ -8,9 +8,10 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
+import 'package:x_dent_project/features/signUp/signup_doctor/sign_up_doctor_screen2.dart';
 
-class SignUpDoctorScreen extends StatelessWidget {
-  const SignUpDoctorScreen({super.key});
+class SignUpDoctorScreen1 extends StatelessWidget {
+  const SignUpDoctorScreen1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -223,12 +224,20 @@ class SignUpDoctorScreen extends StatelessWidget {
                   width: 200.w,
                   height: 45.h,
                   child: AppTextButton(
-                    buttonText: "Sign Up",
+                    buttonText: "Next",
                     borderRadius: 20,
                     verticalPadding: 4.h,
                     backgroundColor: ColorsManager.Blue,
                     textStyle: TextStyles.font20whiteRegular,
-                    onPressed: () {},
+                    onPressed:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SignUpDoctorScreen2();
+                            },
+                          ),
+                        ),
                   ),
                 ),
               ),

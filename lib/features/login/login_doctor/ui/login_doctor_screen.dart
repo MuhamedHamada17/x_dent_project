@@ -5,7 +5,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
-import 'package:x_dent_project/features/signUp/sign_up_doctor_screen.dart';
+import 'package:x_dent_project/features/signUp/signup_doctor/sign_up_doctor_screen1.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/app_router.dart';
@@ -196,7 +196,7 @@ class LoginDoctorScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return SignUpDoctorScreen();
+                              return SignUpDoctorScreen1();
                             },
                           ),
                         ),
