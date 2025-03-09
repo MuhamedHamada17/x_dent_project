@@ -52,12 +52,7 @@ class SignUpPatientScreen extends StatelessWidget {
                 child: AppTextFormField(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: const Color.fromARGB(
-                        255,
-                        200,
-                        194,
-                        194,
-                      ).withOpacity(.8),
+                      color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -82,12 +77,7 @@ class SignUpPatientScreen extends StatelessWidget {
                 child: AppTextFormField(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: const Color.fromARGB(
-                        255,
-                        200,
-                        194,
-                        194,
-                      ).withOpacity(.8),
+                      color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -115,12 +105,7 @@ class SignUpPatientScreen extends StatelessWidget {
                   prefixIcon: Icon(Icons.email_outlined),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: const Color.fromARGB(
-                        255,
-                        200,
-                        194,
-                        194,
-                      ).withOpacity(.8),
+                      color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -168,12 +153,7 @@ class SignUpPatientScreen extends StatelessWidget {
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: const Color.fromARGB(
-                        255,
-                        200,
-                        194,
-                        194,
-                      ).withOpacity(.8),
+                      color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -198,12 +178,7 @@ class SignUpPatientScreen extends StatelessWidget {
                 child: AppTextFormField(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: const Color.fromARGB(
-                        255,
-                        200,
-                        194,
-                        194,
-                      ).withOpacity(.8),
+                      color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
@@ -231,12 +206,7 @@ class SignUpPatientScreen extends StatelessWidget {
                 child: AppTextFormField(
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: const Color.fromARGB(
-                        255,
-                        200,
-                        194,
-                        194,
-                      ).withOpacity(.8),
+                      color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
                     borderRadius: BorderRadius.circular(8.0),
