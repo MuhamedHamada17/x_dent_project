@@ -5,6 +5,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
+import 'package:x_dent_project/features/signUp/sign_up_patient_screen.dart';
 
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/app_router.dart';
@@ -18,7 +19,7 @@ class LoginPatientScreen extends StatelessWidget {
       backgroundColor: ColorsManager.lighterBLUE,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25),
-        child:SingleChildScrollView(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -54,7 +55,10 @@ class LoginPatientScreen extends StatelessWidget {
                   hintStyle: TextStyles.font14GreyRegular,
                   prefixIcon: Icon(Icons.email_outlined),
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: ColorsManager.Grey.withOpacity(.8), width: 1.3),
+                    borderSide: BorderSide(
+                      color: ColorsManager.Grey.withOpacity(.8),
+                      width: 1.3,
+                    ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   focusedBorder: OutlineInputBorder(
@@ -71,7 +75,10 @@ class LoginPatientScreen extends StatelessWidget {
                 height: 46.h,
                 child: AppTextFormField(
                   enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: ColorsManager.Grey.withOpacity(.8), width: 1.3),
+                    borderSide: BorderSide(
+                      color: ColorsManager.Grey.withOpacity(.8),
+                      width: 1.3,
+                    ),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   focusedBorder: OutlineInputBorder(
@@ -85,7 +92,10 @@ class LoginPatientScreen extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onTap: () {},
-                  child: Text("Forget Password?", style: TextStyles.font12BlackRegular),
+                  child: Text(
+                    "Forget Password?",
+                    style: TextStyles.font12BlackRegular,
+                  ),
                 ),
               ),
               verticalSpace(50),
@@ -123,9 +133,16 @@ class LoginPatientScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/png/Apple.png", width: 18.w, height: 23.h),
+                      Image.asset(
+                        "assets/png/Apple.png",
+                        width: 18.w,
+                        height: 23.h,
+                      ),
                       SizedBox(width: 8.w),
-                      Text("Login with Apple", style: TextStyles.font14BlackSemiBold),
+                      Text(
+                        "Login with Apple",
+                        style: TextStyles.font14BlackSemiBold,
+                      ),
                     ],
                   ),
                 ),
@@ -150,9 +167,16 @@ class LoginPatientScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/png/google.png", width: 18.w, height: 23.h),
+                      Image.asset(
+                        "assets/png/google.png",
+                        width: 18.w,
+                        height: 23.h,
+                      ),
                       SizedBox(width: 8.w),
-                      Text("Login with Google", style: TextStyles.font14BlackSemiBold),
+                      Text(
+                        "Login with Google",
+                        style: TextStyles.font14BlackSemiBold,
+                      ),
                     ],
                   ),
                 ),
@@ -162,8 +186,23 @@ class LoginPatientScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   verticalSpace(90),
-                  Text("Don't have an account? ", style: TextStyles.font12BlackRegular),
-                  Text("Register Now", style: TextStyles.font14BlueRegular),
+                  Text(
+                    "Don't have an account? ",
+                    style: TextStyles.font12BlackRegular,
+                  ),
+                  GestureDetector(
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignUpPatientScreen(),
+                          ),
+                        ),
+                    child: Text(
+                      "Register Now",
+                      style: TextStyles.font14BlueRegular,
+                    ),
+                  ),
                 ],
               ),
             ],
