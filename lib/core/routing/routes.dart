@@ -20,20 +20,15 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LoginPatientScreen());
       case Routes.loginDoctorScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-              create:(context)=>getIt<LoginCubit>(),
-              child: const LoginDoctorScreen()),
+          builder: (context) => const LoginDoctorScreen(),
         );
-
       default:
         return MaterialPageRoute(
-          builder:
-              (_) =>
-              Scaffold(
-                body: Center(
-                  child: Text("No route defined for ${settings.name}"),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text("No route defined for ${settings.name}"),
+            ),
+          ),
         );
     }
   }

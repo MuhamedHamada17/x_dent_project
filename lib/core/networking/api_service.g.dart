@@ -12,13 +12,16 @@ class _ApiService implements ApiService {
   _ApiService(
     this._dio, {
     this.baseUrl,
+    this.errorLogger,
   }) {
-    baseUrl ??= 'https://laravelproject-production-';
+    baseUrl ??= 'https://laravelproject-production-b12a.up.railway.app';
   }
 
   final Dio _dio;
 
   String? baseUrl;
+
+  final ParseErrorLogger? errorLogger;
 
   @override
   Future<LoginResponseBody> login(LoginRequestBody loginRequestBody) async {
@@ -34,7 +37,7 @@ class _ApiService implements ApiService {
     )
         .compose(
           _dio.options,
-          'api/auth/login',
+          '/api/auth/login',
           queryParameters: queryParameters,
           data: _data,
         )
@@ -48,6 +51,7 @@ class _ApiService implements ApiService {
     try {
       _value = LoginResponseBody.fromJson(_result.data!);
     } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
       rethrow;
     }
     return _value;

@@ -8,13 +8,27 @@ part of 'login_response_body.dart';
 
 LoginResponseBody _$LoginResponseBodyFromJson(Map<String, dynamic> json) =>
     LoginResponseBody(
+      success: json['success'] as bool,
+      message: json['message'] as String,
+      statusCode: (json['status_code'] as num).toInt(),
+      authData: AuthData.fromJson(json['data'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$LoginResponseBodyToJson(LoginResponseBody instance) =>
+    <String, dynamic>{
+      'success': instance.success,
+      'message': instance.message,
+      'status_code': instance.statusCode,
+      'data': instance.authData,
+    };
+
+AuthData _$AuthDataFromJson(Map<String, dynamic> json) => AuthData(
       accessToken: json['access_token'] as String,
       tokenType: json['token_type'] as String,
       data: UserData.fromJson(json['data'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$LoginResponseBodyToJson(LoginResponseBody instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$AuthDataToJson(AuthData instance) => <String, dynamic>{
       'access_token': instance.accessToken,
       'token_type': instance.tokenType,
       'data': instance.data,

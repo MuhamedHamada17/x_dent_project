@@ -1,5 +1,5 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://laravelproject-production-";
+  static const String apiBaseUrl = "https://laravelproject-production-b12a.up.railway.app";
 
   static const String login = "/api/auth/login";
   static const String signup = "auth/register";

@@ -4,6 +4,30 @@ part 'login_response_body.g.dart';
 
 @JsonSerializable()
 class LoginResponseBody {
+  final bool success;
+  final String message;
+
+  @JsonKey(name: 'status_code')
+  final int statusCode;
+
+  @JsonKey(name: 'data')
+  final AuthData authData;
+
+  LoginResponseBody({
+    required this.success,
+    required this.message,
+    required this.statusCode,
+    required this.authData,
+  });
+
+  factory LoginResponseBody.fromJson(Map<String, dynamic> json) =>
+      _$LoginResponseBodyFromJson(json);
+
+  Map<String, dynamic> toJson() => _$LoginResponseBodyToJson(this);
+}
+
+@JsonSerializable()
+class AuthData {
   @JsonKey(name: 'access_token')
   final String accessToken;
 
@@ -12,15 +36,16 @@ class LoginResponseBody {
 
   final UserData data;
 
-  LoginResponseBody({
+  AuthData({
     required this.accessToken,
     required this.tokenType,
     required this.data,
   });
 
-  factory LoginResponseBody.fromJson(Map<String, dynamic> json) => _$LoginResponseBodyFromJson(json);
+  factory AuthData.fromJson(Map<String, dynamic> json) =>
+      _$AuthDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LoginResponseBodyToJson(this);
+  Map<String, dynamic> toJson() => _$AuthDataToJson(this);
 }
 
 @JsonSerializable()
@@ -59,7 +84,8 @@ class UserData {
     this.patient,
   });
 
-  factory UserData.fromJson(Map<String, dynamic> json) => _$UserDataFromJson(json);
+  factory UserData.fromJson(Map<String, dynamic> json) =>
+      _$UserDataFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDataToJson(this);
 }
@@ -78,7 +104,8 @@ class Patient {
     required this.userId,
   });
 
-  factory Patient.fromJson(Map<String, dynamic> json) => _$PatientFromJson(json);
+  factory Patient.fromJson(Map<String, dynamic> json) =>
+      _$PatientFromJson(json);
 
   Map<String, dynamic> toJson() => _$PatientToJson(this);
 }
