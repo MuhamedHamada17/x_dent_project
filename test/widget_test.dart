@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:x_dent_project/core/routing/routes.dart';
+import 'package:x_dent_project/core/routing/app_router.dart';
 
 import 'package:x_dent_project/x_dent_app.dart';
 
