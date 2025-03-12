@@ -119,6 +119,30 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: ColorsManager.white,
   );
-
+  static TextStyle font16MonemiBold = GoogleFonts.montserrat(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: Color(0XFF444444),
+  );
+  static TextStyle font24semiBoldMon = GoogleFonts.montserrat(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: Color(0XFF444444)
+  );
+  static TextStyle font14MRegularMon = GoogleFonts.montserrat(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.Grey,
+  );
+  static TextStyle font14MediumMon = GoogleFonts.montserrat(
+  fontSize: 14.sp,
+  fontWeight: FontWeightHelper.semiBold,
+  color: ColorsManager.Grey,
+  );
+  static TextStyle font14BlueMediumMon = GoogleFonts.montserrat(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.Blue,
+  );
 
 }
