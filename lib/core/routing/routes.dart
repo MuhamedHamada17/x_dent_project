@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_dent_project/core/di/dependency_injection.dart';
+import 'package:x_dent_project/features/login/login_doctor/logic/login_cubit.dart';
+import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/splash/splash_screen.dart';
 import 'package:x_dent_project/features/on_boarding/on_boarding_screen.dart';
+import '../../features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'app_router.dart';
 
 class AppRouter {
@@ -11,14 +16,19 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const SplashScreen());
       case Routes.onBoardingScreen:
         return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+      case Routes.loginPatientScreen:
+        return MaterialPageRoute(builder: (_) => const LoginPatientScreen());
+      case Routes.loginDoctorScreen:
+        return MaterialPageRoute(
+          builder: (context) => const LoginDoctorScreen(),
+        );
       default:
         return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text("No route defined for ${settings.name}"),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text("No route defined for ${settings.name}"),
+            ),
+          ),
         );
     }
   }

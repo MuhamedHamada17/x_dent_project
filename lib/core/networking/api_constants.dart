@@ -1,7 +1,7 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://vcare.integration25.com/api/";
+  static const String apiBaseUrl = "https://laravelproject-production-b12a.up.railway.app";
 
-  static const String login = "auth/login";
+  static const String login = "/api/auth/login";
   static const String signup = "auth/register";
 
 }
