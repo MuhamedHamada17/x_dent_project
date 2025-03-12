@@ -1,13 +1,13 @@
-import 'core/routing/routes.dart';
-import 'package:flutter/cupertino.dart';
-import 'core/di/dependency_injection.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_dent_project/core/di/dependency_injection.dart';
 import 'package:x_dent_project/x_dent_app.dart';
+import 'bloc_observer.dart';
+import 'core/routing/routes.dart';
 
 void main() {
-  // test the push
-  int x = 5;
-  var k = 15;
+  Bloc.observer = MyBlocObserver();
+  WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
-  int Y = 5;
   runApp(xDentApp(appRouter: AppRouter()));
 }
