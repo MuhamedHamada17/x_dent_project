@@ -6,6 +6,8 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
+import 'package:x_dent_project/features/login/login_patient/ui/widgets/app_bar_login.dart';
+import 'package:x_dent_project/features/login/login_patient/ui/widgets/log_with.dart';
 
 
 import 'package:x_dent_project/features/signUp/ui/screens/signup_doctor/sign_up_doctor_screen1.dart';
@@ -45,49 +47,73 @@ class _LoginDoctorScreenContent extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 25),
             child: SingleChildScrollView(
               child: Form(
-                key: loginCubit.formKey, // ✅ تم تمرير formKey هنا
+                key: loginCubit.formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     verticalSpace(50),
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            context.pushNamed(Routes.onBoardingScreen);
-                          },
-                          child: const Icon(Icons.arrow_back, size: 32),
-                        ),
-                        SizedBox(width: 19.w),
-                        Text("Login", style: TextStyles.font28BlackSemiBoldOpen),
-                      ],
-                    ),
+                    AppBarLogin(),
                     verticalSpace(50),
                     Text("Email", style: TextStyles.font14BlackSemiBold),
                     verticalSpace(10),
-                    AppTextFormField(
-                      controller: loginCubit.emailController,
-                      hintText: "you@email.com",
+                    SizedBox(
+                      width: 320.w,
+                      height: 46.h,
+                      child: AppTextFormField(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: ColorsManager.Grey.withOpacity(.8),
+                            width: 1.3,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black, width: 1.3),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        hintStyle: TextStyles.font14GreyRegular,
+                        prefixIcon: Icon(Icons.email_outlined),
+                        controller: loginCubit.emailController,
+                        hintText: "you@email.com",
+                      ),
                     ),
                     verticalSpace(30),
                     Text("Password", style: TextStyles.font14BlackSemiBold),
                     verticalSpace(10),
-                    AppTextFormField(
-                      controller: loginCubit.passwordController,
-                      hintText: "********",
-                      isObscureText: true,
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter a valid password';
-                        }
-                        return null;
-                      },
+                    SizedBox(
+                      width: 320.w,
+                      height: 46.h,
+                      child: AppTextFormField(
+                        hintStyle: TextStyles.font14GreyRegular,
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: ColorsManager.Grey.withOpacity(.8),
+                            width: 1.3,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black, width: 1.3),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        controller: loginCubit.passwordController,
+                        hintText: "********",
+                        isObscureText: true,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter a valid password';
+                          }
+                          return null;
+                        },
+                      ),
                     ),
                     verticalSpace(12),
                     Align(
                       alignment: Alignment.centerRight,
                       child: GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.pushNamed(Routes.forgetScreen);
+                        },
                         child: Text("Forget Password?", style: TextStyles.font12BlackRegular),
                       ),
                     ),
@@ -113,6 +139,31 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                           },
                         ),
                       ),
+                    ),
+                    verticalSpace(90),
+                   LogWith(),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        verticalSpace(90),
+                        Text(
+                          "Don't have an account? ",
+                          style: TextStyles.font12BlackRegular,
+                        ),
+                        GestureDetector(
+                          onTap:
+                              () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpDoctorScreen1(),
+                            ),
+                          ),
+                          child: Text(
+                            "Register Now",
+                            style: TextStyles.font14BlueRegular,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
