@@ -9,7 +9,7 @@ class AppointmentCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 180.h,
+      height: 175.h,
       padding: EdgeInsets.symmetric(vertical: 28, horizontal: 18),
       decoration: BoxDecoration(
         color: Colors.white,
