@@ -13,7 +13,7 @@ import 'package:x_dent_project/features/signUp/ui/screens/signup_doctor/sign_up_
 
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/app_router.dart';
+import '../../../../core/routing/routes.dart';
 import '../logic/login_cubit.dart';
 import '../logic/login_state.dart';
 

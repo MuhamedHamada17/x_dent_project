@@ -11,7 +11,7 @@ import 'package:x_dent_project/features/login/login_patient/ui/widgets/log_with.
 import 'package:x_dent_project/features/signUp/ui/screens/signup_patient/sign_up_patient_screen.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/app_router.dart';
+import '../../../../core/routing/routes.dart';
 import '../../login_doctor/logic/login_cubit.dart';
 import '../../login_doctor/logic/login_state.dart';
 
