@@ -10,7 +10,6 @@ import 'package:x_dent_project/features/login/login_patient/ui/widgets/app_bar_l
 import 'package:x_dent_project/features/login/login_patient/ui/widgets/log_with.dart';
 import 'package:x_dent_project/features/signUp/ui/screens/signup_patient/sign_up_patient_screen.dart';
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/app_router.dart';
 import '../../login_doctor/logic/login_cubit.dart';
@@ -48,7 +47,7 @@ class _LoginPatientScreenContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     verticalSpace(50),
-                  AppBarLogin(),
+                    AppBarLogin(),
                     verticalSpace(50),
                     Text("Email", style: TextStyles.font14BlackSemiBold),
                     verticalSpace(10),
@@ -64,7 +63,10 @@ class _LoginPatientScreenContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black, width: 1.3),
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            width: 1.3,
+                          ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         hintStyle: TextStyles.font14GreyRegular,
@@ -89,7 +91,10 @@ class _LoginPatientScreenContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black, width: 1.3),
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            width: 1.3,
+                          ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         controller: loginCubit.passwordController,
@@ -110,7 +115,10 @@ class _LoginPatientScreenContent extends StatelessWidget {
                         onTap: () {
                           context.pushNamed(Routes.forgetScreen);
                         },
-                        child: Text("Forget Password?", style: TextStyles.font12BlackRegular),
+                        child: Text(
+                          "Forget Password?",
+                          style: TextStyles.font12BlackRegular,
+                        ),
                       ),
                     ),
                     verticalSpace(50),
@@ -127,7 +135,8 @@ class _LoginPatientScreenContent extends StatelessWidget {
                               backgroundColor: ColorsManager.Blue,
                               textStyle: TextStyles.font20whiteRegular,
                               onPressed: () {
-                                if (loginCubit.formKey.currentState!.validate()) {
+                                if (loginCubit.formKey.currentState!
+                                    .validate()) {
                                   loginCubit.login();
                                 }
                               },
@@ -137,7 +146,7 @@ class _LoginPatientScreenContent extends StatelessWidget {
                       ),
                     ),
                     verticalSpace(90),
-                   LogWith(),
+                    LogWith(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -147,12 +156,13 @@ class _LoginPatientScreenContent extends StatelessWidget {
                           style: TextStyles.font12BlackRegular,
                         ),
                         GestureDetector(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpPatientScreen(),
-                            ),
-                          ),
+                          onTap:
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignUpPatientScreen(),
+                                ),
+                              ),
                           child: Text(
                             "Register Now",
                             style: TextStyles.font14BlueRegular,
@@ -172,9 +182,12 @@ class _LoginPatientScreenContent extends StatelessWidget {
                 loading: () {
                   showDialog(
                     context: context,
-                    builder: (context) => const Center(
-                      child: CircularProgressIndicator(color: ColorsManager.Blue),
-                    ),
+                    builder:
+                        (context) => const Center(
+                          child: CircularProgressIndicator(
+                            color: ColorsManager.Blue,
+                          ),
+                        ),
                   );
                 },
                 success: (loginResponse) {
@@ -197,16 +210,20 @@ class _LoginPatientScreenContent extends StatelessWidget {
     context.pop();
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(Icons.error, color: Colors.red, size: 32),
-        content: Text(error, style: TextStyles.font28BlackSemiBoldOpen),
-        actions: [
-          TextButton(
-            onPressed: () => context.pop(),
-            child: Text('Got it', style: TextStyles.font28BlackSemiBoldOpen),
+      builder:
+          (context) => AlertDialog(
+            icon: const Icon(Icons.error, color: Colors.red, size: 32),
+            content: Text(error, style: TextStyles.font28BlackSemiBoldOpen),
+            actions: [
+              TextButton(
+                onPressed: () => context.pop(),
+                child: Text(
+                  'Got it',
+                  style: TextStyles.font28BlackSemiBoldOpen,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 }

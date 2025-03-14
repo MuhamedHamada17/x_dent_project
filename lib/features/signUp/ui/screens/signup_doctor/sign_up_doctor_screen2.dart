@@ -7,6 +7,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
+import 'package:x_dent_project/features/home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/signUp/ui/screens/widgets/upload_cv_field.dart';
 
@@ -178,13 +179,33 @@ class SignUpDoctorScreen2 extends StatelessWidget {
                 child: SizedBox(
                   width: 200.w,
                   height: 45.h,
-                  child: AppTextButton(
-                    buttonText: "Continue",
-                    borderRadius: 20,
-                    verticalPadding: 4.h,
-                    backgroundColor: ColorsManager.Blue,
-                    textStyle: TextStyles.font20whiteRegular,
-                    onPressed: () {},
+                  child: GestureDetector(
+                    onTap:
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DoctorHomeSreen();
+                            },
+                          ),
+                        ),
+                    child: AppTextButton(
+                      buttonText: "Continue",
+                      borderRadius: 20,
+                      verticalPadding: 4.h,
+                      backgroundColor: ColorsManager.Blue,
+                      textStyle: TextStyles.font20whiteRegular,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DoctorHomeSreen();
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),

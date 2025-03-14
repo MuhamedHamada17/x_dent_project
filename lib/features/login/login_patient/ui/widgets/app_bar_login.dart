@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
@@ -11,7 +10,7 @@ class AppBarLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
         GestureDetector(
           onTap: () {
