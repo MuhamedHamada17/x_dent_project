@@ -5,6 +5,8 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 class AppointmentCard extends StatelessWidget {
+  const AppointmentCard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(

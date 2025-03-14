@@ -7,6 +7,8 @@ import 'package:x_dent_project/features/home_page/doctor_home_page/ui/widgets/ap
 import 'package:x_dent_project/features/home_page/doctor_home_page/ui/widgets/info_card.dart';
 
 class DoctorHomeSreen extends StatelessWidget {
+  const DoctorHomeSreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
