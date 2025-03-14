@@ -9,12 +9,9 @@ import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/widgets/app_bar_login.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/widgets/log_with.dart';
 
-
 import 'package:x_dent_project/features/signUp/ui/screens/signup_doctor/sign_up_doctor_screen1.dart';
 
-
 import '../../../../core/di/dependency_injection.dart';
-import '../../../../core/helpers/app_regex.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/routes.dart';
 import '../logic/login_cubit.dart';
@@ -68,7 +65,10 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black, width: 1.3),
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            width: 1.3,
+                          ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         hintStyle: TextStyles.font14GreyRegular,
@@ -93,7 +93,10 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black, width: 1.3),
+                          borderSide: BorderSide(
+                            color: Colors.black,
+                            width: 1.3,
+                          ),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         controller: loginCubit.passwordController,
@@ -114,7 +117,10 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                         onTap: () {
                           context.pushNamed(Routes.forgetScreen);
                         },
-                        child: Text("Forget Password?", style: TextStyles.font12BlackRegular),
+                        child: Text(
+                          "Forget Password?",
+                          style: TextStyles.font12BlackRegular,
+                        ),
                       ),
                     ),
                     verticalSpace(50),
@@ -131,7 +137,8 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                               backgroundColor: ColorsManager.Blue,
                               textStyle: TextStyles.font20whiteRegular,
                               onPressed: () {
-                                if (loginCubit.formKey.currentState!.validate()) {
+                                if (loginCubit.formKey.currentState!
+                                    .validate()) {
                                   loginCubit.login();
                                 }
                               },
@@ -141,7 +148,7 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                       ),
                     ),
                     verticalSpace(90),
-                   LogWith(),
+                    LogWith(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -153,11 +160,11 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                         GestureDetector(
                           onTap:
                               () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpDoctorScreen1(),
-                            ),
-                          ),
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => SignUpDoctorScreen1(),
+                                ),
+                              ),
                           child: Text(
                             "Register Now",
                             style: TextStyles.font14BlueRegular,
@@ -177,9 +184,12 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                 loading: () {
                   showDialog(
                     context: context,
-                    builder: (context) => const Center(
-                      child: CircularProgressIndicator(color: ColorsManager.Blue),
-                    ),
+                    builder:
+                        (context) => const Center(
+                          child: CircularProgressIndicator(
+                            color: ColorsManager.Blue,
+                          ),
+                        ),
                   );
                 },
                 success: (loginResponse) {
@@ -202,16 +212,20 @@ class _LoginDoctorScreenContent extends StatelessWidget {
     context.pop();
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        icon: const Icon(Icons.error, color: Colors.red, size: 32),
-        content: Text(error, style: TextStyles.font28BlackSemiBoldOpen),
-        actions: [
-          TextButton(
-            onPressed: () => context.pop(),
-            child: Text('Got it', style: TextStyles.font28BlackSemiBoldOpen),
+      builder:
+          (context) => AlertDialog(
+            icon: const Icon(Icons.error, color: Colors.red, size: 32),
+            content: Text(error, style: TextStyles.font28BlackSemiBoldOpen),
+            actions: [
+              TextButton(
+                onPressed: () => context.pop(),
+                child: Text(
+                  'Got it',
+                  style: TextStyles.font28BlackSemiBoldOpen,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 }

@@ -5,6 +5,8 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 class UploadCVField extends StatefulWidget {
+  const UploadCVField({super.key});
+
   @override
   _UploadCVFieldState createState() => _UploadCVFieldState();
 }
