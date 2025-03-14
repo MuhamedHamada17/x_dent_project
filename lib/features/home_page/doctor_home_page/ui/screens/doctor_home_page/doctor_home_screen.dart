@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home_page/ui/widgets/appointmentCard.dart';
-import 'package:x_dent_project/features/home_page/ui/widgets/info_card.dart';
+import 'package:x_dent_project/features/home_page/doctor_home_page/ui/widgets/appointmentCard.dart';
+import 'package:x_dent_project/features/home_page/doctor_home_page/ui/widgets/info_card.dart';
 
 class DoctorHomeSreen extends StatelessWidget {
+  const DoctorHomeSreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
