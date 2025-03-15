@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.dart';
-import 'package:x_dent_project/features/home_page/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
-import 'package:x_dent_project/features/home_page/patient_home_page/ui/screens/patient_home_page.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/on_boarding/on_boarding_screen.dart';
