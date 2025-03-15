@@ -27,7 +27,7 @@ class TextStyles {
   static TextStyle font12BlueRegular = GoogleFonts.inter(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
-    color: ColorsManager.Black,
+    color: ColorsManager.Blue,
   );
   static TextStyle font20whiteRegular = GoogleFonts.inter(
     fontSize: 20.sp,

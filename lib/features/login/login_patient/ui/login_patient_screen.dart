@@ -135,6 +135,7 @@ class _LoginPatientScreenContent extends StatelessWidget {
                               backgroundColor: ColorsManager.Blue,
                               textStyle: TextStyles.font20whiteRegular,
                               onPressed: () {
+                                context.pushNamed(Routes.patientHomeScreen);
                                 if (loginCubit.formKey.currentState!
                                     .validate()) {
                                   loginCubit.login();
@@ -192,7 +193,7 @@ class _LoginPatientScreenContent extends StatelessWidget {
                 },
                 success: (loginResponse) {
                   context.pop();
-                  context.pushNamed(Routes.homeScreen);
+                  context.pushNamed(Routes.AppLayoutPatient);
                 },
                 error: (error) {
                   _setupErrorState(context, error.message);
