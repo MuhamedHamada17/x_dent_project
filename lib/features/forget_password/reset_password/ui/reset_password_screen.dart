@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 
 import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/app_router.dart';
 import '../../../../core/theiming/styles.dart';
 import '../../../../core/widgets/app_text_button.dart';
 import '../../../../core/widgets/app_text_form_field.dart';
@@ -30,7 +30,6 @@ class ResetPasswordScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text("Password", style: TextStyles.font14BlackSemiBold),
-
                 ],
               ),
             ),
@@ -42,7 +41,10 @@ class ResetPasswordScreen extends StatelessWidget {
                 hintText: "At Least 8 digits",
                 hintStyle: TextStyles.font14MRegularMon,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorsManager.Grey.withOpacity(.8), width: 1.3),
+                  borderSide: BorderSide(
+                    color: ColorsManager.Grey.withOpacity(.8),
+                    width: 1.3,
+                  ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 focusedBorder: OutlineInputBorder(
@@ -57,8 +59,10 @@ class ResetPasswordScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("Confirm Password", style: TextStyles.font14BlackSemiBold),
-
+                  Text(
+                    "Confirm Password",
+                    style: TextStyles.font14BlackSemiBold,
+                  ),
                 ],
               ),
             ),
@@ -70,7 +74,10 @@ class ResetPasswordScreen extends StatelessWidget {
                 hintText: "********",
                 hintStyle: TextStyles.font14MRegularMon,
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: ColorsManager.Grey.withOpacity(.8), width: 1.3),
+                  borderSide: BorderSide(
+                    color: ColorsManager.Grey.withOpacity(.8),
+                    width: 1.3,
+                  ),
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 focusedBorder: OutlineInputBorder(

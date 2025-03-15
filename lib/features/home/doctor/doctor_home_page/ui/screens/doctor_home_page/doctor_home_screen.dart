@@ -3,42 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home_page/doctor_home_page/ui/widgets/appointmentCard.dart';
-import 'package:x_dent_project/features/home_page/doctor_home_page/ui/widgets/info_card.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/info_card.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/navigation_bar.dart';
 
-class DoctorHomeSreen extends StatelessWidget {
-  const DoctorHomeSreen({super.key});
+class DoctorHomeScreen extends StatelessWidget {
+  const DoctorHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        padding: EdgeInsets.all(1),
-        color: ColorsManager.lighterBLUE,
-        child: BottomNavigationBar(
-          elevation: 0,
-          backgroundColor: ColorsManager.lighterBLUE,
-          selectedItemColor: ColorsManager.Blue,
-          unselectedItemColor: Colors.black,
-          showUnselectedLabels: true,
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.calendar_today),
-              label: "Appointments",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.message_outlined),
-              label: "Messages",
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-          ],
-        ),
-      ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -136,7 +111,6 @@ class DoctorHomeSreen extends StatelessWidget {
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-
                                   Text(
                                     "6",
                                     style: TextStyle(
@@ -186,7 +160,6 @@ class DoctorHomeSreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w400,
-
                               color: const Color.fromARGB(255, 0, 0, 0),
                             ),
                           ),
@@ -212,3 +185,5 @@ class DoctorHomeSreen extends StatelessWidget {
     );
   }
 }
+
+// كلاس الـ Navigation Bar المستقل

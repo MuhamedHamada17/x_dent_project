@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 import '../../../../core/helpers/spacing.dart';
-import '../../../../core/routing/app_router.dart';
 import '../../../../core/theiming/colors.dart';
 import '../../../../core/widgets/app_text_button.dart';
 import '../../forget/ui/widgets/app_bar_forget.dart';
@@ -27,19 +27,25 @@ class OtpScreen extends StatelessWidget {
             Text("Enter Verification Code", style: TextStyles.font16MonemiBold),
             verticalSpace(30),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20), // **إضافة بادينج أفقي**
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ), // **إضافة بادينج أفقي**
               child: _buildOtpInput(context),
             ),
             verticalSpace(10),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               Text("if you didn't receive a code, ",style: TextStyles.font14MediumMon,),
-               GestureDetector(
-                 onTap: (){},
-                   child: Text("Resend",style: TextStyles.font14BlueMediumMon,))
-             ],
-           ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "if you didn't receive a code, ",
+                  style: TextStyles.font14MediumMon,
+                ),
+                GestureDetector(
+                  onTap: () {},
+                  child: Text("Resend", style: TextStyles.font14BlueMediumMon),
+                ),
+              ],
+            ),
             verticalSpace(30),
             Center(
               child: SizedBox(

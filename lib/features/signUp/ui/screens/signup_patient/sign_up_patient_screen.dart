@@ -228,7 +228,9 @@ class SignUpPatientScreen extends StatelessWidget {
                     verticalPadding: 4.h,
                     backgroundColor: ColorsManager.Blue,
                     textStyle: TextStyles.font20whiteRegular,
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushNamed(Routes.AppLayoutPatient);
+                    },
                   ),
                 ),
               ),
