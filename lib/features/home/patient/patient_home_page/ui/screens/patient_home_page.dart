@@ -97,7 +97,11 @@ class PatientHomePage extends StatelessWidget {
                 children: [
                   Text("Dentist Specialty",style: TextStyles.font14BlackRegular,),
                   Spacer(),
-                  Text("See all",style: TextStyles.font12BlueRegular,),
+                  GestureDetector(
+                    onTap: (){
+                      context.pushNamed(Routes.specialtyScreen);
+                    },
+                      child: Text("See all",style: TextStyles.font12BlueRegular,)),
                 ],
               ),
             ),
