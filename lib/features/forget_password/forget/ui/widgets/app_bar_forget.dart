@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
-import '../../../../../core/routing/routes.dart';
 import '../../../../../core/theiming/styles.dart';
 
 class AppBarForget extends StatelessWidget {

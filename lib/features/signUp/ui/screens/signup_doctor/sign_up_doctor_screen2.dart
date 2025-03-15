@@ -185,7 +185,7 @@ class SignUpDoctorScreen2 extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return DoctorHomeSreen();
+                              return DoctorHomeScreen();
                             },
                           ),
                         ),
@@ -200,7 +200,7 @@ class SignUpDoctorScreen2 extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return DoctorHomeSreen();
+                              return DoctorHomeScreen();
                             },
                           ),
                         );
