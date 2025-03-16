@@ -185,5 +185,3 @@ class DoctorHomeScreen extends StatelessWidget {
     );
   }
 }
-
-// كلاس الـ Navigation Bar المستقل

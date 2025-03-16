@@ -104,7 +104,7 @@ class AppointmentCard extends StatelessWidget {
                     Icon(Icons.access_time, color: ColorsManager.Blue),
                     horizontalSpace(16),
                     Text("9:00-10:00", style: TextStyles.font10BlueRegular),
-                    horizontalSpace(12),
+                    horizontalSpace(8),
                   ],
                 ),
               ],

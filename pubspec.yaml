@@ -85,6 +85,11 @@ flutter:
      - assets/png/on_boarding.png
      - assets/svg/onBoarding.svg
      - assets/png/
+     - assets/svg/
+     - assets/svg/home.svg
+     - assets/svg/calendar.svg
+     - assets/svg/chat.svg
+     - assets/svg/person.svg
      - assets/png/Apple.png
      - assets/png/google.png
   #   - images/a_dot_ham.jpeg
