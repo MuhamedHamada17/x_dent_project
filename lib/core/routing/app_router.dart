@@ -8,9 +8,9 @@ import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.da
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/on_boarding/on_boarding_screen.dart';
-import 'package:x_dent_project/features/signUp/ui/screens/signup_doctor/sign_up_doctor_screen1.dart';
-import 'package:x_dent_project/features/signUp/ui/screens/signup_doctor/sign_up_doctor_screen2.dart';
-import 'package:x_dent_project/features/signUp/ui/screens/signup_patient/sign_up_patient_screen.dart';
+import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen1.dart';
+import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen2.dart';
+import 'package:x_dent_project/features/signUp/patient/ui/screens/signup_patient/sign_up_patient_screen.dart';
 import 'package:x_dent_project/features/splash/splash_screen.dart';
 import '../../features/forget_password/otp/ui/otp_screen.dart';
 import '../../features/forget_password/reset_password/ui/reset_password_screen.dart';
@@ -53,10 +53,10 @@ class AppRouter {
         return MaterialPageRoute(
           builder:
               (_) => Scaffold(
-            body: Center(
-              child: Text("No route defined for ${settings.name}"),
-            ),
-          ),
+                body: Center(
+                  child: Text("No route defined for ${settings.name}"),
+                ),
+              ),
         );
     }
   }

@@ -2,29 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/patient_appoinment_screen.dart';
-import '../../home/patient/patient_home_page/ui/screens/patient_home_page.dart';
-import '../../home/patient/patient_messages_screen/ui/patient_messages_screen.dart';
-import '../../home/patient/patient_profile_screen/ui/patient_profile_screen.dart';
-import '../../home/patient/patient_upload_screen/ui/patient_upload_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doctor_message.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/doctor_profile.dart';
 
-class AppLayoutPatient extends StatefulWidget {
-  const AppLayoutPatient({Key? key}) : super(key: key);
+class AppLayoutDoctor extends StatefulWidget {
+  const AppLayoutDoctor({Key? key}) : super(key: key);
 
   @override
-  State<AppLayoutPatient> createState() => _AppLayoutPatientState();
+  State<AppLayoutDoctor> createState() => _AppLayoutDoctorState();
 }
 
-class _AppLayoutPatientState extends State<AppLayoutPatient> {
+class _AppLayoutDoctorState extends State<AppLayoutDoctor> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
 
   final List<Widget> screens = [
-    const PatientHomePage(),
-    const PatientAppoinmentScreen(),
-    const PatientUploadScreen(),
-    const PatientMessagesScreen(),
-    const PatientProfileScreen(),
+    const DoctorHomeScreen(),
+    DoctorAppointmentsScreen(),
+    const DoctorMessageScreen(),
+    const DoctorProfileScreen(),
   ];
 
   void onItemTapped(int index) {
@@ -86,9 +84,8 @@ class _AppLayoutPatientState extends State<AppLayoutPatient> {
             items: [
               _buildNavItem(Icons.home, "Home", 0),
               _buildNavItem(Icons.calendar_today, "Appointments", 1),
-              _buildNavItem(Icons.upload_file, "Upload", 2),
-              _buildNavItem(Icons.chat_bubble_outline, "Messages", 3),
-              _buildNavItem(Icons.person, "Profile", 4),
+              _buildNavItem(Icons.chat_bubble_outline, "Messages", 2),
+              _buildNavItem(Icons.person, "Profile", 3),
             ],
           ),
         ),
