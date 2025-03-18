@@ -8,7 +8,7 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
-import 'package:x_dent_project/features/signUp/ui/screens/signup_doctor/sign_up_doctor_screen2.dart';
+import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen2.dart';
 
 class SignUpDoctorScreen1 extends StatelessWidget {
   const SignUpDoctorScreen1({super.key});
