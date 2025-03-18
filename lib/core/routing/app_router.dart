@@ -3,6 +3,7 @@ import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/notification.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -46,6 +47,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const AppLayoutPatient());
       case Routes.notification:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
+      case Routes.specialtyScreen:
+        return MaterialPageRoute(builder: (_) => const SpecialtyScreen());
       default:
         return MaterialPageRoute(
           builder:
