@@ -5,7 +5,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/info_card.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/navigation_bar.dart';
+import 'package:x_dent_project/features/layout/layout_doctor/lay_out_doctor.dart';
 
 class DoctorHomeScreen extends StatelessWidget {
   const DoctorHomeScreen({super.key});
@@ -13,7 +13,6 @@ class DoctorHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(),
       backgroundColor: Colors.white,
       body: Stack(
         children: [
