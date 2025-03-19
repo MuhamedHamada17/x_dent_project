@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -40,7 +39,7 @@ class TextStyles {
     color: ColorsManager.Black,
   );
   static TextStyle font28BlackSemiBoldOpen = GoogleFonts.openSans(
-    fontSize:28.sp,
+    fontSize: 28.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: ColorsManager.Black,
   );
@@ -69,6 +68,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Black,
   );
+  static TextStyle font16BlackRegular = GoogleFonts.inter(
+    fontSize: 16,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.Black,
+  );
   static TextStyle font12BlackRegular = GoogleFonts.inter(
     fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
@@ -94,7 +98,12 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Grey,
   );
-  static TextStyle font14BlueRegular= GoogleFonts.inter(
+  static TextStyle font16GreyRegular = GoogleFonts.inter(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.Grey,
+  );
+  static TextStyle font14BlueRegular = GoogleFonts.inter(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Blue,
@@ -127,7 +136,7 @@ class TextStyles {
   static TextStyle font24semiBoldMon = GoogleFonts.montserrat(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.semiBold,
-    color: Color(0XFF444444)
+    color: Color(0XFF444444),
   );
   static TextStyle font14MRegularMon = GoogleFonts.montserrat(
     fontSize: 14.sp,
@@ -135,14 +144,13 @@ class TextStyles {
     color: ColorsManager.Grey,
   );
   static TextStyle font14MediumMon = GoogleFonts.montserrat(
-  fontSize: 14.sp,
-  fontWeight: FontWeightHelper.semiBold,
-  color: ColorsManager.Grey,
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.Grey,
   );
   static TextStyle font14BlueMediumMon = GoogleFonts.montserrat(
     fontSize: 14.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: ColorsManager.Blue,
   );
-
 }

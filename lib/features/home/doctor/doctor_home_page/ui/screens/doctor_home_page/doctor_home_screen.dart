@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/core/widgets/search_text_form.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/info_card.dart';
 import 'package:x_dent_project/features/layout/layout_doctor/lay_out_doctor.dart';
@@ -50,21 +51,9 @@ class DoctorHomeScreen extends StatelessWidget {
                     verticalSpace(22),
                     SizedBox(
                       height: 42.h,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          hintText: " Search",
-                          hintStyle: TextStyles.font14GreyRegular,
-                          suffixIcon: Icon(Icons.search),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.black,
-                              width: 1.5,
-                            ),
-                            borderRadius: BorderRadius.circular(32),
-                          ),
-                          filled: true,
-                          fillColor: Colors.white,
-                        ),
+                      child: SearchTextForm(
+                        borderColor: ColorsManager.Black,
+                        hintStyle: TextStyles.font14GreyRegular,
                       ),
                     ),
                     verticalSpace(32),

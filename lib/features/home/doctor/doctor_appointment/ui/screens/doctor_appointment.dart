@@ -1,151 +1,136 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
+import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/core/widgets/search_text_form.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/widgets/appointments_listW_wdget.dart';
 
-class DoctorAppointmentsScreen extends StatelessWidget {
+class DoctorAppointmentsScreen extends StatefulWidget {
+  @override
+  State<DoctorAppointmentsScreen> createState() =>
+      _DoctorAppointmentsScreenState();
+}
+
+class _DoctorAppointmentsScreenState extends State<DoctorAppointmentsScreen> {
+  int selectedIndex = 7;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Appointments",
-          style: TextStyle(color: Colors.black, fontSize: 20),
+        automaticallyImplyLeading: false,
+        title: Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Text("Appointments", style: TextStyles.font20BlackRegular),
         ),
         backgroundColor: Colors.white,
         centerTitle: true,
-        elevation: 0,
-        leading: SizedBox(),
       ),
       body: Column(
         children: [
-          SearchBarWidget(),
-          DateSelectorWidget(),
-          Expanded(child: AppointmentsListWidget()),
-        ],
-      ),
-    );
-  }
-}
-
-class SearchBarWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      color: Color(0xFFD0DAEC),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Search",
-                prefixIcon: Icon(Icons.search, color: Colors.grey),
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(25),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
-          ),
-          SizedBox(width: 10),
-          Text("Sort by", style: TextStyle(color: Colors.blue, fontSize: 14)),
-        ],
-      ),
-    );
-  }
-}
-
-class DateSelectorWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue,
-      padding: EdgeInsets.symmetric(vertical: 8),
-      child: Column(
-        children: [
-          Text(
-            "February 2025",
-            style: TextStyle(color: Colors.white, fontSize: 16),
-          ),
-          SizedBox(height: 5),
           Container(
-            height: 40,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: List.generate(
-                9,
-                (index) => Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 4),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor:
-                          index == 7 ? Colors.blue[900] : Colors.white,
-                      foregroundColor: index == 7 ? Colors.white : Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text("${index + 1}"),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class AppointmentsListWidget extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        bool isUpcoming = index < 2;
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (index == 0)
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Text(
-                  "Saturday 8/2/2025",
-                  style: TextStyle(fontSize: 14, color: Colors.grey),
-                ),
-              ),
-            ListTile(
-              title: Text("Ahmed Khaled"),
-              subtitle: Text("5:00PM"),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
+            color: ColorsManager.lighterBLUE,
+            child: Padding(
+              padding: EdgeInsets.only(top: 12, bottom: 6, right: 16, left: 16),
+              child: Column(
                 children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: isUpcoming ? Colors.blue : Colors.grey,
-                      ),
-                    ),
-                    child: Text(
-                      isUpcoming ? "Upcoming" : "Completed",
-                      style: TextStyle(
-                        color: isUpcoming ? Colors.blue : Colors.grey,
-                      ),
+                  SizedBox(
+                    height: 42.h,
+                    child: SearchTextForm(
+                      borderColor: ColorsManager.Grey,
+                      hintStyle: TextStyles.font16GreyRegular,
                     ),
                   ),
-                  SizedBox(width: 10),
-                  Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                  verticalSpace(6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text("Sort by", style: TextStyles.font14BlueRegular),
+                      horizontalSpace(8),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 14,
+                        color: ColorsManager.Blue,
+                      ),
+                      horizontalSpace(8),
+                    ],
+                  ),
                 ],
               ),
             ),
-          ],
-        );
-      },
+          ),
+          Container(
+            color: ColorsManager.Blue,
+            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("February 2025", style: TextStyles.font14WhiteRegular),
+                Icon(Icons.keyboard_arrow_down, color: Colors.white, size: 24),
+              ],
+            ),
+          ),
+          verticalSpace(8),
+
+          Container(
+            height: 50,
+            color: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 30,
+                    itemBuilder: (context, index) {
+                      bool isSelected = index == selectedIndex;
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex =
+                                index; // تحديث الرقم المحدد عند الضغط
+                          });
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4,
+                            vertical: 4,
+                          ),
+                          child: Container(
+                            width: 35.h,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color:
+                                  isSelected
+                                      ? ColorsManager.Blue
+                                      : Colors.white,
+                              border: Border.all(color: ColorsManager.Blue),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              "${index + 1}",
+                              style: TextStyle(
+                                color:
+                                    isSelected
+                                        ? Colors.white
+                                        : ColorsManager.Blue,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(child: AppointmentsListWidget()),
+        ],
+      ),
     );
   }
 }
