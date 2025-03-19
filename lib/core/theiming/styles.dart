@@ -60,7 +60,7 @@ class TextStyles {
     color: ColorsManager.Black,
   );
   static TextStyle font20BlueRegular = GoogleFonts.inter(
-    fontSize: 12.sp,
+    fontSize: 20.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Blue,
   );
