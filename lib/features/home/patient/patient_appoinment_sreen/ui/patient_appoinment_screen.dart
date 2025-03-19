@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/appointment_card_patient.dart';
@@ -62,7 +64,7 @@ class _PatientAppoinmentScreenState extends State<PatientAppoinmentScreen> {
               AppointmentCardPatient(
                 status: selectedStatus,
                 onCancel: () => _navigateToScreen("CancelScreen"),
-                onReschedule: () => _navigateToScreen("RescheduleScreen"),
+                onReschedule: () => context.pushNamed(Routes.appointmentDetailsPatientScreen),
                 onAddReview: () => _navigateToScreen("AddReviewScreen"),
                 onReBook: () => _navigateToScreen("ReBookScreen"),
               ),
