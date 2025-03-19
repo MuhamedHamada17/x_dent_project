@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
+import 'package:x_dent_project/core/theiming/styles.dart';
+
+class SearchTextForm extends StatelessWidget {
+  SearchTextForm({
+    super.key,
+    required this.borderColor,
+    required this.hintStyle,
+  });
+  Color borderColor;
+  TextStyle hintStyle;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: " Search",
+        hintStyle: hintStyle,
+        suffixIcon: Icon(Icons.search),
+        border: OutlineInputBorder(
+          borderSide: BorderSide(color: borderColor, width: 2),
+          borderRadius: BorderRadius.circular(32),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+    );
+  }
+}
