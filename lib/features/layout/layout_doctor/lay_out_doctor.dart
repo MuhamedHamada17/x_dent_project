@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doctor_message.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/doctor_profile.dart';
