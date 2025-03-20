@@ -4,7 +4,7 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/search_text_form.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/widgets/appointments_listW_wdget.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/widgets/appointments_list_wdget.dart';
 
 class DoctorAppointmentsScreen extends StatefulWidget {
   @override
@@ -62,7 +62,7 @@ class _DoctorAppointmentsScreenState extends State<DoctorAppointmentsScreen> {
           ),
           Container(
             color: ColorsManager.Blue,
-            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment_detail_screen.dart';
 
 class AppointmentsListWidget extends StatelessWidget {
   @override
@@ -55,10 +56,21 @@ class AppointmentsListWidget extends StatelessWidget {
                         ),
                       ),
                       horizontalSpace(10),
-                      Icon(
-                        Icons.arrow_forward,
-                        size: 26,
-                        color: ColorsManager.Blue,
+                      GestureDetector(
+                        onTap:
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return AppointmentDetailsScreen();
+                                },
+                              ),
+                            ),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          size: 26,
+                          color: ColorsManager.Blue,
+                        ),
                       ),
                     ],
                   ),
