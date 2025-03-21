@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:x_dent_project/core/theiming/colors.dart';
-import 'package:x_dent_project/core/theiming/styles.dart';
 
+// ignore: must_be_immutable
 class SearchTextForm extends StatelessWidget {
   SearchTextForm({
     super.key,

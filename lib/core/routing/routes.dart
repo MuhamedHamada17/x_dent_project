@@ -15,7 +15,8 @@ class Routes {
   static const String AppLayoutPatient = "/AppLayoutPatient";
   static const String notification = "/Notification";
   static const String specialtyScreen = "/SpecialtyScreen";
-  static const String appointmentDetailsPatientScreen = "/appointmentDetailsPatientScreen";
-
-
+  static const String appointmentDetailsPatientScreen =
+      "/appointmentDetailsPatientScreen";
+  static const String DoctorMessageScreen = "/DoctorMessageScreen";
+  static const String ChatScreen = "/ChatScreen";
 }

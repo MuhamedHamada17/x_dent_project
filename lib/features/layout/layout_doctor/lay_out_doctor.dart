@@ -4,7 +4,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doctor_message.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_message_main_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/doctor_profile.dart';
 
 class AppLayoutDoctor extends StatefulWidget {
@@ -21,8 +21,8 @@ class _AppLayoutDoctorState extends State<AppLayoutDoctor> {
   final List<Widget> screens = [
     const DoctorHomeScreen(),
     DoctorAppointmentsScreen(),
-    const DoctorMessageScreen(),
-    const DoctorProfileScreen(),
+    DoctorMessageScreen(),
+    const DoctorProfileScreen.DoctorProfilePage(),
   ];
 
   void onItemTapped(int index) {
