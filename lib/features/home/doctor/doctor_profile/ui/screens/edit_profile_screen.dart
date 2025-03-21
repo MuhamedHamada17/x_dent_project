@@ -168,10 +168,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               ),
               verticalSpace(12),
               GenderSelector(),
-              verticalSpace(8),
-              verticalSpace(16),
+              verticalSpace(60),
               SizedBox(
-                width: 200.w,
+                width: 196.w,
                 height: 48.h,
                 child: ElevatedButton(
                   onPressed: () {},
