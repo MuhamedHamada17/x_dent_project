@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/gender_selection.dart';
 
@@ -170,20 +171,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
               GenderSelector(),
               verticalSpace(60),
               SizedBox(
-                width: 196.w,
-                height: 48.h,
-                child: ElevatedButton(
+                width: 200,
+                height: 50,
+                child: AppTextButton(
+                  buttonText: "Save Change",
+                  borderRadius: 20,
+                  verticalPadding: 4.h,
+                  backgroundColor: ColorsManager.Blue,
+                  textStyle: TextStyles.font22WhiteMedium,
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorsManager.Blue,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                  ),
-                  child: Text(
-                    "Save Changes",
-                    style: TextStyles.font22WhiteMedium,
-                  ),
                 ),
               ),
               verticalSpace(8),
