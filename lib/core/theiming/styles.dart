@@ -69,7 +69,7 @@ class TextStyles {
     color: ColorsManager.Black,
   );
   static TextStyle font16BlackRegular = GoogleFonts.inter(
-    fontSize: 16,
+    fontSize: 16.sp,
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Black,
   );

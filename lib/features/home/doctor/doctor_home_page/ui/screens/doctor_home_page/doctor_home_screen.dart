@@ -6,7 +6,6 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/search_text_form.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/info_card.dart';
-import 'package:x_dent_project/features/layout/layout_doctor/lay_out_doctor.dart';
 
 class DoctorHomeScreen extends StatelessWidget {
   const DoctorHomeScreen({super.key});
