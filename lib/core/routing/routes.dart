@@ -19,4 +19,12 @@ class Routes {
       "/appointmentDetailsPatientScreen";
   static const String DoctorMessageScreen = "/DoctorMessageScreen";
   static const String ChatScreen = "/ChatScreen";
+  static const String BillingReportsScreen = "/BillingReportsScreen";
+  static const String ChangePasswordScreen = "/ChangePasswordScreen";
+  static const String EditProfileScreen = "/EditProfileScreen";
+  static const String HelpCenterScreen = "/HelpCenterScreen";
+  static const String LanguageScreen = "/LanguageScreen";
+  static const String LogOutScreen = "/LogOutScreen";
+  static const String PatientFilesScreen = "/PatientFilesScreen";
+  static const String ProfileSettings = "/ProfileSettings";
 }

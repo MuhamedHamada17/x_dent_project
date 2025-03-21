@@ -3,6 +3,14 @@ import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_chat_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_message_main_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/billing_reports_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/change_password_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/edit_profile_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/help_center_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/language_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/notification.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
@@ -56,6 +64,22 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const DoctorMessageScreen());
       case Routes.specialtyScreen:
         return MaterialPageRoute(builder: (_) => const SpecialtyScreen());
+      case Routes.BillingReportsScreen:
+        return MaterialPageRoute(builder: (_) => const BillingReportsScreen());
+      case Routes.ChangePasswordScreen:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+      case Routes.EditProfileScreen:
+        return MaterialPageRoute(builder: (_) => EditProfileScreen());
+      case Routes.HelpCenterScreen:
+        return MaterialPageRoute(builder: (_) => const HelpCenterScreen());
+      case Routes.LanguageScreen:
+        return MaterialPageRoute(builder: (_) => const LanguageScreen());
+      case Routes.LogOutScreen:
+        return MaterialPageRoute(builder: (_) => const LogOutScreen());
+      case Routes.PatientFilesScreen:
+        return MaterialPageRoute(builder: (_) => const PatientFilesScreen());
+      case Routes.ProfileSettings:
+        return MaterialPageRoute(builder: (_) => const ProfileSettings());
       case Routes.appointmentDetailsPatientScreen:
         return MaterialPageRoute(
           builder: (_) => const AppointmentDetailsPatientScreen(),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/profile_option.dart';
@@ -64,35 +66,59 @@ class DoctorProfileMainScreen extends StatelessWidget {
             ProfileOption(
               title: "Edit Profile",
               icon: Icons.person,
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.EditProfileScreen);
+              },
             ),
             ProfileOption(
               title: "Change Password",
               icon: Icons.lock,
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.ChangePasswordScreen);
+              },
             ),
             ProfileOption(
               title: "Patient Files",
               icon: Icons.bloodtype,
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.PatientFilesScreen);
+              },
             ),
             ProfileOption(
               title: "Billing Reports",
               icon: Icons.account_balance,
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.BillingReportsScreen);
+              },
             ),
             ProfileOption(
               title: "Settings",
               icon: Icons.settings,
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.ProfileSettings);
+              },
             ),
             ProfileOption(
               title: "Language",
               icon: Icons.language,
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.LanguageScreen);
+              },
             ),
-            ProfileOption(title: "Help Center", icon: Icons.help, onTap: () {}),
-            ProfileOption(title: "Log Out", icon: Icons.logout, onTap: () {}),
+            ProfileOption(
+              title: "Help Center",
+              icon: Icons.help,
+              onTap: () {
+                context.pushNamed(Routes.HelpCenterScreen);
+              },
+            ),
+            ProfileOption(
+              title: "Log Out",
+              icon: Icons.logout,
+              onTap: () {
+                context.pushNamed(Routes.LogOutScreen);
+              },
+            ),
           ],
         ),
       ),
