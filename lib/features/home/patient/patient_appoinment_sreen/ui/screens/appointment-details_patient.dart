@@ -5,8 +5,6 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/container_row_details.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/payment-details.dart';
 
-import '../widgets/reservation_details.dart';
-
 class AppointmentDetailsPatientScreen extends StatelessWidget {
   const AppointmentDetailsPatientScreen({super.key});
 
@@ -34,19 +32,16 @@ class AppointmentDetailsPatientScreen extends StatelessWidget {
                 Expanded(
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text(
-                      "Details",
-                      style: TextStyles.font28BlackMedium,
-                    ),
+                    child: Text("Details", style: TextStyles.font28BlackMedium),
                   ),
                 ),
-                horizontalSpace(32.w)
+                horizontalSpace(32.w),
               ],
             ),
           ),
           verticalSpace(20),
           ContainerRowDetails(),
-          PaymentDetails()
+          PaymentDetails(),
         ],
       ),
     );

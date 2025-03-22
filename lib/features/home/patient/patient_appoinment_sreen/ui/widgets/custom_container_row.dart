@@ -5,10 +5,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 class CustomContainerRow extends StatefulWidget {
   final Function(int)? onStatusChanged;
 
-  const CustomContainerRow({
-    Key? key,
-    this.onStatusChanged,
-  }) : super(key: key);
+  const CustomContainerRow({super.key, this.onStatusChanged});
 
   @override
   _CustomContainerRowState createState() => _CustomContainerRowState();
@@ -42,7 +39,10 @@ class _CustomContainerRowState extends State<CustomContainerRow> {
               child: Container(
                 height: 28.h,
                 decoration: BoxDecoration(
-                  color: selectedIndex == index ? ColorsManager.Blue : Colors.white,
+                  color:
+                      selectedIndex == index
+                          ? ColorsManager.Blue
+                          : Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: index == 0 ? Radius.circular(12) : Radius.zero,
                     bottomLeft: index == 0 ? Radius.circular(12) : Radius.zero,
@@ -52,10 +52,17 @@ class _CustomContainerRowState extends State<CustomContainerRow> {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  index == 0 ? "Upcoming" : index == 1 ? "Completed" : "Cancelled",
+                  index == 0
+                      ? "Upcoming"
+                      : index == 1
+                      ? "Completed"
+                      : "Cancelled",
                   style: TextStyle(
                     fontSize: 12.sp,
-                    color: selectedIndex == index ? ColorsManager.white : ColorsManager.Black,
+                    color:
+                        selectedIndex == index
+                            ? ColorsManager.white
+                            : ColorsManager.Black,
                   ),
                 ),
               ),

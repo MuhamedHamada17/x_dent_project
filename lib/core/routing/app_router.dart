@@ -12,7 +12,6 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/lo
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
-import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/notification.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
