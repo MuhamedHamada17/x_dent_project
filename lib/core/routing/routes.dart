@@ -27,4 +27,7 @@ class Routes {
   static const String LogOutScreen = "/LogOutScreen";
   static const String PatientFilesScreen = "/PatientFilesScreen";
   static const String ProfileSettings = "/ProfileSettings";
+  static const String chatScreenPatient = "/chatScreenPatient";
+  static const String patientMessagesScreen = "/patientMessagesScreen";
+
 }
