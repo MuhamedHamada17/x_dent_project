@@ -13,13 +13,13 @@ class AppointmentCardPatient extends StatelessWidget {
   final VoidCallback? onReBook;
 
   const AppointmentCardPatient({
-    Key? key,
+    super.key,
     required this.status,
     this.onCancel,
     this.onReschedule,
     this.onAddReview,
     this.onReBook,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,10 @@ class AppointmentCardPatient extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             verticalSpace(20),
-            Text("Jan 10, 2025 - 10:00 AM", style: TextStyles.font14BlackRegular),
+            Text(
+              "Jan 10, 2025 - 10:00 AM",
+              style: TextStyles.font14BlackRegular,
+            ),
             verticalSpace(20),
             const Divider(color: ColorsManager.Grey),
             verticalSpace(20),
@@ -75,20 +78,37 @@ class AppointmentCardPatient extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Dr Ahmed Mahmoud", style: TextStyles.font20BlackRegular),
+                    Text(
+                      "Dr Ahmed Mahmoud",
+                      style: TextStyles.font20BlackRegular,
+                    ),
                     verticalSpace(8),
                     Row(
                       children: [
-                        Image.asset("assets/png/location_patient.png", width: 24.w, height: 24.h),
+                        Image.asset(
+                          "assets/png/location_patient.png",
+                          width: 24.w,
+                          height: 24.h,
+                        ),
                         const SizedBox(width: 4),
-                        Text("Gehan Street, Mansoura", style: TextStyles.font12GreyRegular),
+                        Text(
+                          "Gehan Street, Mansoura",
+                          style: TextStyles.font12GreyRegular,
+                        ),
                       ],
                     ),
                     Row(
                       children: [
-                        Image.asset("assets/png/Book_patient.png", width: 24.w, height: 24.h),
+                        Image.asset(
+                          "assets/png/Book_patient.png",
+                          width: 24.w,
+                          height: 24.h,
+                        ),
                         const SizedBox(width: 4),
-                        Text("Booking ID:", style: TextStyles.font12GreyRegular),
+                        Text(
+                          "Booking ID:",
+                          style: TextStyles.font12GreyRegular,
+                        ),
                         Text("#573DK98M", style: TextStyles.font12BlueRegular),
                       ],
                     ),
@@ -119,20 +139,19 @@ class AppointmentCardPatient extends StatelessWidget {
         ];
       case "completed":
         return [
-          _buildButton("Re-Book", onReBook ?? () {}, ColorsManager.lighterBLUE,),
+          _buildButton("Re-Book", onReBook ?? () {}, ColorsManager.lighterBLUE),
           horizontalSpace(15),
           _buildButton("Add Review", onAddReview ?? () {}, ColorsManager.Blue),
         ];
       case "cancelled":
         return [
-          Container(
+          SizedBox(
             width: 330.w, // ✅ تحديد العرض الجديد
             height: 44.h, // ✅ تحديد الارتفاع
             child: _buildButton(
               "Re-Book",
               onReBook ?? () {},
               ColorsManager.Blue,
-
             ),
           ),
         ];
@@ -151,9 +170,10 @@ class AppointmentCardPatient extends StatelessWidget {
         borderRadius: 20,
         verticalPadding: 4.h,
         backgroundColor: color,
-        textStyle: color == ColorsManager.lighterBLUE
-            ? TextStyles.font20BlueRegular
-            : TextStyles.font20whiteRegular,
+        textStyle:
+            color == ColorsManager.lighterBLUE
+                ? TextStyles.font20BlueRegular
+                : TextStyles.font20whiteRegular,
         onPressed: onPressed,
       ),
     );

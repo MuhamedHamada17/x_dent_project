@@ -27,7 +27,7 @@ class DoctorMessageScreen extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       height: 38.h,
                       child: SearchTextForm(
                         borderColor: ColorsManager.Black,

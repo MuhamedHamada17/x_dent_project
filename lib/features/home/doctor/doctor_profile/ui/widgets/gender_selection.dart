@@ -3,6 +3,8 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 class GenderSelector extends StatefulWidget {
+  const GenderSelector({super.key});
+
   @override
   _GenderSelectorState createState() => _GenderSelectorState();
 }

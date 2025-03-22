@@ -6,7 +6,9 @@ import 'bloc_observer.dart';
 import 'core/routing/app_router.dart';
 
 void main() {
+  setupGetIt();
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
+  setupGetIt();
   runApp(xDentApp(appRouter: AppRouter()));
 }

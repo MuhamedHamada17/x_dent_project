@@ -7,6 +7,8 @@ import 'package:x_dent_project/core/widgets/search_text_form.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/widgets/appointments_list_wdget.dart';
 
 class DoctorAppointmentsScreen extends StatefulWidget {
+  const DoctorAppointmentsScreen({super.key});
+
   @override
   State<DoctorAppointmentsScreen> createState() =>
       _DoctorAppointmentsScreenState();
