@@ -8,7 +8,7 @@ import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/do
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/doctor_profile_main_screen.dart';
 
 class AppLayoutDoctor extends StatefulWidget {
-  const AppLayoutDoctor({Key? key}) : super(key: key);
+  const AppLayoutDoctor({super.key});
 
   @override
   State<AppLayoutDoctor> createState() => _AppLayoutDoctorState();

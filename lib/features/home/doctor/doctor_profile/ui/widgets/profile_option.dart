@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
@@ -9,11 +8,11 @@ class ProfileOption extends StatelessWidget {
   final VoidCallback onTap;
 
   const ProfileOption({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import '../../home/patient/patient_profile_screen/ui/patient_profile_screen.dart
 import '../../home/patient/patient_upload_screen/ui/patient_upload_screen.dart';
 
 class AppLayoutPatient extends StatefulWidget {
-  const AppLayoutPatient({Key? key}) : super(key: key);
+  const AppLayoutPatient({super.key});
 
   @override
   State<AppLayoutPatient> createState() => _AppLayoutPatientState();

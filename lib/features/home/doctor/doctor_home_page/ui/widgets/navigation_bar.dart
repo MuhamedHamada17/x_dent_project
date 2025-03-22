@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
+  const CustomBottomNavigationBar({super.key});
+
   @override
   _CustomBottomNavigationBarState createState() =>
       _CustomBottomNavigationBarState();

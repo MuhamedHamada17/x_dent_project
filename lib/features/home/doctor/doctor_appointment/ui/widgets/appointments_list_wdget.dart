@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment_detail_screen.dart';
 
 class AppointmentsListWidget extends StatelessWidget {
+  const AppointmentsListWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
