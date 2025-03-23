@@ -7,7 +7,7 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_screen.dart';
 import 'package:x_dent_project/features/layout/layout_doctor/lay_out_doctor.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/signUp/doctor/ui/widgets/upload_cv_field.dart';
