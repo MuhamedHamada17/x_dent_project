@@ -19,6 +19,8 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/pr
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/chat_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/patient_messages_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -94,10 +96,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const MidicalRecordsScreen());
       case Routes.AnalysisScreen:
         return MaterialPageRoute(builder: (_) => const AnalysisScreen());
+      case Routes.chatScreenPatient:
+        return MaterialPageRoute(builder: (_) => const ChatScreenPatient());
       case Routes.appointmentDetailsPatientScreen:
         return MaterialPageRoute(
           builder: (_) => const AppointmentDetailsPatientScreen(),
         );
+      case Routes.patientMessagesScreen:
+        return MaterialPageRoute(builder: (_) => const PatientMessagesScreen());
       default:
         return MaterialPageRoute(
           builder:
