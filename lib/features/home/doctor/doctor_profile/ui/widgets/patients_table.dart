@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
@@ -38,12 +40,17 @@ class PatientsTable extends StatelessWidget {
         final patient = patients[index];
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(patient["name"]!, style: TextStyles.font14BlackRegular),
-              Text(patient["date"]!, style: TextStyles.font14BlackRegular),
-            ],
+          child: GestureDetector(
+            onTap: () {
+              context.pushNamed(Routes.PatientDetailsScreen);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(patient["name"]!, style: TextStyles.font14BlackRegular),
+                Text(patient["date"]!, style: TextStyles.font14BlackRegular),
+              ],
+            ),
           ),
         );
       },

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/gender_selection.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/gender_selector_patient.dart';
 
-class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+class EditProfilePatientScreen extends StatefulWidget {
+  const EditProfilePatientScreen({super.key});
 
   @override
-  State<EditProfileScreen> createState() => _EditProfileScreenState();
+  State<EditProfilePatientScreen> createState() => _EditProfileScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class _EditProfileScreenState extends State<EditProfilePatientScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,36 +135,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ),
                 ),
                 verticalSpace(16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text("  About", style: TextStyles.font20BlackRegular),
-                  ],
-                ),
-                verticalSpace(8),
-                SizedBox(
-                  width: 330.w,
-                  height: 80.h,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 24,
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: ColorsManager.Grey.withOpacity(.8),
-                          width: 1.3,
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black, width: 1.3),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
-                  ),
-                ),
                 verticalSpace(1),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -172,8 +143,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ],
                 ),
                 verticalSpace(12),
-                GenderSelector(),
-                verticalSpace(60),
+                GenderSelectorPatient(),
+                verticalSpace(130),
                 SizedBox(
                   width: 200,
                   height: 50,
@@ -186,10 +157,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     onPressed: () {},
                   ),
                 ),
-                verticalSpace(8),
+                verticalSpace(5),
                 TextButton(
                   onPressed: () {
-                    // Action for cancel
+                    context.pop();
                   },
                   child: Text("Cancel", style: TextStyles.font22BlackMedium),
                 ),

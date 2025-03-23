@@ -15,19 +15,27 @@ class Routes {
   static const String AppLayoutPatient = "/AppLayoutPatient";
   static const String notification = "/Notification";
   static const String specialtyScreen = "/SpecialtyScreen";
-  static const String appointmentDetailsPatientScreen =
-      "/appointmentDetailsPatientScreen";
+  static const String appointmentDetailsPatientScreen = "/appointmentDetailsPatientScreen";
   static const String DoctorMessageScreen = "/DoctorMessageScreen";
   static const String ChatScreen = "/ChatScreen";
   static const String BillingReportsScreen = "/BillingReportsScreen";
   static const String ChangePasswordScreen = "/ChangePasswordScreen";
   static const String EditProfileScreen = "/EditProfileScreen";
-  static const String HelpCenterScreen = "/HelpCenterScreen";
   static const String LanguageScreen = "/LanguageScreen";
   static const String LogOutScreen = "/LogOutScreen";
   static const String PatientFilesScreen = "/PatientFilesScreen";
   static const String ProfileSettings = "/ProfileSettings";
+  static const String PatientDetailsScreen = "/PatientDetailsScreen";
+  static const String XraysScreen = "/XraysScreen";
+  static const String XrayFileScreen = "/XrayFileScreen";
+  static const String AnalysisScreen = "/AnalysisScreen";
+  static const String MidicalRecordsScreen = "/MidicalRecordsScreen";
   static const String chatScreenPatient = "/chatScreenPatient";
   static const String patientMessagesScreen = "/patientMessagesScreen";
+  static const String EditProfilePatientScreen = "/EditProfilePatientScreen";
+  static const String ChangePasswordPatientScreen = "/ChangePasswordPatientScreen";
+  static const String DataAndTreatmentPlansScreen = "/DataAndTreatmentPlansScreen";
+  static const String HelpCenterScreen = "/HelpCenterScreen";
+
 
 }

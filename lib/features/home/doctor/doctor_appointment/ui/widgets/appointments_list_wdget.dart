@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/doctor_appointment_detail_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/appointment_detailes_screens/doctor_appointment_detail_screen.dart';
 
 class AppointmentsListWidget extends StatelessWidget {
   const AppointmentsListWidget({super.key});
@@ -12,7 +12,7 @@ class AppointmentsListWidget extends StatelessWidget {
     return ListView.builder(
       itemCount: 12, // عدد المواعيد
       itemBuilder: (context, index) {
-        bool isUpcoming = index < 2; // تحديد الحالات القادمة والمكتملة
+        bool isUpcoming = index < 2;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
