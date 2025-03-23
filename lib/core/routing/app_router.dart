@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_page/doctor_home_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_chat_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_message_main_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/billing_reports_screen.dart';
@@ -9,7 +9,12 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/ed
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/language_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Midical_records/midical_records_file_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/anlysis_screens/analysis_screens.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_list_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_ray_file_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_rays_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
@@ -77,8 +82,18 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LogOutScreen());
       case Routes.PatientFilesScreen:
         return MaterialPageRoute(builder: (_) => const PatientFilesScreen());
+      case Routes.PatientDetailsScreen:
+        return MaterialPageRoute(builder: (_) => const PatientDetailsScreen());
       case Routes.ProfileSettings:
         return MaterialPageRoute(builder: (_) => const ProfileSettings());
+      case Routes.XraysScreen:
+        return MaterialPageRoute(builder: (_) => const XraysScreen());
+      case Routes.XrayFileScreen:
+        return MaterialPageRoute(builder: (_) => const XrayFileScreen());
+      case Routes.MidicalRecordsScreen:
+        return MaterialPageRoute(builder: (_) => const MidicalRecordsScreen());
+      case Routes.AnalysisScreen:
+        return MaterialPageRoute(builder: (_) => const AnalysisScreen());
       case Routes.appointmentDetailsPatientScreen:
         return MaterialPageRoute(
           builder: (_) => const AppointmentDetailsPatientScreen(),
