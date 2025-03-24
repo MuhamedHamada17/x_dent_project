@@ -29,6 +29,7 @@ class XraysScreen extends StatelessWidget {
             children: [
               verticalSpace(16),
               Section(
+                textStyles: TextStyles.font22BlackMedium,
                 text: "Uploaded Files",
                 children: [
                   Padding(

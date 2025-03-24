@@ -123,6 +123,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Red,
   );
+  static TextStyle font20RedRegular = GoogleFonts.inter(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.Red,
+  );
   static TextStyle font28WhiteMedium = GoogleFonts.inter(
     fontSize: 28.sp,
     fontWeight: FontWeightHelper.medium,

@@ -22,57 +22,80 @@ class PatientDetailsScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Section(
-                text: "Info",
-                children: [
-                  InfoRow(label: "Phone", value: "+20 1012345678"),
-                  InfoRow(label: "Name", value: "Ahmed Khaled"),
-                  InfoRow(label: "Email", value: "ahmedkhaled@gmail.com"),
-                  InfoRow(label: "Age", value: "24 Years"),
-                  InfoRow(label: "Gender", value: "Male"),
-                  InfoRow(label: "First Appt", value: "15/02/2024"),
-                  verticalSpace(10),
-                ],
-              ),
-              Section(
-                text: "Data",
-                children: [
-                  verticalSpace(10),
-                  NavRow(
-                    text: "Xrays",
-                    icon: Icons.folder,
-                    onTap: () {
-                      context.pushNamed(Routes.XraysScreen);
-                    },
-                  ),
-                  verticalSpace(10),
-                  NavRow(
-                    text: "Medical Records",
-                    icon: Icons.description,
-                    onTap: () {
-                      context.pushNamed(Routes.MidicalRecordsScreen);
-                    },
-                  ),
-                  verticalSpace(16),
-                ],
-              ),
-              Section(
-                text: "Treatment Plans",
-                children: [
-                  verticalSpace(16),
-                  NavRow(text: "Treatments Plans", icon: Icons.monitor_heart),
-                  verticalSpace(10),
-                  NavRow(text: "Prescriptions", icon: Icons.medical_services),
-                  verticalSpace(10),
-                  NavRow(text: "Upcoming Appointments", icon: Icons.event),
-                ],
-              ),
-            ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Section(
+                  textStyles: TextStyles.font22BlackMedium,
+                  text: "Info",
+                  children: [
+                    InfoRow(label: "Phone", value: "+20 1012345678"),
+                    InfoRow(label: "Name", value: "Ahmed Khaled"),
+                    InfoRow(label: "Email", value: "ahmedkhaled@gmail.com"),
+                    InfoRow(label: "Age", value: "24 Years"),
+                    InfoRow(label: "Gender", value: "Male"),
+                    InfoRow(label: "First Appt", value: "15/02/2024"),
+                    verticalSpace(10),
+                  ],
+                ),
+                Section(
+                  textStyles: TextStyles.font22BlackMedium,
+                  text: "Data",
+                  children: [
+                    verticalSpace(10),
+                    NavRow(
+                      text: "Xrays",
+                      icon: Icons.folder,
+                      onTap: () {
+                        context.pushNamed(Routes.XraysScreen);
+                      },
+                    ),
+                    verticalSpace(10),
+                    NavRow(
+                      text: "Medical Records",
+                      icon: Icons.description,
+                      onTap: () {
+                        context.pushNamed(Routes.MidicalRecordsScreen);
+                      },
+                    ),
+                    verticalSpace(16),
+                  ],
+                ),
+                Section(
+                  textStyles: TextStyles.font22BlackMedium,
+                  text: "Treatment Plans",
+                  children: [
+                    verticalSpace(16),
+                    NavRow(
+                      text: "Treatments Plans",
+                      icon: Icons.monitor_heart,
+                      onTap: () {
+                        context.pushNamed(Routes.TreatmentPlanScreen);
+                      },
+                    ),
+                    verticalSpace(10),
+                    NavRow(
+                      text: "Prescriptions",
+                      icon: Icons.medical_services,
+                      onTap: () {
+                        context.pushNamed(Routes.PrescriptionScreen);
+                      },
+                    ),
+                    verticalSpace(10),
+                    NavRow(
+                      text: "Upcoming Appointments",
+                      icon: Icons.event,
+                      onTap: () {
+                        context.pushNamed(Routes.UpcomingAppointmentsScreen);
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
