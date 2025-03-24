@@ -3,7 +3,7 @@ import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_chat_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_message_main_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/billing_reports_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/Billing%20_reports/billing_reports_maim_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/change_password_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/edit_profile_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/help_center_screen.dart';
@@ -12,6 +12,10 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/lo
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Midical_records/midical_records_file_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/anlysis_screens/analysis_screens.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/prescriptions/prescriptions_main_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/treatment_plan_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/upcomming_appointment/upcomming_appointment.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_list_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_ray_file_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_rays_screen.dart';
@@ -71,7 +75,9 @@ class AppRouter {
       case Routes.specialtyScreen:
         return MaterialPageRoute(builder: (_) => const SpecialtyScreen());
       case Routes.BillingReportsScreen:
-        return MaterialPageRoute(builder: (_) => const BillingReportsScreen());
+        return MaterialPageRoute(
+          builder: (_) => const BillingReportsMainScreen(),
+        );
       case Routes.ChangePasswordScreen:
         return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       case Routes.EditProfileScreen:
@@ -104,6 +110,18 @@ class AppRouter {
         );
       case Routes.patientMessagesScreen:
         return MaterialPageRoute(builder: (_) => const PatientMessagesScreen());
+      case Routes.TreatmentPlanScreen:
+        return MaterialPageRoute(builder: (_) => const TreatmentPlanScreen());
+      case Routes.PrescriptionScreen:
+        return MaterialPageRoute(builder: (_) => const PrescriptionScreen());
+      case Routes.UpcomingAppointmentsScreen:
+        return MaterialPageRoute(
+          builder: (_) => const UpcomingAppointmentsScreen(),
+        );
+      case Routes.EditTreatmentPlanScreen:
+        return MaterialPageRoute(
+          builder: (_) => const EditTreatmentPlanScreen(),
+        );
       default:
         return MaterialPageRoute(
           builder:
