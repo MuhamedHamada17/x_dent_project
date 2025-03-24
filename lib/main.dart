@@ -9,6 +9,5 @@ void main() {
   setupGetIt();
   Bloc.observer = MyBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
-  setupGetIt();
   runApp(xDentApp(appRouter: AppRouter()));
 }
