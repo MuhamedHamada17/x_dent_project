@@ -21,7 +21,6 @@ class Routes {
   static const String BillingReportsScreen = "/BillingReportsScreen";
   static const String ChangePasswordScreen = "/ChangePasswordScreen";
   static const String EditProfileScreen = "/EditProfileScreen";
-  static const String HelpCenterScreen = "/HelpCenterScreen";
   static const String LanguageScreen = "/LanguageScreen";
   static const String LogOutScreen = "/LogOutScreen";
   static const String PatientFilesScreen = "/PatientFilesScreen";
@@ -33,4 +32,10 @@ class Routes {
   static const String MidicalRecordsScreen = "/MidicalRecordsScreen";
   static const String chatScreenPatient = "/chatScreenPatient";
   static const String patientMessagesScreen = "/patientMessagesScreen";
+  static const String EditProfilePatientScreen = "/EditProfilePatientScreen";
+  static const String ChangePasswordPatientScreen = "/ChangePasswordPatientScreen";
+  static const String DataAndTreatmentPlansScreen = "/DataAndTreatmentPlansScreen";
+  static const String HelpCenterScreen = "/HelpCenterScreen";
+
+
 }

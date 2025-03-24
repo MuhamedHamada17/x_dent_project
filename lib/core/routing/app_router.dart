@@ -6,7 +6,6 @@ import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/do
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/billing_reports_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/change_password_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/edit_profile_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/language_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screen.dart';
@@ -21,6 +20,10 @@ import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screen
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/chat_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/patient_messages_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/change_password_patient_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/data_and_treatment_plans_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/edit_profile_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -104,6 +107,14 @@ class AppRouter {
         );
       case Routes.patientMessagesScreen:
         return MaterialPageRoute(builder: (_) => const PatientMessagesScreen());
+      case Routes.EditProfilePatientScreen:
+        return MaterialPageRoute(builder: (_) => const EditProfilePatientScreen());
+      case Routes.ChangePasswordPatientScreen:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordPatientScreen());
+      case Routes.DataAndTreatmentPlansScreen:
+        return MaterialPageRoute(builder: (_) => const DataAndTreatmentPlansScreen());
+      case Routes.HelpCenterScreen:
+        return MaterialPageRoute(builder: (_) => const HelpCenterScreen());
       default:
         return MaterialPageRoute(
           builder:
