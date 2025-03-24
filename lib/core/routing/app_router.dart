@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_screen.dart';
@@ -6,7 +7,6 @@ import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/do
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/Billing%20_reports/billing_reports_maim_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/change_password_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/edit_profile_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/language_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screen.dart';
@@ -25,6 +25,10 @@ import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screen
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/chat_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/patient_messages_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/change_password_patient_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/data_and_treatment_plans_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/edit_profile_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -122,14 +126,19 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const EditTreatmentPlanScreen(),
         );
+      case Routes.EditProfilePatientScreen:
+        return MaterialPageRoute(builder: (_) => const EditProfilePatientScreen());
+      case Routes.ChangePasswordPatientScreen:
+        return MaterialPageRoute(builder: (_) => const ChangePasswordPatientScreen());
+      case Routes.DataAndTreatmentPlansScreen:
+        return MaterialPageRoute(builder: (_) => const DataAndTreatmentPlansScreen());
       default:
         return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text("No route defined for ${settings.name}"),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text("No route defined for ${settings.name}"),
+            ),
+          ),
         );
     }
   }

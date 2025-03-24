@@ -158,4 +158,9 @@ class TextStyles {
     fontWeight: FontWeightHelper.semiBold,
     color: ColorsManager.Blue,
   );
+  static TextStyle font18BlackRegular = GoogleFonts.inter(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: ColorsManager.Black,
+  );
 }

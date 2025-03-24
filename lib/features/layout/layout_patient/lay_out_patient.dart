@@ -5,7 +5,7 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/patient_appoinment_screen.dart';
 import '../../home/patient/patient_home_page/ui/screens/patient_home_page.dart';
 import '../../home/patient/patient_messages_screen/ui/patient_messages_screen.dart';
-import '../../home/patient/patient_profile_screen/ui/patient_profile_screen.dart';
+import '../../home/patient/patient_profile_screen/screens/patient_profile_screen.dart';
 import '../../home/patient/patient_upload_screen/ui/patient_upload_screen.dart';
 
 class AppLayoutPatient extends StatefulWidget {
