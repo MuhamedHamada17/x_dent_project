@@ -41,4 +41,6 @@ class Routes {
   static const String ChangePasswordPatientScreen = "/ChangePasswordPatientScreen";
   static const String DataAndTreatmentPlansScreen = "/DataAndTreatmentPlansScreen";
   static const String HelpCenterScreen = "/HelpCenterScreen";
+  static const String DoctorListScreen = "/DoctorListScreen";
+
 }
