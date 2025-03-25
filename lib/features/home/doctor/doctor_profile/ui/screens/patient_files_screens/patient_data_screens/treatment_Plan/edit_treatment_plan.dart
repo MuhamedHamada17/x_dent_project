@@ -3,6 +3,7 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/add_plans.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/treatment_plan_row.dart';
 
 class EditTreatmentPlanScreen extends StatelessWidget {
@@ -12,6 +13,8 @@ class EditTreatmentPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+
         title: Text("Treatment Plan", style: TextStyles.font20BlackRegular),
         centerTitle: true,
         leading: IconButton(
@@ -46,7 +49,7 @@ class EditTreatmentPlanScreen extends StatelessWidget {
                   vertical: 8,
                 ),
                 child: ListView(
-                  children: const [
+                  children: [
                     TreatmentPlanRow(true, "Oral Evaluation", "Delete "),
                     TreatmentPlanRow(true, "Relieve Crowding", "Delete "),
                     TreatmentPlanRow(
@@ -73,7 +76,14 @@ class EditTreatmentPlanScreen extends StatelessWidget {
                   backgroundColor: ColorsManager.Blue,
                   buttonText: "Add Plans",
                   textStyle: TextStyles.font22WhiteMedium,
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AddPlans();
+                      },
+                    );
+                  },
                 ),
               ),
             ),

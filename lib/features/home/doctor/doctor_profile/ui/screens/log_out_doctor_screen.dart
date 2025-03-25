@@ -18,9 +18,11 @@ class LogOutDoctorScreen extends StatelessWidget {
         children: [
           DoctorProfileMainScreen(),
           BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+            filter: ImageFilter.blur(sigmaX: 7, sigmaY: 5),
 
             child: AlertDialog(
+              backgroundColor: ColorsManager.OfWhite,
+
               title: Row(
                 children: [
                   Image.asset(

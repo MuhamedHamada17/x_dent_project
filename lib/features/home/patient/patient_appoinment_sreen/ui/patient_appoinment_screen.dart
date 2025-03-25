@@ -37,7 +37,7 @@ class _PatientAppoinmentScreenState extends State<PatientAppoinmentScreen> {
             color: ColorsManager.lighterBLUE,
             width: double.infinity,
             height: 185.h,
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -65,7 +65,7 @@ class _PatientAppoinmentScreenState extends State<PatientAppoinmentScreen> {
                 status: selectedStatus,
                 onCancel: () => _navigateToScreen("CancelScreen"),
                 onReschedule: () => context.pushNamed(Routes.appointmentDetailsPatientScreen),
-                onAddReview: () => _navigateToScreen("AddReviewScreen"),
+                onAddReview: () => context.pushNamed(Routes.AddRatingDialogScreen),
                 onReBook: () => _navigateToScreen("ReBookScreen"),
               ),
             ],

@@ -111,13 +111,9 @@ class PatientProfileScreen extends StatelessWidget {
               title: "Log Out",
               icon: Icons.logout,
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => const LogOutPatientScreen(),
-                );
+                context.pushNamed(Routes.LogOuPatientScreen);
               },
             ),
-
           ],
         ),
       ),

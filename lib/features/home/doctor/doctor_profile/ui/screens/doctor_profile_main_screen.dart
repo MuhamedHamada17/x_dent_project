@@ -4,6 +4,7 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/language_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_doctor_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/profile_option.dart';
 
@@ -103,7 +104,12 @@ class DoctorProfileMainScreen extends StatelessWidget {
               title: "Language",
               icon: Icons.language,
               onTap: () {
-                context.pushNamed(Routes.LanguageScreen);
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return LanguageScreen();
+                  },
+                );
               },
             ),
             ProfileOption(

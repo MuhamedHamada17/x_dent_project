@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 class CustomTabBar extends StatelessWidget {
   final int currentIndex;
+  String label1;
+  String label2;
+
   final Function(int) onTabSelected;
 
-  const CustomTabBar({
+  CustomTabBar({
     required this.currentIndex,
+    required this.label1,
+    required this.label2,
+
     required this.onTabSelected,
     super.key,
   });
@@ -17,31 +22,10 @@ class CustomTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: RichText(
-            textAlign: TextAlign.start,
-            text: TextSpan(
-              style: TextStyles.font12GreyRegular,
-              children: [
-                const TextSpan(text: "AI uses the "),
-                TextSpan(
-                  text: " Universal Dental Numbering System .\n",
-                  style: TextStyles.font12BlueRegular,
-                ),
-                TextSpan(
-                  text: "You can view analysis by detection or tooth number",
-                  style: TextStyles.font12BlackRegular,
-                ),
-              ],
-            ),
-          ),
-        ),
-        verticalSpace(22),
         Row(
           children: [
-            Expanded(child: _buildTabButton("Detections", 0)),
-            Expanded(child: _buildTabButton("Tooth", 1)),
+            Expanded(child: _buildTabButton(label1, 0)),
+            Expanded(child: _buildTabButton(label2, 1)),
           ],
         ),
       ],
@@ -61,7 +45,9 @@ class CustomTabBar extends StatelessWidget {
             height: 3,
             width: double.infinity,
             color:
-                currentIndex == index ? ColorsManager.Blue : Colors.transparent,
+                currentIndex == index
+                    ? ColorsManager.Blue
+                    : ColorsManager.lighterBLUE.withOpacity(.7),
           ),
         ],
       ),
