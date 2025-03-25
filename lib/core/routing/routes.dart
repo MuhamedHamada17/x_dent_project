@@ -47,4 +47,6 @@ class Routes {
   static const String BillDetailes = "/BillDetailes";
   static const String TransferToBankAccountScreen =
       "/TransferToBankAccountScreen";
+  static const String DoctorListScreen = "/DoctorListScreen";
+  static const String LogOuPatientScreen = "/LogOuPatientScreen";
 }

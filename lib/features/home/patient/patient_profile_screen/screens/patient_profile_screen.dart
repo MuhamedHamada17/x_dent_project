@@ -6,6 +6,8 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/profile_option_patient.dart';
 
+import '../widgets/log_out_patient_screen.dart';
+
 class PatientProfileScreen extends StatelessWidget {
   const PatientProfileScreen({super.key});
 
@@ -109,7 +111,7 @@ class PatientProfileScreen extends StatelessWidget {
               title: "Log Out",
               icon: Icons.logout,
               onTap: () {
-                // context.pushNamed(Routes.LogOuPatientScreen);
+                context.pushNamed(Routes.LogOuPatientScreen);
               },
             ),
           ],

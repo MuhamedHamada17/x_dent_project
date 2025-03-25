@@ -22,6 +22,7 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/pa
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_rays_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/doctor_list_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/chat_screen.dart';
@@ -143,14 +144,17 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const BillDetailes());
       case Routes.TransferToBankAccountScreen:
         return MaterialPageRoute(builder: (_) => TransferToBankAccountScreen());
+      case Routes.DoctorListScreen:
+        return MaterialPageRoute(builder: (_) => const DoctorListScreen());
+      case Routes.LogOuPatientScreen:
+        return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
       default:
         return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text("No route defined for ${settings.name}"),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text("No route defined for ${settings.name}"),
+            ),
+          ),
         );
     }
   }
