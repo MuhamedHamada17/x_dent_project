@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/delete_treatment_plan.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/edit_treatment_plan.dart';
 
 class TreatmentPlanRow extends StatelessWidget {
   final bool isCompleted;
@@ -39,12 +41,29 @@ class TreatmentPlanRow extends StatelessWidget {
                   child: Text(session, style: TextStyles.font20BlackRegular),
                 ),
               ),
-              Text(
-                date,
-                style:
-                    date == "Delete "
-                        ? TextStyles.font20RedRegular
-                        : TextStyles.font20BlueRegular,
+              GestureDetector(
+                onTap: () {
+                  date == "Delete "
+                      ? showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return DeleteTreatmentPlan();
+                        },
+                      )
+                      : showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return EditTreatmentPlan();
+                        },
+                      );
+                },
+                child: Text(
+                  date,
+                  style:
+                      date == "Delete "
+                          ? TextStyles.font20RedRegular
+                          : TextStyles.font20BlueRegular,
+                ),
               ),
             ],
           ),

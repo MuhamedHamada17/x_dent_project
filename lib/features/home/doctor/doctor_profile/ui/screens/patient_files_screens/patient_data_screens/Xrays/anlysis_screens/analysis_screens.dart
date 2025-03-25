@@ -19,6 +19,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text("Analysis", style: TextStyles.font20BlackRegular),
         centerTitle: true,
         leading: IconButton(
@@ -29,6 +30,29 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
       body: SafeArea(
         child: Column(
           children: [
+            verticalSpace(22),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  style: TextStyles.font12GreyRegular,
+                  children: [
+                    const TextSpan(text: "AI uses the "),
+                    TextSpan(
+                      text: " Universal Dental Numbering System .\n",
+                      style: TextStyles.font12BlueRegular,
+                    ),
+                    TextSpan(
+                      text:
+                          "You can view analysis by detection or tooth number",
+                      style: TextStyles.font12BlackRegular,
+                    ),
+                  ],
+                ),
+              ),
+            ),
             verticalSpace(16),
             CustomTabBar(
               currentIndex: _currentIndex,
@@ -37,6 +61,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   _currentIndex = index;
                 });
               },
+              label1: 'Detection',
+              label2: 'tooth',
             ),
             Expanded(
               child: IndexedStack(

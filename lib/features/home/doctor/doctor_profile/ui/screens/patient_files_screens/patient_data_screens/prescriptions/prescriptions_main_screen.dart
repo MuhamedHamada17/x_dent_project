@@ -4,6 +4,7 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/add_prescriptions.dart';
 
 class PrescriptionScreen extends StatelessWidget {
   const PrescriptionScreen({super.key});
@@ -50,7 +51,14 @@ class PrescriptionScreen extends StatelessWidget {
                       backgroundColor: ColorsManager.Blue,
                       buttonText: "Add Prescriptions",
                       textStyle: TextStyles.font22WhiteMedium,
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AddPrescriptions();
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],

@@ -14,6 +14,7 @@ class TreatmentPlanScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text("Treatment Plan", style: TextStyles.font20BlackRegular),
         centerTitle: true,
         leading: IconButton(
