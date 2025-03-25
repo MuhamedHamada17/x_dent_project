@@ -8,7 +8,7 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/Bi
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/change_password_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/edit_profile_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/language_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/log_out_doctor_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Midical_records/midical_records_file_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/anlysis_screens/analysis_screens.dart';
@@ -91,8 +91,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const HelpCenterScreen());
       case Routes.LanguageScreen:
         return MaterialPageRoute(builder: (_) => const LanguageScreen());
-      case Routes.LogOutScreen:
-        return MaterialPageRoute(builder: (_) => const LogOutScreen());
+      case Routes.LogOutDoctorScreen:
+        return MaterialPageRoute(builder: (_) => const LogOutDoctorScreen());
       case Routes.PatientFilesScreen:
         return MaterialPageRoute(builder: (_) => const PatientFilesScreen());
       case Routes.PatientDetailsScreen:
