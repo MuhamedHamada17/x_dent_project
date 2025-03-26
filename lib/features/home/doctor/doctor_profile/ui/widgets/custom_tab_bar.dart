@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
+// ignore: must_be_immutable
 class CustomTabBar extends StatelessWidget {
   final int currentIndex;
   String label1;
