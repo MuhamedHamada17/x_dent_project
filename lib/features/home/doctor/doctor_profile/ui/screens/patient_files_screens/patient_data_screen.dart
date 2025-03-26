@@ -4,7 +4,7 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/info_row.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/nav_row.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/name_with_arrow.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/section.dart';
 
 class PatientDetailsScreen extends StatelessWidget {
@@ -14,6 +14,7 @@ class PatientDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Text("Ahmed Khaled", style: TextStyles.font20BlackRegular),
         centerTitle: true,
         leading: IconButton(
@@ -46,7 +47,7 @@ class PatientDetailsScreen extends StatelessWidget {
                   text: "Data",
                   children: [
                     verticalSpace(10),
-                    NavRow(
+                    NameWithArrow(
                       text: "Xrays",
                       icon: Icons.folder,
                       onTap: () {
@@ -54,7 +55,7 @@ class PatientDetailsScreen extends StatelessWidget {
                       },
                     ),
                     verticalSpace(10),
-                    NavRow(
+                    NameWithArrow(
                       text: "Medical Records",
                       icon: Icons.description,
                       onTap: () {
@@ -69,7 +70,7 @@ class PatientDetailsScreen extends StatelessWidget {
                   text: "Treatment Plans",
                   children: [
                     verticalSpace(16),
-                    NavRow(
+                    NameWithArrow(
                       text: "Treatments Plans",
                       icon: Icons.monitor_heart,
                       onTap: () {
@@ -77,7 +78,7 @@ class PatientDetailsScreen extends StatelessWidget {
                       },
                     ),
                     verticalSpace(10),
-                    NavRow(
+                    NameWithArrow(
                       text: "Prescriptions",
                       icon: Icons.medical_services,
                       onTap: () {
@@ -85,7 +86,7 @@ class PatientDetailsScreen extends StatelessWidget {
                       },
                     ),
                     verticalSpace(10),
-                    NavRow(
+                    NameWithArrow(
                       text: "Upcoming Appointments",
                       icon: Icons.event,
                       onTap: () {

@@ -20,7 +20,9 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/pa
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_list_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_ray_file_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/x_rays_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_settings.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/availablity_location_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/availablity_screen.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/doctor_list_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
@@ -31,6 +33,7 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/scre
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/data_and_treatment_plans_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/edit_profile_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/help_center_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/log_out_patient_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -143,19 +146,26 @@ class AppRouter {
         );
       case Routes.BillDetailes:
         return MaterialPageRoute(builder: (_) => const BillDetailes());
+      case Routes.AvailablityLocationScreen:
+        return MaterialPageRoute(
+          builder: (_) => const AvailabilityLocationScreen(),
+        );
       case Routes.TransferToBankAccountScreen:
         return MaterialPageRoute(builder: (_) => TransferToBankAccountScreen());
+      case Routes.AvailabilityScreen:
+        return MaterialPageRoute(builder: (_) => AvailabilityScreen());
       case Routes.DoctorListScreen:
         return MaterialPageRoute(builder: (_) => const DoctorListScreen());
       case Routes.LogOuPatientScreen:
         return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            body: Center(
-              child: Text("No route defined for ${settings.name}"),
-            ),
-          ),
+          builder:
+              (_) => Scaffold(
+                body: Center(
+                  child: Text("No route defined for ${settings.name}"),
+                ),
+              ),
         );
     }
   }

@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 // ignore: must_be_immutable
-class NavRow extends StatelessWidget {
+class NameWithArrow extends StatelessWidget {
   final String text;
   final IconData? icon;
   var onTap;
 
-  NavRow({required this.text, this.icon, this.onTap, super.key});
+  NameWithArrow({required this.text, this.icon, this.onTap, super.key});
 
   @override
   Widget build(BuildContext context) {

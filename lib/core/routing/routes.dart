@@ -45,6 +45,8 @@ class Routes {
       "/DataAndTreatmentPlansScreen";
   static const String HelpCenterScreen = "/HelpCenterScreen";
   static const String BillDetailes = "/BillDetailes";
+  static const String AvailabilityScreen = "/AvailabilityScreen";
+  static const String AvailablityLocationScreen = "/AvailablityLocationScreen";
   static const String TransferToBankAccountScreen =
       "/TransferToBankAccountScreen";
   static const String DoctorListScreen = "/DoctorListScreen";
