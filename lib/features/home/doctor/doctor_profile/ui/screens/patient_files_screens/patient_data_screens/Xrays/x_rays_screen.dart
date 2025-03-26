@@ -4,7 +4,7 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/nav_row.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/name_with_arrow.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/section.dart';
 
 class XraysScreen extends StatelessWidget {
@@ -37,7 +37,7 @@ class XraysScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         verticalSpace(8),
-                        NavRow(
+                        NameWithArrow(
                           text: "28/2/2025",
                           onTap: () {
                             context.pushNamed(Routes.XrayFileScreen);
@@ -50,7 +50,7 @@ class XraysScreen extends StatelessWidget {
                           ),
                           child: Divider(height: 1, color: ColorsManager.Grey),
                         ),
-                        NavRow(text: "8/12/2024", onTap: () {}),
+                        NameWithArrow(text: "8/12/2024", onTap: () {}),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 16,
@@ -59,7 +59,7 @@ class XraysScreen extends StatelessWidget {
                           child: Divider(height: 1, color: ColorsManager.Grey),
                         ),
 
-                        NavRow(text: "14/9/2024", onTap: () {}),
+                        NameWithArrow(text: "14/9/2024", onTap: () {}),
                       ],
                     ),
                   ),
