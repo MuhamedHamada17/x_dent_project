@@ -8,9 +8,14 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan.dart';
 
-class AddPlans extends StatelessWidget {
+class AddPlans extends StatefulWidget {
   const AddPlans({super.key});
 
+  @override
+  State<AddPlans> createState() => _AddPlansState();
+}
+
+class _AddPlansState extends State<AddPlans> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

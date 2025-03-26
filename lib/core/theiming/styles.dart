@@ -168,4 +168,10 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: ColorsManager.Black,
   );
+
+  static TextStyle font12BlueSemi = GoogleFonts.inter(
+    fontSize: 12.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.Blue,
+  );
 }

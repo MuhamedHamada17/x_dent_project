@@ -24,6 +24,7 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/pr
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/availablity_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/doctor_list_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/specialty_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/ui/chat_screen.dart';
@@ -32,6 +33,7 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/scre
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/data_and_treatment_plans_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/edit_profile_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/help_center_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/log_out_patient_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -151,6 +153,10 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => TransferToBankAccountScreen());
       case Routes.AvailabilityScreen:
         return MaterialPageRoute(builder: (_) => AvailabilityScreen());
+      case Routes.DoctorListScreen:
+        return MaterialPageRoute(builder: (_) => const DoctorListScreen());
+      case Routes.LogOuPatientScreen:
+        return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
       default:
         return MaterialPageRoute(
           builder:
