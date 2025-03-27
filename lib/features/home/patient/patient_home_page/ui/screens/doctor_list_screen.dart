@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/widgets/doctor_card_widget.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/widgets/list_view%20_list_doctors.dart';
@@ -66,7 +67,9 @@ class DoctorListScreen extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                        Image.asset("assets/png/Filter2.png",width: 24.w,height: 24.h,),
+                        GestureDetector(
+                            onTap: ()=>context.pushNamed(Routes.FilterPatientScreen),
+                            child: Image.asset("assets/png/Filter2.png",width: 24.w,height: 24.h,)),
                       ],
                     ),
                   ),

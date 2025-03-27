@@ -174,4 +174,24 @@ class TextStyles {
     fontWeight: FontWeightHelper.semiBold,
     color: ColorsManager.Blue,
   );
+  static TextStyle font14GreySemi = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.Grey,
+  );
+  static TextStyle font20BlackSemi = GoogleFonts.inter(
+    fontSize: 20.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.Black,
+  );
+  static TextStyle font18WhiteRegular = GoogleFonts.inter(
+    fontSize: 18.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.white,
+  );
+  static TextStyle font14BlackSemi = GoogleFonts.inter(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.semiBold,
+    color: ColorsManager.Black,
+  );
 }
