@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:x_dent_project/features/filter_patient/ui/screens/filter_patient_screen.dart';
 import 'package:x_dent_project/features/forget_password/forget/ui/forget_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/screens/doctor_home_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/screens/doc_chat_screen.dart';
@@ -34,10 +35,14 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/scre
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/edit_profile_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/log_out_patient_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/perscriptions_pattient_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/profile_settings_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/treatments_plans_screen.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/on_boarding/on_boarding_screen.dart';
+import 'package:x_dent_project/features/rating/patient/add%20rating/ui/add_rating_screen.dart';
 import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen1.dart';
 import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen2.dart';
 import 'package:x_dent_project/features/signUp/patient/ui/screens/signup_patient/sign_up_patient_screen.dart';
@@ -158,6 +163,16 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const DoctorListScreen());
       case Routes.LogOuPatientScreen:
         return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
+      case Routes.FilterPatientScreen:
+        return MaterialPageRoute(builder: (_) => const FilterPatientScreen());
+      case Routes.AddRatingDialogScreen:
+        return MaterialPageRoute(builder: (_) => const AddRatingDialogScreen());
+      case Routes.ProfileSettingsPatient:
+        return MaterialPageRoute(builder: (_) => const ProfileSettingsPatient());
+      case Routes.PerscriptionsPattientScreen:
+        return MaterialPageRoute(builder: (_) => const PerscriptionsPattientScreen());
+      case Routes.TreatmentsPlansScreenPatient:
+        return MaterialPageRoute(builder: (_) => const TreatmentsPlansScreenPatient());
       default:
         return MaterialPageRoute(
           builder:

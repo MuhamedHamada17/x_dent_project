@@ -90,7 +90,7 @@ class PatientProfileScreen extends StatelessWidget {
               title: "Settings",
               imagePath: "assets/png/settings.png",
               onTap: () {
-                context.pushNamed(Routes.ProfileSettings);
+                context.pushNamed(Routes.ProfileSettingsPatient);
               },
             ),
             ProfileOptionPatient(

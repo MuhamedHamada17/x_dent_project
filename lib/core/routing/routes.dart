@@ -36,19 +36,21 @@ class Routes {
   static const String TreatmentPlanScreen = "/TreatmentPlanScreen";
   static const String EditTreatmentPlanScreen = "/EditTreatmentPlanScreen";
   static const String PrescriptionScreen = "/PrescriptionScreen";
-  static const String UpcomingAppointmentsScreen =
-      "/UpcomingAppointmentsScreen";
+  static const String UpcomingAppointmentsScreen = "/UpcomingAppointmentsScreen";
   static const String EditProfilePatientScreen = "/EditProfilePatientScreen";
-  static const String ChangePasswordPatientScreen =
-      "/ChangePasswordPatientScreen";
-  static const String DataAndTreatmentPlansScreen =
-      "/DataAndTreatmentPlansScreen";
+  static const String ChangePasswordPatientScreen = "/ChangePasswordPatientScreen";
+  static const String DataAndTreatmentPlansScreen = "/DataAndTreatmentPlansScreen";
   static const String HelpCenterScreen = "/HelpCenterScreen";
   static const String BillDetailes = "/BillDetailes";
   static const String AvailabilityScreen = "/AvailabilityScreen";
   static const String AvailablityLocationScreen = "/AvailablityLocationScreen";
-  static const String TransferToBankAccountScreen =
-      "/TransferToBankAccountScreen";
+  static const String TransferToBankAccountScreen = "/TransferToBankAccountScreen";
   static const String DoctorListScreen = "/DoctorListScreen";
   static const String LogOuPatientScreen = "/LogOuPatientScreen";
+  static const String FilterPatientScreen = "/FilterPatientScreen";
+  static const String AddRatingDialogScreen = "/AddRatingDialogScreen";
+  static const String ProfileSettingsPatient = "/ProfileSettingsPatient";
+  static const String PerscriptionsPattientScreen = "/PerscriptionsPattientScreen";
+  static const String TreatmentsPlansScreenPatient = "/TreatmentsPlansScreenPatient";
+
 }
