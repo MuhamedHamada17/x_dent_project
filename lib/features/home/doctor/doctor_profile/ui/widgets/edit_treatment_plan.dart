@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
@@ -7,9 +6,30 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/calender.dart';
 
-class EditTreatmentPlan extends StatelessWidget {
+class EditTreatmentPlan extends StatefulWidget {
   const EditTreatmentPlan({super.key});
+
+  @override
+  State<EditTreatmentPlan> createState() => _EditTreatmentPlanState();
+}
+
+class _EditTreatmentPlanState extends State<EditTreatmentPlan> {
+  DateTime? selectedDate;
+
+  void _openDatePicker() async {
+    final DateTime? pickedDate = await showModalBottomSheet<DateTime>(
+      context: context,
+      isScrollControlled: true,
+      builder: (context) => DatePickerScreen(initialDate: selectedDate),
+    );
+    if (pickedDate != null) {
+      setState(() {
+        selectedDate = pickedDate;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,24 +76,29 @@ class EditTreatmentPlan extends StatelessWidget {
                   verticalSpace(15),
                   Text("  Datepicker", style: TextStyles.font14GreyRegular),
                   verticalSpace(5),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.w,
-                      vertical: 10.h,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(10.r),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Wednesday, 11th January",
-                          style: TextStyles.font16BlueRegular,
-                        ),
-                        const Icon(Icons.arrow_drop_down),
-                      ],
+                  GestureDetector(
+                    onTap: _openDatePicker,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.w,
+                        vertical: 10.h,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10.r),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            selectedDate == null
+                                ? "Wednesday, 11th January"
+                                : "${selectedDate!.toLocal()}".split(' ')[0],
+                            style: TextStyles.font16BlueRegular,
+                          ),
+                          const Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
                     ),
                   ),
                   verticalSpace(20),
