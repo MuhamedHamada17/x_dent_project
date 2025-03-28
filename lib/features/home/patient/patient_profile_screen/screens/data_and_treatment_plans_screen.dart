@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/profile_option_patient.dart';
 import '../../../../../core/helpers/spacing.dart';
@@ -68,12 +70,17 @@ class DataAndTreatmentPlansScreen extends StatelessWidget {
 
             ProfileOptionPatient(title:"Treatments Plans" ,
                 imagePath: "assets/png/heart_patient.png",
-                onTap: (){}),
+                onTap: (){
+              context.pushNamed(Routes.TreatmentPlanScreen);
+                }),
             verticalSpace(10),
 
             ProfileOptionPatient(title:"Perscriptions" ,
                 imagePath: "assets/png/Perscriptions.png",
-                onTap: (){}),
+                onTap: (){
+                  context.pushNamed(Routes.PerscriptionsPattientScreen);
+
+                }),
 
           ],
         ),
