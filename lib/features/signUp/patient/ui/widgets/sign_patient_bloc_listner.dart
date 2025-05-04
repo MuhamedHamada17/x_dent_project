@@ -28,7 +28,7 @@ class SignPatientBlocListener extends StatelessWidget {
           },
           success: (signPatientResponse) {
             context.pop();
-            context.pushNamed(Routes.patientHomeScreen);
+            context.pushNamed(Routes.AppLayoutPatient); // تعديل الوجهة
           },
           error: (error) {
             setupErrorState(context, error.message);
