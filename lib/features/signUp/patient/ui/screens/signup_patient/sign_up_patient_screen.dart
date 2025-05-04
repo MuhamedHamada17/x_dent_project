@@ -12,7 +12,7 @@ import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/signUp/patient/logic/sign_up_patient_cubit.dart';
 import 'package:x_dent_project/features/signUp/patient/logic/sign_up_patient_state.dart';
-import 'package:x_dent_project/features/signUp/patient/ui/widgets/sign_patient_bloc_listner.dart';
+import '../../widgets/sign_patient_bloc_listner.dart';
 
 class SignUpPatientScreen extends StatelessWidget {
   const SignUpPatientScreen({super.key});
@@ -65,7 +65,7 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("First Name", style: TextStyles.font14BlackSemiBold),
+                        Text("  First name", style: TextStyles.font14BlackSemiBold),
                       ],
                     ),
                     verticalSpace(8),
@@ -74,12 +74,8 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       height: 46.h,
                       child: AppTextFormField(
                         controller: signUpCubit.firstNameController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your first name';
-                          }
-                          return null;
-                        },
+                        hintText: "First name",
+                        hintStyle: TextStyles.font14GreyRegular,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: ColorsManager.Grey.withOpacity(.8),
@@ -91,13 +87,19 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.black, width: 1.3),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your first name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     verticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Last Name", style: TextStyles.font14BlackSemiBold),
+                        Text("  Last name", style: TextStyles.font14BlackSemiBold),
                       ],
                     ),
                     verticalSpace(8),
@@ -106,12 +108,8 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       height: 46.h,
                       child: AppTextFormField(
                         controller: signUpCubit.lastNameController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter your last name';
-                          }
-                          return null;
-                        },
+                        hintText: "Last name",
+                        hintStyle: TextStyles.font14GreyRegular,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                             color: ColorsManager.Grey.withOpacity(.8),
@@ -123,13 +121,19 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.black, width: 1.3),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your last name';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     verticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Email", style: TextStyles.font14BlackSemiBold),
+                        Text("  Email", style: TextStyles.font14BlackSemiBold),
                       ],
                     ),
                     verticalSpace(8),
@@ -138,12 +142,6 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       height: 46.h,
                       child: AppTextFormField(
                         controller: signUpCubit.emailController,
-                        validator: (value) {
-                          if (value == null || !value.contains('@')) {
-                            return 'Please enter a valid email address.';
-                          }
-                          return null;
-                        },
                         hintText: "you@email.com",
                         hintStyle: TextStyles.font14GreyRegular,
                         prefixIcon: Icon(Icons.email_outlined),
@@ -158,13 +156,23 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.black, width: 1.3),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                              .hasMatch(value)) {
+                            return 'Please enter a valid email';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     verticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("phone", style: TextStyles.font14BlackSemiBold),
+                        Text("  Phone", style: TextStyles.font14BlackSemiBold),
                       ],
                     ),
                     verticalSpace(8),
@@ -173,7 +181,10 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       height: 46.h,
                       child: AppTextFormField(
                         controller: signUpCubit.phoneController,
+                        hintText: "+1 (000) 000-0000",
+                        hintStyle: TextStyles.font14GreyRegular,
                         prefixIcon: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             horizontalSpace(14),
                             Text(
@@ -185,15 +196,6 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                               ),
                             ),
                             Icon(Icons.chevron_right),
-                            horizontalSpace(24),
-                            Text(
-                              "+1 (000) 000-0000",
-                              style: TextStyle(
-                                color: ColorsManager.Grey.withOpacity(.8),
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
                           ],
                         ),
                         enabledBorder: OutlineInputBorder(
@@ -213,7 +215,7 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Password", style: TextStyles.font14BlackSemiBold),
+                        Text("  Password", style: TextStyles.font14BlackSemiBold),
                       ],
                     ),
                     verticalSpace(8),
@@ -222,12 +224,8 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       height: 46.h,
                       child: AppTextFormField(
                         controller: signUpCubit.passwordController,
-                        validator: (value) {
-                          if (value == null || value.length < 8) {
-                            return 'Password must be at least 8 characters long.';
-                          }
-                          return null;
-                        },
+                        hintText: "********",
+                        hintStyle: TextStyles.font14GreyRegular,
                         isObscureText: true,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -240,13 +238,25 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.black, width: 1.3),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          if (value.length < 6) {
+                            return 'Password must be at least 6 characters';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     verticalSpace(12),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Text("Confirm Password", style: TextStyles.font14BlackSemiBold),
+                        Text(
+                          "  Confirm Password",
+                          style: TextStyles.font14BlackSemiBold,
+                        ),
                       ],
                     ),
                     verticalSpace(8),
@@ -255,15 +265,8 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       height: 46.h,
                       child: AppTextFormField(
                         controller: signUpCubit.confirmPasswordController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Please confirm your password';
-                          }
-                          if (value != signUpCubit.passwordController.text) {
-                            return 'The two passwords do not match.';
-                          }
-                          return null;
-                        },
+                        hintText: "********",
+                        hintStyle: TextStyles.font14GreyRegular,
                         isObscureText: true,
                         enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -276,6 +279,15 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                           borderSide: BorderSide(color: Colors.black, width: 1.3),
                           borderRadius: BorderRadius.circular(8.0),
                         ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please confirm your password';
+                          }
+                          if (value != signUpCubit.passwordController.text) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
                       ),
                     ),
                     verticalSpace(32),
@@ -286,7 +298,7 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                         child: BlocBuilder<SignUpPatientCubit, SignUpPatientState>(
                           builder: (context, state) {
                             return AppTextButton(
-                              buttonText: "Login",
+                              buttonText: "Sign Up",
                               borderRadius: 20,
                               verticalPadding: 4.h,
                               backgroundColor: ColorsManager.Blue,
@@ -306,7 +318,7 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                       children: [
                         verticalSpace(90),
                         Text(
-                          "Already have an account?",
+                          "Already have an account? ",
                           style: TextStyles.font12BlackRegular,
                         ),
                         GestureDetector(
@@ -316,7 +328,7 @@ class _SignUpPatientScreenContent extends StatelessWidget {
                               builder: (context) => LoginPatientScreen(),
                             ),
                           ),
-                          child: Text(" Login", style: TextStyles.font14BlueRegular),
+                          child: Text("Log In", style: TextStyles.font14BlueRegular),
                         ),
                       ],
                     ),
@@ -325,7 +337,7 @@ class _SignUpPatientScreenContent extends StatelessWidget {
               ),
             ),
           ),
-          SignPatientBlocListener(),
+          const SignPatientBlocListener(), // إضافة BlocListener
         ],
       ),
     );
