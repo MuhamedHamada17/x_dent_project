@@ -1,3 +1,4 @@
+// sign_up_patient_cubit.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../data/models/sign_patient_request_body.dart';
@@ -14,6 +15,7 @@ class SignUpPatientCubit extends Cubit<SignUpPatientState<SignPatientResponseBod
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -22,17 +24,18 @@ class SignUpPatientCubit extends Cubit<SignUpPatientState<SignPatientResponseBod
     if (!formKey.currentState!.validate()) return;
 
     emit(const SignUpPatientState.loading());
-    final response = await _signPatientRepo.signPatient(
-      SignPatientRequestBody(
-        firstName: firstNameController.text.trim(),
-        lastName: lastNameController.text.trim(),
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        phone: phoneController.text.isEmpty ? null : phoneController.text.trim(),
-        address: addressController.text.isEmpty ? null : addressController.text.trim(),
-        role: "patient",
-      ),
+    final requestBody = SignPatientRequestBody(
+      firstName: firstNameController.text.trim(),
+      lastName: lastNameController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      confirmPassword: confirmPasswordController.text.trim(),
+      phone: phoneController.text.isEmpty ? null : phoneController.text.trim(),
+      address: addressController.text.isEmpty ? null : addressController.text.trim(),
+      role: "patient",
     );
+
+    final response = await _signPatientRepo.signPatient(requestBody);
 
     response.when(
       success: (signPatientResponse) {
@@ -50,6 +53,7 @@ class SignUpPatientCubit extends Cubit<SignUpPatientState<SignPatientResponseBod
     lastNameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    confirmPasswordController.dispose();
     phoneController.dispose();
     addressController.dispose();
     return super.close();

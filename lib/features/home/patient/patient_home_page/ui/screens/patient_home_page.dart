@@ -5,11 +5,32 @@ import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/widgets/half_specialties_grid.dart';
+import '../../../../../../core/helpers/shared_pref_helper.dart';
 import '../../../../../../core/helpers/spacing.dart';
 import '../../../../../../core/theiming/styles.dart';
 
-class PatientHomePage extends StatelessWidget {
+class PatientHomePage extends StatefulWidget {
   const PatientHomePage({super.key});
+
+  @override
+  _PatientHomePageState createState() => _PatientHomePageState();
+}
+
+class _PatientHomePageState extends State<PatientHomePage> {
+  String userName = 'Guest'; // قيمة افتراضية
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserName();
+  }
+
+  Future<void> _loadUserName() async {
+    String fullName = await SharedPrefHelper.getFullName();
+    setState(() {
+      userName = fullName.isNotEmpty ? fullName : 'Guest';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +48,11 @@ class PatientHomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     verticalSpace(25),
-
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "  Welcome,\n  Dr Mohamed Ali",
+                          "Welcome,\n$userName",
                           style: TextStyles.font28BlackMedium,
                         ),
                         Padding(
@@ -49,9 +69,7 @@ class PatientHomePage extends StatelessWidget {
                         ),
                       ],
                     ),
-
-                    verticalSpace(30), // ✅ تحريك حقل البحث للأسفل قليلاً
-                    // ✅ مربع البحث
+                    verticalSpace(30),
                     SizedBox(
                       height: 42.h,
                       child: TextFormField(
@@ -61,25 +79,23 @@ class PatientHomePage extends StatelessWidget {
                           suffixIcon: const Icon(
                             Icons.search,
                             color: Colors.black,
-                          ), // ✅ أيقونة البحث باللون الأسود
+                          ),
                           border: OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Colors.white, // ✅ حدود بيضاء لحقل البحث
+                              color: Colors.white,
                               width: 1.5,
                             ),
                             borderRadius: BorderRadius.circular(32),
                           ),
                           filled: true,
-                          fillColor: Colors.white, // ✅ خلفية بيضاء لحقل البحث
+                          fillColor: Colors.white,
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-
               verticalSpace(8),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 22),
                 child: Row(
@@ -93,9 +109,7 @@ class PatientHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-
               verticalSpace(10),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: AppointmentCard(),
