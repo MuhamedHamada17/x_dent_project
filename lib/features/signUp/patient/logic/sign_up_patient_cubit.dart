@@ -1,6 +1,6 @@
-// sign_up_patient_cubit.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/helpers/shared_pref_helper.dart';
 import '../data/models/sign_patient_request_body.dart';
 import '../data/models/sign_patient_response_body.dart';
 import '../data/repos/sign_patient_repo.dart';
@@ -38,7 +38,16 @@ class SignUpPatientCubit extends Cubit<SignUpPatientState<SignPatientResponseBod
     final response = await _signPatientRepo.signPatient(requestBody);
 
     response.when(
-      success: (signPatientResponse) {
+      success: (signPatientResponse) async {
+        // تخزين الأسماء في SharedPreferences بنفس طريقة LoginCubit
+        await SharedPrefHelper.setData(
+            'first_name', signPatientResponse.patientData.firstName);
+        await SharedPrefHelper.setData(
+            'last_name', signPatientResponse.patientData.lastName);
+        await SharedPrefHelper.setData(
+            'full_name',
+            '${signPatientResponse.patientData.firstName} ${signPatientResponse.patientData.lastName}');
+
         emit(SignUpPatientState.success(signPatientResponse));
       },
       failure: (error) {
