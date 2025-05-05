@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/patient_appoinment_screen.dart';
 
 class AddRatingDialogScreen extends StatefulWidget {
   const AddRatingDialogScreen({Key? key}) : super(key: key);
@@ -13,26 +12,22 @@ class AddRatingDialogScreen extends StatefulWidget {
 }
 
 class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> {
-  int _rating = 0;         // لحفظ عدد النجوم المضغوطة
-  String _reviewText = ''; // لحفظ نص المراجعة
+  int _rating = 0;
+  String _reviewText = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // خلفية شفافة بحيث تظهر الشاشة الخلفية (PatientAppoinmentScreen)
       backgroundColor: Colors.transparent,
       body: Stack(
         children: [
-          // الخلفية: شاشة المواعيد
-          const PatientAppoinmentScreen(),
-          // تأثير البلور على الخلفية (نفس طريقة ظهور Log Out)
+          // Backdrop filter لإضافة تأثير البلور على الشاشة الخلفية
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 7, sigmaY: 5),
             child: Container(
-              color: Colors.transparent,
+              color: Colors.black.withOpacity(0.2),
             ),
           ),
-          // مركز النافذة المنبثقة (AlertDialog)
           Center(
             child: AlertDialog(
               backgroundColor: ColorsManager.white,
@@ -45,10 +40,9 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> {
               ),
               content: SingleChildScrollView(
                 child: Column(
-                  mainAxisSize: MainAxisSize.min, // لتقليل تمدد النافذة
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // صف النجوم مع حجم 45×45 لكل نجمة
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: List.generate(5, (index) {
@@ -60,9 +54,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> {
                             });
                           },
                           icon: isStarSelected
-                          // عند التحديد: نجمة كاملة باللون الأزرق
                               ? Icon(Icons.star, color: ColorsManager.Blue, size: 40)
-                          // عند عدم التحديد: نجمة مركبة؛ الخارجي أزرق والداخلي أبيض
                               : Stack(
                             alignment: Alignment.center,
                             children: [
@@ -74,7 +66,6 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> {
                       }),
                     ),
                     SizedBox(height: 16.h),
-                    // حقل نص المراجعة
                     Text(
                       "Enter Review",
                       style: TextStyles.font14BlackSemi,
@@ -96,7 +87,6 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> {
                   ],
                 ),
               ),
-              // الأزرار السفلية في صف واحد (Cancel على اليسار وConfirm على اليمين)
               actions: [
                 Row(
                   children: [
@@ -107,7 +97,8 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> {
                     const Spacer(),
                     ElevatedButton(
                       onPressed: () {
-                        // تنفيذ منطق التأكيد (مثلاً حفظ التقييم)
+                        // TODO: إضافة API call لإرسال التقييم
+                        print("Rating: $_rating, Review: $_reviewText");
                         Navigator.of(context).pop();
                       },
                       style: ElevatedButton.styleFrom(
