@@ -73,6 +73,7 @@ class _PatientHomePageState extends State<PatientHomePage> {
                     SizedBox(
                       height: 42.h,
                       child: TextFormField(
+                        enabled: false,
                         decoration: InputDecoration(
                           hintText: " Search",
                           hintStyle: TextStyles.font14GreyRegular,
