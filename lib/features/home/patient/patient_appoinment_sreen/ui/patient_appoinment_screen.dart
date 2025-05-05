@@ -5,8 +5,10 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/appointment_card_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/cancelled_appointment_list.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/completed_appointment_list.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/custom_container_row.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/upcoming_appointment_list.dart';
 
 class PatientAppoinmentScreen extends StatefulWidget {
   const PatientAppoinmentScreen({super.key});
@@ -24,8 +26,17 @@ class _PatientAppoinmentScreenState extends State<PatientAppoinmentScreen> {
     });
   }
 
-  void _navigateToScreen(String screenName) {
-    Navigator.pushNamed(context, '/$screenName');
+  Widget _buildAppointmentWidget() {
+    switch (selectedStatus) {
+      case "upcoming":
+        return const UpcomingAppointmentList(); // عرض القائمة بدل الويدجت
+      case "completed":
+        return const CompletedAppointmentList(); // عرض القائمة بدل الويدجت
+      case "cancelled":
+        return const CancelledAppointmentList(); // عرض القائمة بدل الويدجت
+      default:
+        return const SizedBox.shrink();
+    }
   }
 
   @override
@@ -45,7 +56,7 @@ class _PatientAppoinmentScreenState extends State<PatientAppoinmentScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("  My Appointments", style: TextStyles.font28BlackMedium),
+                    Text("My Appointments", style: TextStyles.font28BlackMedium),
                     Image.asset(
                       "assets/png/search_appointment.png",
                       width: 44.w,
@@ -58,17 +69,13 @@ class _PatientAppoinmentScreenState extends State<PatientAppoinmentScreen> {
               ],
             ),
           ),
-          Column(
-            children: [
-              verticalSpace(10),
-              AppointmentCardPatient(
-                status: selectedStatus,
-                onCancel: () => _navigateToScreen("CancelScreen"),
-                onReschedule: () => context.pushNamed(Routes.appointmentDetailsPatientScreen),
-                onAddReview: () => context.pushNamed(Routes.AddRatingDialogScreen),
-                onReBook: () => _navigateToScreen("ReBookScreen"),
-              ),
-            ],
+          Expanded( // إضافة Expanded عشان القائمة تاخد المساحة المتاحة
+            child: Column(
+              children: [
+                verticalSpace(10),
+                Expanded(child: _buildAppointmentWidget()), // جعل الويدجت يتمدد
+              ],
+            ),
           ),
         ],
       ),
