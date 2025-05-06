@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
 import '../../../../../core/routing/routes.dart';
+import '../../../../../core/theiming/colors.dart';
 import '../../../../../core/theiming/styles.dart';
 import '../../logic/sign_up_patient_cubit.dart';
 import '../../logic/sign_up_patient_state.dart';
@@ -21,7 +22,9 @@ class SignPatientBlocListener extends StatelessWidget {
               context: context,
               builder: (context) => const Scaffold(
                 body: Center(
-                  child: CircularProgressIndicator(),
+                  child: CircularProgressIndicator(
+                    color: ColorsManager.Blue,
+                  ),
                 ),
               ),
             );
