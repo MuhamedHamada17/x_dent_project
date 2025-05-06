@@ -5,19 +5,22 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/cancelled_appointment_model.dart';
 
 class CancelledAppointmentWidget extends StatelessWidget {
+  final CancelledAppointment appointment;
   final VoidCallback onReBook;
 
   const CancelledAppointmentWidget({
     super.key,
+    required this.appointment,
     required this.onReBook,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 370.w, // نفس الأبعاد كـ Completed
+      width: 370.w,
       height: 320.h,
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       padding: EdgeInsets.all(16.w),
@@ -40,13 +43,13 @@ class CancelledAppointmentWidget extends StatelessWidget {
             children: [
               verticalSpace(15),
               Text(
-                "Jan 10, 2025 - 10:00 AM",
+                "${appointment.appointmentDate} - ${appointment.appointmentTime}",
                 style: TextStyles.font14BlackRegular,
               ),
             ],
           ),
           verticalSpace(25),
-          Divider(height: 20), // إضافة Divider كما في Completed
+          Divider(height: 20),
           verticalSpace(15),
           Row(
             children: [
@@ -56,7 +59,7 @@ class CancelledAppointmentWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: ColorsManager.Grey, // نفس الحدود كـ Completed
+                    color: ColorsManager.Grey,
                     width: 0.7,
                   ),
                 ),
@@ -64,7 +67,9 @@ class CancelledAppointmentWidget extends StatelessWidget {
                   radius: 24.r,
                   backgroundColor: Colors.grey[200],
                   child: Text(
-                    "AZ", // يمكن استبداله ببيانات ديناميكية
+                    appointment.doctorName.isNotEmpty
+                        ? appointment.doctorName[0].toUpperCase()
+                        : "AZ",
                     style: TextStyles.font16GreyRegular,
                   ),
                 ),
@@ -75,7 +80,7 @@ class CancelledAppointmentWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Dr. Ahmed Mahmoud",
+                      appointment.doctorName,
                       style: TextStyles.font20BlackRegular,
                     ),
                     verticalSpace(4),
@@ -84,7 +89,7 @@ class CancelledAppointmentWidget extends StatelessWidget {
                         Image.asset("assets/png/location_patient.png", width: 24, height: 24),
                         horizontalSpace(4),
                         Text(
-                          "Gehan Street, Mansoura",
+                          appointment.location ?? "Unknown Location",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],
@@ -95,7 +100,7 @@ class CancelledAppointmentWidget extends StatelessWidget {
                         Image.asset("assets/png/Book_patient.png", width: 24, height: 24),
                         horizontalSpace(4),
                         Text(
-                          "Booking ID: #573DK98M",
+                          "Booking ID: #${appointment.id}",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],
@@ -106,7 +111,7 @@ class CancelledAppointmentWidget extends StatelessWidget {
             ],
           ),
           verticalSpace(15),
-          Divider(height: 20), // إضافة Divider ثاني
+          Divider(height: 20),
           verticalSpace(15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,10 +119,10 @@ class CancelledAppointmentWidget extends StatelessWidget {
               Row(
                 children: [
                   SizedBox(
-                    width: 310.w, // تعديل الحجم كما طلبت
+                    width: 310.w,
                     height: 44.h,
                     child: ElevatedButton(
-                      onPressed: onReBook, // الزر الوحيد
+                      onPressed: onReBook,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsManager.Blue,
                         shape: RoundedRectangleBorder(

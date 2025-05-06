@@ -5,14 +5,17 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/upcoming_appointment_model.dart';
 
 class UpcomingAppointmentWidget extends StatefulWidget {
+  final PendingAppointment appointment;
   final VoidCallback onCancel;
   final VoidCallback onReschedule;
-  final ValueChanged<bool>? onRemindMeChanged; // معلم جديد للتحكم في الـ Switch
+  final ValueChanged<bool>? onRemindMeChanged;
 
   const UpcomingAppointmentWidget({
     super.key,
+    required this.appointment,
     required this.onCancel,
     required this.onReschedule,
     this.onRemindMeChanged,
@@ -50,7 +53,7 @@ class _UpcomingAppointmentWidgetState extends State<UpcomingAppointmentWidget> {
           Row(
             children: [
               Text(
-                "Jan 10, 2025 - 10:00 AM",
+                "${widget.appointment.appointmentDate} - ${widget.appointment.appointmentTime}",
                 style: TextStyles.font14BlackRegular,
               ),
               Spacer(),
@@ -83,15 +86,17 @@ class _UpcomingAppointmentWidgetState extends State<UpcomingAppointmentWidget> {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: ColorsManager.Grey, // لون الحدود الأسود
-                    width: 0.7, // سمك الحدود (يمكن تعديله إلى 0.5 ليكون أخف)
+                    color: ColorsManager.Grey,
+                    width: 0.7,
                   ),
                 ),
                 child: CircleAvatar(
                   radius: 24.r,
                   backgroundColor: Colors.grey[200],
                   child: Text(
-                    "AZ", // يمكن استبداله ببيانات ديناميكية
+                    widget.appointment.doctorName.isNotEmpty
+                        ? widget.appointment.doctorName[0].toUpperCase()
+                        : "AZ",
                     style: TextStyles.font16GreyRegular,
                   ),
                 ),
@@ -102,7 +107,7 @@ class _UpcomingAppointmentWidgetState extends State<UpcomingAppointmentWidget> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Dr. Ahmed Mahmoud",
+                      widget.appointment.doctorName,
                       style: TextStyles.font20BlackRegular,
                     ),
                     verticalSpace(4),
@@ -111,7 +116,7 @@ class _UpcomingAppointmentWidgetState extends State<UpcomingAppointmentWidget> {
                         Image.asset("assets/png/location_patient.png", width: 24, height: 24),
                         horizontalSpace(4),
                         Text(
-                          "Gehan Street, Mansoura",
+                          widget.appointment.location ?? "Unknown Location",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],
@@ -122,7 +127,7 @@ class _UpcomingAppointmentWidgetState extends State<UpcomingAppointmentWidget> {
                         Image.asset("assets/png/Book_patient.png", width: 24, height: 24),
                         horizontalSpace(4),
                         Text(
-                          "Booking ID: #573DK98M",
+                          "Booking ID: #${widget.appointment.id}",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],

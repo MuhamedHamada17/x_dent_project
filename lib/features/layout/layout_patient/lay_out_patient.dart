@@ -18,16 +18,18 @@ class AppLayoutPatient extends StatefulWidget {
 class _AppLayoutPatientState extends State<AppLayoutPatient> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
+  final GlobalKey _pageViewKey = GlobalKey(); // إضافة GlobalKey
 
   final List<Widget> screens = [
     const PatientHomePage(),
-    const PatientAppoinmentScreen(),
+    const PatientAppointmentScreen(),
     const PatientUploadScreen(),
     const PatientMessagesScreen(),
     const PatientProfileScreen(),
   ];
 
   void onItemTapped(int index) {
+    if (_selectedIndex == index) return; // منع التنقل لو نفس الـ index
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
@@ -39,19 +41,23 @@ class _AppLayoutPatientState extends State<AppLayoutPatient> {
   }
 
   @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView.builder(
+      body: PageView(
+        key: _pageViewKey, // إضافة GlobalKey
         controller: _pageController,
-        itemCount: screens.length,
         physics: const NeverScrollableScrollPhysics(),
+        children: screens, // استخدام children بدل itemBuilder
         onPageChanged: (index) {
           setState(() {
             _selectedIndex = index;
           });
-        },
-        itemBuilder: (context, index) {
-          return screens[index];
         },
       ),
       bottomNavigationBar: SafeArea(
@@ -97,10 +103,10 @@ class _AppLayoutPatientState extends State<AppLayoutPatient> {
   }
 
   BottomNavigationBarItem _buildNavItem(
-    IconData icon,
-    String label,
-    int index,
-  ) {
+      IconData icon,
+      String label,
+      int index,
+      ) {
     return BottomNavigationBarItem(icon: Icon(icon), label: label);
   }
 }
