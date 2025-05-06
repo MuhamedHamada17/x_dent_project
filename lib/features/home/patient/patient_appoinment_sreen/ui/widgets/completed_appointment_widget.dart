@@ -5,13 +5,16 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/completed_appointment_model.dart';
 
 class CompletedAppointmentWidget extends StatelessWidget {
+  final CompletedAppointment appointment;
   final VoidCallback onAddReview;
-  final VoidCallback onReBook; // أضفنا معلمًا جديدًا لـ Re-Book
+  final VoidCallback onReBook;
 
   const CompletedAppointmentWidget({
     super.key,
+    required this.appointment,
     required this.onAddReview,
     required this.onReBook,
   });
@@ -19,7 +22,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 370.w, // نفس الأبعاد كـ Upcoming
+      width: 370.w,
       height: 320.h,
       margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
       padding: EdgeInsets.all(16.w),
@@ -42,14 +45,13 @@ class CompletedAppointmentWidget extends StatelessWidget {
             children: [
               verticalSpace(15),
               Text(
-                "Feb 17, 2025 - 10:00 AM",
+                "${appointment.appointmentDate} - ${appointment.appointmentTime}",
                 style: TextStyles.font14BlackRegular,
               ),
-              // تمت إزالة "Remind me" والـ Switch
             ],
           ),
           verticalSpace(25),
-          Divider(height: 20), // إضافة Divider كما في Upcoming
+          Divider(height: 20),
           verticalSpace(15),
           Row(
             children: [
@@ -59,7 +61,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                    color: ColorsManager.Grey, // نفس الحدود كـ Upcoming
+                    color: ColorsManager.Grey,
                     width: 0.7,
                   ),
                 ),
@@ -67,7 +69,9 @@ class CompletedAppointmentWidget extends StatelessWidget {
                   radius: 24.r,
                   backgroundColor: Colors.grey[200],
                   child: Text(
-                    "JS", // يمكن استبداله ببيانات ديناميكية
+                    appointment.doctorName.isNotEmpty
+                        ? appointment.doctorName[0].toUpperCase()
+                        : "JS",
                     style: TextStyles.font16GreyRegular,
                   ),
                 ),
@@ -78,7 +82,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Dr. Jane Smith",
+                      appointment.doctorName,
                       style: TextStyles.font20BlackRegular,
                     ),
                     verticalSpace(4),
@@ -87,7 +91,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                         Image.asset("assets/png/location_patient.png", width: 24, height: 24),
                         horizontalSpace(4),
                         Text(
-                          "Gehan Street, Mansoura",
+                          appointment.location ?? "Unknown Location",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],
@@ -98,7 +102,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                         Image.asset("assets/png/Book_patient.png", width: 24, height: 24),
                         horizontalSpace(4),
                         Text(
-                          "Booking ID: #573DK98M",
+                          "Booking ID: #${appointment.id}",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],
@@ -109,7 +113,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
             ],
           ),
           verticalSpace(15),
-          Divider(height: 20), // إضافة Divider ثاني
+          Divider(height: 20),
           verticalSpace(15),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,7 +124,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                     width: 150.w,
                     height: 44.h,
                     child: ElevatedButton(
-                      onPressed: onReBook, // استبدلنا Cancel بـ Re-Book
+                      onPressed: onReBook,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsManager.lighterBLUE,
                         shape: RoundedRectangleBorder(
@@ -139,7 +143,7 @@ class CompletedAppointmentWidget extends StatelessWidget {
                     width: 150.w,
                     height: 44.h,
                     child: ElevatedButton(
-                      onPressed: onAddReview, // استبدلنا Reschedule بـ Add Review
+                      onPressed: onAddReview,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: ColorsManager.Blue,
                         shape: RoundedRectangleBorder(

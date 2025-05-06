@@ -3,6 +3,10 @@ class ApiConstants {
 
   static const String login = "/api/auth/login";
   static const String signupPatient = "/api/auth/patient/register";
+  static const String cancelledAppointment = "/api/patient/cancelled/appointments";
+  static const String upcomingAppointment = "/api/patient/pending/appointments";
+  static const String confirmedAppointment = "/api/patient/confirmed/appointments";
+
 
 }
 
