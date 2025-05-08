@@ -125,4 +125,10 @@ class SharedPrefHelper {
     await removeData('full_name');
     await clearAllSecuredData();
   }
+
+  /// Checks if the user is logged in by verifying the existence of a valid access token.
+  static Future<bool> checkIfLoggedInUser() async {
+    String token = await getSecuredString('access_token');
+    return token.isNotEmpty;
+  }
 }

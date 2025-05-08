@@ -91,7 +91,7 @@ class _AppLayoutPatientState extends State<AppLayoutPatient> {
             onTap: onItemTapped,
             items: [
               _buildNavItem(Icons.home, "Home", 0),
-              _buildNavItem(Icons.calendar_today, "Appointments", 1),
+              _buildNavItem(Icons.calendar_today, "Appts", 1),
               _buildNavItem(Icons.upload_file, "Upload", 2),
               _buildNavItem(Icons.chat_bubble_outline, "Messages", 3),
               _buildNavItem(Icons.person, "Profile", 4),
