@@ -6,6 +6,8 @@ class ApiConstants {
   static const String cancelledAppointment = "/api/patient/cancelled/appointments";
   static const String upcomingAppointment = "/api/patient/pending/appointments";
   static const String confirmedAppointment = "/api/patient/confirmed/appointments";
+  static const String changePasswordPatient = "/api/profile/change-password";
+  static const String editProfilePatient = "/api/profile/edit";
 
 
 }

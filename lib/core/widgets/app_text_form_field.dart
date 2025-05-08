@@ -15,7 +15,7 @@ class AppTextFormField extends StatelessWidget {
   final Widget? prefixIcon;
   final Color? backgroundColor;
   final TextEditingController? controller;
-  final Function(String?)? validator;
+  final String? Function(String?)? validator; // تعديل نوع validator ليكون أوضح
 
   const AppTextFormField({
     super.key,
@@ -40,16 +40,16 @@ class AppTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         isDense: true,
         contentPadding:
-            contentPadding ??
+        contentPadding ??
             EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
         focusedBorder:
-            focusedBorder ??
+        focusedBorder ??
             OutlineInputBorder(
               borderSide: BorderSide(color: ColorsManager.white, width: 1.3),
               borderRadius: BorderRadius.circular(16.0),
             ),
         enabledBorder:
-            enabledBorder ??
+        enabledBorder ??
             OutlineInputBorder(
               borderSide: BorderSide(color: ColorsManager.white, width: 1.3),
               borderRadius: BorderRadius.circular(16.0),
@@ -70,8 +70,8 @@ class AppTextFormField extends StatelessWidget {
         filled: true,
       ),
       obscureText: isObscureText ?? false,
-      style: TextStyles.font10BlueRegular,
-      validator: validator != null ? (value) => validator!(value) : null,
+      style: inputTextStyle ?? TextStyles.font10BlueRegular,
+      validator: validator,
     );
   }
 }
