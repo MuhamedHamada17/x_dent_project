@@ -8,6 +8,8 @@ class ApiConstants {
   static const String confirmedAppointment = "/api/patient/confirmed/appointments";
   static const String changePasswordPatient = "/api/profile/change-password";
   static const String editProfilePatient = "/api/profile/edit";
+  static const String logoutPatient = "/api/auth/logout";
+  static const String treatmentPlanPatient = "/api/patient/treatment-plans";
 
 
 }

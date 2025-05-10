@@ -1,4 +1,4 @@
-import 'package:dio/dio.dart' hide Headers; // إخفاء Headers من dio
+import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:x_dent_project/features/login/login_doctor/data/models/login_response_body.dart';
@@ -11,7 +11,10 @@ import 'package:x_dent_project/features/signUp/patient/data/models/sign_patient_
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/change_password_patient_response.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/edit_profile_patient_request_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/edit_profile_patient_response_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_request_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_response_model.dart';
 import '../../features/home/patient/patient_profile_screen/data/models/change_paasword_patient_request.dart';
+import '../../features/home/patient/patient_profile_screen/data/models/treatment_plan_model.dart';
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -52,5 +55,17 @@ abstract class ApiService {
   Future<EditProfilePatientResponse> editProfilePatient(
       @Header('Authorization') String token,
       @Body() EditProfilePatientRequest requestBody,
+      );
+
+  @POST(ApiConstants.logoutPatient)
+  @Headers({'Content-Type': 'application/json'})
+  Future<LogoutPatientResponse> logout(
+      @Header('Authorization') String token,
+      @Body() LogoutPatientRequest requestBody,
+      );
+
+  @GET(ApiConstants.treatmentPlanPatient)
+  Future<TreatmentPlanResponse> getTreatmentPlans(
+      @Header('Authorization') String token,
       );
 }

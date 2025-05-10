@@ -11,6 +11,10 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/data
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/change_password_patient_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/repos/edit_profile_patient_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/edit_profile_patient_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/repos/logout_patient_repo.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/logout_patient_cubit.dart';
+import '../../features/home/patient/patient_profile_screen/data/repos/treatment_plan_patient_repo.dart';
+import '../../features/home/patient/patient_profile_screen/logic/treatment_plan_patient_cubit.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -47,4 +51,14 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<EditProfilePatientRepo>(() => EditProfilePatientRepo(getIt()));
   getIt.registerFactory<EditProfilePatientCubit>(() => EditProfilePatientCubit(getIt()));
   print('EditProfilePatientRepo and EditProfilePatientCubit registered');
+
+  // Logout
+  getIt.registerLazySingleton<LogoutPatientRepo>(() => LogoutPatientRepo(getIt()));
+  getIt.registerFactory<LogoutPatientCubit>(() => LogoutPatientCubit(getIt()));
+  print('LogoutPatientRepo and LogoutPatientCubit registered');
+
+  // Treatment Plans
+  getIt.registerLazySingleton<TreatmentPlanPatientRepo>(() => TreatmentPlanPatientRepo(getIt()));
+  getIt.registerFactory<TreatmentPlanPatientCubit>(() => TreatmentPlanPatientCubit(getIt<TreatmentPlanPatientRepo>()));
+  print('TreatmentPlanPatientRepo and TreatmentPlanPatientCubit registered');
 }

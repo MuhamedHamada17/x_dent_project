@@ -50,7 +50,6 @@ import 'package:x_dent_project/features/signUp/patient/ui/screens/signup_patient
 import 'package:x_dent_project/features/splash/splash_screen.dart';
 import '../../features/forget_password/otp/ui/otp_screen.dart';
 import '../../features/forget_password/reset_password/ui/reset_password_screen.dart';
-import '../../features/home/patient/patient_profile_screen/widgets/log_out_patient_screen.dart';
 import 'routes.dart';
 
 class AppRouter {

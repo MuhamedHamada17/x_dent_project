@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/appointment_patient_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/cancelled_appointment_list.dart';
-import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/completed_appointment_list.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/upcoming_appointment_list.dart';
 
 import '../../logic/appointment_patient_state.dart';
@@ -22,17 +21,17 @@ class AppointmentBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppointmentPatientCubit, AppointmentPatientState>(
       builder: (context, state) {
-        print("BlocBuilder state: $state, selectedStatus: $selectedStatus");
         if (selectedStatus == 'upcoming') {
           return state.maybeWhen(
             upcomingLoading: () => ConstrainedBox(
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height - 185.h,
               ),
-              child: const Center(child: CircularProgressIndicator()),
+              child:  Center(child: CircularProgressIndicator(
+                color: ColorsManager.Blue,
+              )),
             ),
             upcomingSuccess: (data) {
-              print("Upcoming appointments: ${data.pendingAppointments}");
               return UpcomingAppointmentList(
                 appointments: data.pendingAppointments ?? [],
               );
@@ -73,10 +72,12 @@ class AppointmentBlocBuilder extends StatelessWidget {
               constraints: BoxConstraints(
                 minHeight: MediaQuery.of(context).size.height - 185.h,
               ),
-              child: const Center(child: CircularProgressIndicator()),
+              child: const Center(child: CircularProgressIndicator(
+                color: ColorsManager.Blue,
+
+              )),
             ),
             cancelledSuccess: (data) {
-              print("Cancelled appointments: ${data.cancelledAppointments}");
               return CancelledAppointmentList(
                 appointments: data.cancelledAppointments ?? [],
               );
