@@ -6,10 +6,12 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/edit_profile_patient_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/edit_profile_patient_state.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/logout_patient_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/repos/logout_patient_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/profile_option_patient.dart';
-import '../../../../../core/helpers/shared_pref_helper.dart';
 import '../widgets/log_out_patient_screen.dart';
 
 class PatientProfileScreen extends StatefulWidget {
@@ -154,7 +156,15 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
                   title: "Log Out",
                   icon: Icons.logout,
                   onTap: () {
-                    context.pushNamed(Routes.LogOuPatientScreen);
+                    showDialog(
+                      context: context,
+                      builder: (dialogContext) => BlocProvider<LogoutPatientCubit>(
+                        create: (context) => LogoutPatientCubit(
+                          GetIt.instance<LogoutPatientRepo>(),
+                        ),
+                        child: const LogOutPatientScreen(),
+                      ),
+                    );
                   },
                 ),
               ],

@@ -71,7 +71,7 @@ class DataAndTreatmentPlansScreen extends StatelessWidget {
             ProfileOptionPatient(title:"Treatments Plans" ,
                 imagePath: "assets/png/heart_patient.png",
                 onTap: (){
-              context.pushNamed(Routes.TreatmentPlanScreen);
+              context.pushNamed(Routes.TreatmentsPlansScreenPatient);
                 }),
             verticalSpace(10),
 
