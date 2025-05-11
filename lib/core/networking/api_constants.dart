@@ -13,7 +13,8 @@ class ApiConstants {
   static const String forgetPassword = "/api/auth/forgot-password";
   static const String otp = "/api/auth/forgot-password/code";
   static const String resetPassword = "/api/auth/reset-password";
-
+  static const String cancelAppointment = "/api/patient/{id}/cancel";
+  static const String  getAllDoctors= "/api/doctors";
 
 }
 

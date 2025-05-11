@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/appointment_patient_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/appointment_patient_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/cancel_appointment_repo.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/cancel_appointment_cubit.dart';
 import 'package:x_dent_project/features/login/login_doctor/data/repos/login_repo.dart';
 import 'package:x_dent_project/features/login/login_doctor/logic/login_cubit.dart';
 import 'package:x_dent_project/features/signUp/patient/data/repos/sign_patient_repo.dart';
@@ -22,6 +24,8 @@ import 'package:x_dent_project/features/forget_password/otp/data/repos/otp_repo.
 import 'package:x_dent_project/features/forget_password/otp/logic/otp_cubit.dart';
 import '../../features/forget_password/reset_password/data/repo/reset_password_repo.dart';
 import '../../features/forget_password/reset_password/logic/reset_password_cubit.dart';
+import '../../features/home/patient/patient_messages_screen/data/repos/get_all_doctors_repo.dart';
+import '../../features/home/patient/patient_messages_screen/logic/get_all_doctors_cubit.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -42,12 +46,22 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<SignUpPatientCubit>(() => SignUpPatientCubit(getIt()));
   debugPrint('SignPatientRepo and SignUpPatientCubit registered');
 
+  // Get All Doctors
+  getIt.registerLazySingleton<GetAllDoctorsRepo>(() => GetAllDoctorsRepo(getIt()));
+  getIt.registerFactory<GetAllDoctorsCubit>(() => GetAllDoctorsCubit(getIt()));
+  debugPrint('GetAllDoctorsRepo and GetAllDoctorsCubit registered');
+
   // Appointments
   getIt.registerLazySingleton<AppointmentPatientRepo>(() => AppointmentPatientRepo(getIt()));
   getIt.registerFactory<AppointmentPatientCubit>(
         () => AppointmentPatientCubit(getIt<AppointmentPatientRepo>()),
   );
   debugPrint('AppointmentPatientRepo and AppointmentPatientCubit registered');
+
+  // Cancel Appointment
+  getIt.registerLazySingleton<CancelAppointmentRepo>(() => CancelAppointmentRepo(getIt()));
+  getIt.registerFactory<CancelAppointmentCubit>(() => CancelAppointmentCubit(getIt()));
+  debugPrint('CancelAppointmentRepo and CancelAppointmentCubit registered');
 
   // Change Password
   getIt.registerLazySingleton<ChangePasswordPatientRepo>(() => ChangePasswordPatientRepo(getIt()));

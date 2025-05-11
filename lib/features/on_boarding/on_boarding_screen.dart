@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/on_boarding/switch_button.dart';
-
+import '../../core/helpers/shared_pref_helper.dart';
 import '../../core/helpers/spacing.dart';
 import '../../core/theiming/colors.dart';
 import '../../core/theiming/styles.dart';
@@ -52,7 +52,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   verticalPadding: 4.h,
                   backgroundColor: ColorsManager.Blue,
                   textStyle: TextStyles.font20whiteRegular,
-                  onPressed: () {
+                  onPressed: () async {
+                    // Mark onboarding as completed
+                    await SharedPrefHelper.setFirstLaunch(false);
+                    debugPrint('OnBoardingScreen: isFirstLaunch set to false');
+                    // Verify storage
+                    bool isFirstLaunch = await SharedPrefHelper.isFirstLaunch();
+                    debugPrint('OnBoardingScreen: Verified isFirstLaunch: $isFirstLaunch');
                     Navigator.push(
                       context,
                       MaterialPageRoute(
