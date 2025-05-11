@@ -13,8 +13,14 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/data
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/edit_profile_patient_response_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_request_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_response_model.dart';
-import '../../features/home/patient/patient_profile_screen/data/models/change_paasword_patient_request.dart';
-import '../../features/home/patient/patient_profile_screen/data/models/treatment_plan_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/change_paasword_patient_request.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/treatment_plan_model.dart';
+import 'package:x_dent_project/features/forget_password/forget/data/models/forget_password_request_body.dart';
+import 'package:x_dent_project/features/forget_password/forget/data/models/forget_password_response_body.dart';
+import 'package:x_dent_project/features/forget_password/otp/data/models/otp_request_body.dart';
+import 'package:x_dent_project/features/forget_password/otp/data/models/otp_response_body.dart';
+import '../../features/forget_password/reset_password/data/models/reset_password_request_body.dart';
+import '../../features/forget_password/reset_password/data/models/reset_password_response_body.dart';
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -67,5 +73,23 @@ abstract class ApiService {
   @GET(ApiConstants.treatmentPlanPatient)
   Future<TreatmentPlanResponse> getTreatmentPlans(
       @Header('Authorization') String token,
+      );
+
+  @POST(ApiConstants.forgetPassword)
+  @Headers({'Content-Type': 'application/json'})
+  Future<ForgetPasswordResponseBody> sendForgetPasswordCode(
+      @Body() ForgetPasswordRequestBody request,
+      );
+
+  @POST(ApiConstants.otp)
+  @Headers({'Content-Type': 'application/json'})
+  Future<OtpResponseBody> verifyOtpCode(
+      @Body() OtpRequestBody request,
+      );
+
+  @POST('/api/auth/reset-password')
+  @Headers({'Content-Type': 'application/json'})
+  Future<ResetPasswordResponseBody> resetPassword(
+      @Body() ResetPasswordRequestBody request,
       );
 }

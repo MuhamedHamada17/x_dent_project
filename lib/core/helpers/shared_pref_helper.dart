@@ -131,4 +131,17 @@ class SharedPrefHelper {
     String token = await getSecuredString('access_token');
     return token.isNotEmpty;
   }
+
+  /// Saves forget password email in SharedPreferences.
+  static Future<void> saveForgetPasswordEmail(String email) async {
+    await setData('forget_password_email', email);
+    debugPrint('SharedPrefHelper: Saved forget password email: $email');
+  }
+
+  /// Gets forget password email from SharedPreferences.
+  static Future<String> getForgetPasswordEmail() async {
+    String email = await getString('forget_password_email');
+    debugPrint('SharedPrefHelper: Retrieved forget password email: $email');
+    return email;
+  }
 }
