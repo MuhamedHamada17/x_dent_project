@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/upcoming_appointment_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/upcoming_appointment_widget.dart';
+
+import '../../logic/cancel_appointment_cubit.dart';
 
 class UpcomingAppointmentList extends StatelessWidget {
   final List<PendingAppointment> appointments;
@@ -12,10 +16,6 @@ class UpcomingAppointmentList extends StatelessWidget {
     super.key,
     this.appointments = const [],
   });
-
-  void _navigateToScreen(BuildContext context, String screenName) {
-    Navigator.pushNamed(context, '/$screenName');
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,12 @@ class UpcomingAppointmentList extends StatelessWidget {
         return UpcomingAppointmentWidget(
           key: ValueKey(appointment.id),
           appointment: appointment,
-          onCancel: () => _navigateToScreen(context, "CancelScreen"),
+          onCancel: () async {
+            // Save the selected appointment ID
+            await SharedPrefHelper.saveAppointmentId(appointment.id);
+            // Call cancel appointment
+            context.read<CancelAppointmentCubit>().cancelAppointment();
+          },
           onReschedule: () => context.pushNamed(Routes.appointmentDetailsPatientScreen),
           onRemindMeChanged: (value) {
             print("Remind me changed to: $value for appointment ${appointment.id}");

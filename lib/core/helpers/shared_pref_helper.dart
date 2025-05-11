@@ -144,4 +144,17 @@ class SharedPrefHelper {
     debugPrint('SharedPrefHelper: Retrieved forget password email: $email');
     return email;
   }
+
+  /// Saves appointment ID in SharedPreferences.
+  static Future<void> saveAppointmentId(int appointmentId) async {
+    await setData('appointment_id', appointmentId);
+    debugPrint('SharedPrefHelper: Saved appointment ID: $appointmentId');
+  }
+
+  /// Gets appointment ID from SharedPreferences.
+  static Future<int> getAppointmentId() async {
+    int appointmentId = await getInt('appointment_id');
+    debugPrint('SharedPrefHelper: Retrieved appointment ID: $appointmentId');
+    return appointmentId;
+  }
 }

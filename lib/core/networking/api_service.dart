@@ -19,9 +19,11 @@ import 'package:x_dent_project/features/forget_password/forget/data/models/forge
 import 'package:x_dent_project/features/forget_password/forget/data/models/forget_password_response_body.dart';
 import 'package:x_dent_project/features/forget_password/otp/data/models/otp_request_body.dart';
 import 'package:x_dent_project/features/forget_password/otp/data/models/otp_response_body.dart';
-import '../../features/forget_password/reset_password/data/models/reset_password_request_body.dart';
-import '../../features/forget_password/reset_password/data/models/reset_password_response_body.dart';
-import 'api_constants.dart';
+import 'package:x_dent_project/features/forget_password/reset_password/data/models/reset_password_request_body.dart';
+import 'package:x_dent_project/features/forget_password/reset_password/data/models/reset_password_response_body.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/cancel_appointment_model.dart';
+
+import 'api_constants.dart'; // Updated import
 
 part 'api_service.g.dart';
 
@@ -87,9 +89,16 @@ abstract class ApiService {
       @Body() OtpRequestBody request,
       );
 
-  @POST('/api/auth/reset-password')
+  @POST(ApiConstants.resetPassword)
   @Headers({'Content-Type': 'application/json'})
   Future<ResetPasswordResponseBody> resetPassword(
       @Body() ResetPasswordRequestBody request,
       );
+
+  @PATCH(ApiConstants.cancelAppointment)
+  @Headers({'Content-Type': 'application/json'})
+  Future<CancelAppointmentModel> cancelAppointment(
+      @Header('Authorization') String token,
+      @Path('id') int appointmentId,
+      ); // Updated to CancelAppointmentModel
 }

@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/appointment_patient_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/appointment_patient_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/cancel_appointment_repo.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/cancel_appointment_cubit.dart';
 import 'package:x_dent_project/features/login/login_doctor/data/repos/login_repo.dart';
 import 'package:x_dent_project/features/login/login_doctor/logic/login_cubit.dart';
 import 'package:x_dent_project/features/signUp/patient/data/repos/sign_patient_repo.dart';
@@ -48,6 +50,11 @@ Future<void> setupGetIt() async {
         () => AppointmentPatientCubit(getIt<AppointmentPatientRepo>()),
   );
   debugPrint('AppointmentPatientRepo and AppointmentPatientCubit registered');
+
+  // Cancel Appointment
+  getIt.registerLazySingleton<CancelAppointmentRepo>(() => CancelAppointmentRepo(getIt()));
+  getIt.registerFactory<CancelAppointmentCubit>(() => CancelAppointmentCubit(getIt()));
+  debugPrint('CancelAppointmentRepo and CancelAppointmentCubit registered');
 
   // Change Password
   getIt.registerLazySingleton<ChangePasswordPatientRepo>(() => ChangePasswordPatientRepo(getIt()));
