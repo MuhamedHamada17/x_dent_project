@@ -74,7 +74,7 @@ class AppRouter {
       case Routes.patientHomeScreen:
         return MaterialPageRoute(builder: (_) => const PatientHomePage());
       case Routes.forgetScreen:
-        return MaterialPageRoute(builder: (_) => const ForgetScreen());
+        return MaterialPageRoute(builder: (_) => ForgetScreen());
       case Routes.otpScreen:
         return MaterialPageRoute(builder: (_) => const OtpScreen());
       case Routes.resetPassword:

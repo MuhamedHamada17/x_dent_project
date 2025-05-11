@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import '../data/repos/appointment_patient_repo.dart';
 import '../data/models/upcoming_appointment_model.dart';
 import '../data/models/cancelled_appointment_model.dart';
@@ -18,6 +19,10 @@ class AppointmentPatientCubit extends Cubit<AppointmentPatientState> {
     response.when(
       success: (data) {
         print('Upcoming Success: ${data.pendingAppointments}');
+        // Save the first appointment ID if the list is not empty
+        if (data.pendingAppointments.isNotEmpty) {
+          SharedPrefHelper.saveAppointmentId(data.pendingAppointments.first.id);
+        }
         emit(AppointmentPatientState.upcomingSuccess(data));
       },
       failure: (error) {

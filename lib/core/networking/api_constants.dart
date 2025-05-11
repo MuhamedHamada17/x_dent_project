@@ -10,8 +10,10 @@ class ApiConstants {
   static const String editProfilePatient = "/api/profile/edit";
   static const String logoutPatient = "/api/auth/logout";
   static const String treatmentPlanPatient = "/api/patient/treatment-plans";
-
-
+  static const String forgetPassword = "/api/auth/forgot-password";
+  static const String otp = "/api/auth/forgot-password/code";
+  static const String resetPassword = "/api/auth/reset-password";
+  static const String cancelAppointment = "/api/patient/{id}/cancel"; // New endpoint
 }
 
 class ApiErrors {

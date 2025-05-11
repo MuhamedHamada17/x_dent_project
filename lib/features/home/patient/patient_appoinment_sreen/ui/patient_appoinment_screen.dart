@@ -8,10 +8,12 @@ import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/appointment_patient_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/cancel_appointment_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/bloc_builder_appointment.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/widgets/custom_container_row.dart';
 
 import '../logic/appointment_patient_state.dart';
+import '../logic/cancel_appointment_state.dart';
 
 class PatientAppointmentScreen extends StatefulWidget {
   const PatientAppointmentScreen({super.key});
@@ -72,25 +74,39 @@ class _PatientAppointmentScreenState extends State<PatientAppointmentScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => GetIt.instance<AppointmentPatientCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => GetIt.instance<AppointmentPatientCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => GetIt.instance<CancelAppointmentCubit>(),
+        ),
+      ],
       child: BlocConsumer<AppointmentPatientCubit, AppointmentPatientState>(
         listener: (context, state) {
-          print("BlocConsumer state: $state");
+          print("AppointmentPatientCubit state: $state");
           state.maybeWhen(
             upcomingError: (error) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(error.message ?? 'Error fetching upcoming appointments')),
+                SnackBar(
+                  backgroundColor: Colors.red,
+                    content: Text(error.message ?? 'Error fetching upcoming appointments')),
               );
             },
             confirmedError: (error) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(error.message ?? 'Error fetching confirmed appointments')),
+                SnackBar(content: Text(error.message ?? 'Error fetching confirmed appointments'),
+                  backgroundColor: Colors.red,
+
+                ),
               );
             },
             cancelledError: (error) {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(error.message ?? 'Error fetching cancelled appointments')),
+                SnackBar(content: Text(error.message ?? 'Error fetching cancelled appointments'),
+                  backgroundColor: Colors.red,
+                ),
               );
             },
             orElse: () {},
@@ -135,6 +151,7 @@ class _PatientAppointmentScreenState extends State<PatientAppointmentScreen> {
                 ),
                 Expanded(
                   child: RefreshIndicator(
+                    color: ColorsManager.Blue,
                     onRefresh: () => _refreshAppointments(cubit),
                     child: SingleChildScrollView(
                       physics: const AlwaysScrollableScrollPhysics(),
@@ -142,7 +159,41 @@ class _PatientAppointmentScreenState extends State<PatientAppointmentScreen> {
                         constraints: BoxConstraints(
                           minHeight: MediaQuery.of(context).size.height - 185.h,
                         ),
-                        child: AppointmentBlocBuilder(selectedStatus: selectedStatus),
+                        child: BlocConsumer<CancelAppointmentCubit, CancelAppointmentState>(
+                          listener: (context, cancelState) {
+                            cancelState.whenOrNull(
+                              success: (response) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(response.message)),
+                                );
+                                // Refresh upcoming appointments
+                                if (selectedStatus == "upcoming") {
+                                  context.read<AppointmentPatientCubit>().fetchUpcomingAppointments();
+                                }
+                              },
+                              error: (error) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      backgroundColor: Colors.red,
+                                      content: Text(error)),
+                                );
+                              },
+                            );
+                          },
+                          builder: (context, cancelState) {
+                            return Column(
+                              children: [
+                                cancelState.maybeWhen(
+                                  loading: () =>  Center(child: CircularProgressIndicator(
+                                    color: ColorsManager.Blue,
+                                  )),
+                                  orElse: () => const SizedBox.shrink(),
+                                ),
+                                AppointmentBlocBuilder(selectedStatus: selectedStatus),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ),
                   ),
