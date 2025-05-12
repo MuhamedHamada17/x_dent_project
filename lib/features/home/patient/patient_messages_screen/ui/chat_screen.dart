@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_message/ui/widgets/chat_bubble.dart';
 
 class ChatScreenPatient extends StatefulWidget {
-  const ChatScreenPatient({super.key});
+  final int doctorId;
+
+  const ChatScreenPatient({super.key, required this.doctorId});
 
   @override
   State<ChatScreenPatient> createState() => _ChatScreenState();
@@ -14,6 +17,24 @@ class ChatScreenPatient extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreenPatient> {
   final TextEditingController _controller = TextEditingController();
   final List<String> messages = [];
+  String _doctorName = 'Loading...';
+
+  @override
+  void initState() {
+    super.initState();
+    _loadDoctorName();
+  }
+
+  Future<void> _loadDoctorName() async {
+    String name = await SharedPrefHelper.getDoctorName(widget.doctorId);
+    if (name.isEmpty) {
+      name = 'Unknown Doctor';
+    }
+    setState(() {
+      _doctorName = name;
+    });
+    debugPrint('ChatScreenPatient: Loaded doctor name: $name');
+  }
 
   void _sendMessage() {
     if (_controller.text.trim().isNotEmpty) {
@@ -30,7 +51,7 @@ class _ChatScreenState extends State<ChatScreenPatient> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text("Ahmed Khaled", style: TextStyles.font20BlackRegular),
+        title: Text(_doctorName, style: TextStyles.font20BlackRegular),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),

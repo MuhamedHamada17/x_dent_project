@@ -24,6 +24,8 @@ import 'package:x_dent_project/features/forget_password/otp/data/repos/otp_repo.
 import 'package:x_dent_project/features/forget_password/otp/logic/otp_cubit.dart';
 import '../../features/forget_password/reset_password/data/repo/reset_password_repo.dart';
 import '../../features/forget_password/reset_password/logic/reset_password_cubit.dart';
+import '../../features/home/patient/patient_messages_screen/data/repos/get_all_doctors_repo.dart';
+import '../../features/home/patient/patient_messages_screen/logic/get_all_doctors_cubit.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -43,6 +45,11 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SignPatientRepo>(() => SignPatientRepo(getIt()));
   getIt.registerFactory<SignUpPatientCubit>(() => SignUpPatientCubit(getIt()));
   debugPrint('SignPatientRepo and SignUpPatientCubit registered');
+
+  // Get All Doctors
+  getIt.registerLazySingleton<GetAllDoctorsRepo>(() => GetAllDoctorsRepo(getIt()));
+  getIt.registerFactory<GetAllDoctorsCubit>(() => GetAllDoctorsCubit(getIt()));
+  debugPrint('GetAllDoctorsRepo and GetAllDoctorsCubit registered');
 
   // Appointments
   getIt.registerLazySingleton<AppointmentPatientRepo>(() => AppointmentPatientRepo(getIt()));

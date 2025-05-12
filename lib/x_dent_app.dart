@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'core/routing/routes.dart';
-import 'core/routing/app_router.dart';
-import 'core/theiming/colors.dart';
+import 'package:x_dent_project/core/routing/app_router.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
 
 class xDentApp extends StatelessWidget {
-  const xDentApp({super.key, required this.appRouter});
   final AppRouter appRouter;
+  final String initialRoute;
+
+  const xDentApp({
+    super.key,
+    required this.appRouter,
+    required this.initialRoute,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +25,7 @@ class xDentApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.splashScreen, // Choosing one route
+        initialRoute: initialRoute,
         onGenerateRoute: appRouter.generateRoute,
       ),
     );

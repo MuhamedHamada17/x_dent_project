@@ -22,8 +22,8 @@ import 'package:x_dent_project/features/forget_password/otp/data/models/otp_resp
 import 'package:x_dent_project/features/forget_password/reset_password/data/models/reset_password_request_body.dart';
 import 'package:x_dent_project/features/forget_password/reset_password/data/models/reset_password_response_body.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/cancel_appointment_model.dart';
-
-import 'api_constants.dart'; // Updated import
+import '../../features/home/patient/patient_messages_screen/data/models/get_all_doctors_model.dart';
+import 'api_constants.dart';
 
 part 'api_service.g.dart';
 
@@ -100,5 +100,10 @@ abstract class ApiService {
   Future<CancelAppointmentModel> cancelAppointment(
       @Header('Authorization') String token,
       @Path('id') int appointmentId,
-      ); // Updated to CancelAppointmentModel
+      );
+
+  @GET(ApiConstants.getAllDoctors) // New endpoint
+  Future<GetAllDoctorsResponse> getAllDoctors(
+      @Header('Authorization') String token,
+      );
 }

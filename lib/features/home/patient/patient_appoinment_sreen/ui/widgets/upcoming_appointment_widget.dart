@@ -147,7 +147,7 @@ class _UpcomingAppointmentWidgetState extends State<UpcomingAppointmentWidget> {
                 children: [
                   SizedBox(
                     width: 150.w,
-                    height: 44.h,
+                    height: 42.h,
                     child: ElevatedButton(
                       onPressed: widget.onCancel,
                       style: ElevatedButton.styleFrom(
