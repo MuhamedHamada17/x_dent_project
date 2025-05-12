@@ -22,8 +22,12 @@ import 'package:x_dent_project/features/forget_password/forget/data/repo/forget_
 import 'package:x_dent_project/features/forget_password/forget/logic/forget_password_cubit.dart';
 import 'package:x_dent_project/features/forget_password/otp/data/repos/otp_repo.dart';
 import 'package:x_dent_project/features/forget_password/otp/logic/otp_cubit.dart';
-import '../../features/forget_password/reset_password/data/repo/reset_password_repo.dart';
-import '../../features/forget_password/reset_password/logic/reset_password_cubit.dart';
+import 'package:x_dent_project/features/forget_password/reset_password/data/repo/reset_password_repo.dart';
+import 'package:x_dent_project/features/forget_password/reset_password/logic/reset_password_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_messages_screen/data/repos/get_all_doctors_repo.dart';
+import 'package:x_dent_project/features/home/patient/patient_messages_screen/logic/get_all_doctors_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/repos/specialization_doctors_repo.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/logic/specialization_doctors_cubit.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -43,6 +47,11 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SignPatientRepo>(() => SignPatientRepo(getIt()));
   getIt.registerFactory<SignUpPatientCubit>(() => SignUpPatientCubit(getIt()));
   debugPrint('SignPatientRepo and SignUpPatientCubit registered');
+
+  // Get All Doctors
+  getIt.registerLazySingleton<GetAllDoctorsRepo>(() => GetAllDoctorsRepo(getIt()));
+  getIt.registerFactory<GetAllDoctorsCubit>(() => GetAllDoctorsCubit(getIt()));
+  debugPrint('GetAllDoctorsRepo and GetAllDoctorsCubit registered');
 
   // Appointments
   getIt.registerLazySingleton<AppointmentPatientRepo>(() => AppointmentPatientRepo(getIt()));
@@ -92,4 +101,9 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<ResetPasswordRepo>(() => ResetPasswordRepo(getIt()));
   getIt.registerFactory<ResetPasswordCubit>(() => ResetPasswordCubit(getIt()));
   debugPrint('ResetPasswordRepo and ResetPasswordCubit registered');
+
+  // Specialization Doctors
+  getIt.registerLazySingleton<SpecializationDoctorsRepo>(() => SpecializationDoctorsRepo(getIt()));
+  getIt.registerFactory<SpecializationDoctorsCubit>(() => SpecializationDoctorsCubit());
+  debugPrint('SpecializationDoctorsRepo and SpecializationDoctorsCubit registered');
 }

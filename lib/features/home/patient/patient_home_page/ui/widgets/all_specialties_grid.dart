@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'speciality_card.dart';
 
 class AllSpecialtiesGrid extends StatelessWidget {
   const AllSpecialtiesGrid({super.key});
 
   final List<Map<String, String>> specialties = const [
-    {"image": "assets/png/cavi.png", "name": "Cavities"},
+    {"image": "assets/png/cavi.png", "name": "Cavity"}, // تعديل من Cavities إلى Cavity
     {"image": "assets/png/Dental.png", "name": "Dental Hygiene"},
     {"image": "assets/png/Implants.png", "name": "Implants"},
     {"image": "assets/png/orthopedicspng.png", "name": "Orthopedics"},
@@ -17,8 +19,6 @@ class AllSpecialtiesGrid extends StatelessWidget {
     {"image": "assets/png/Cosmetic.png", "name": "Cosmetic"},
     {"image": "assets/png/Veneers.png", "name": "Veneers"},
     {"image": "assets/png/Extraction.png", "name": "Extraction"},
-
-
   ];
 
   @override
@@ -27,18 +27,26 @@ class AllSpecialtiesGrid extends StatelessWidget {
       padding: EdgeInsets.all(8.w),
       child: GridView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 3, // 3 columns
+          crossAxisCount: 3,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           childAspectRatio: 1,
         ),
-        itemCount: specialties.length, // 3 rows × 3 columns - 1 item removed
+        itemCount: specialties.length,
         itemBuilder: (context, index) {
+          final specialty = specialties[index];
           return SpecialtyCard(
-            image: specialties[index]["image"]!,
-            name: specialties[index]["name"]!,
+            image: specialty["image"]!,
+            name: specialty["name"]!,
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                Routes.DoctorListScreen,
+                arguments: {'specialization': specialty["name"]!.toLowerCase()},
+              );
+            },
           );
         },
       ),

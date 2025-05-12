@@ -39,6 +39,7 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/widg
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/perscriptions_pattient_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/profile_settings_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/treatments_plans_screen.dart';
+import 'package:x_dent_project/features/layout/layout_doctor/lay_out_doctor.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
@@ -81,6 +82,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ResetPasswordScreen());
       case Routes.AppLayoutPatient:
         return MaterialPageRoute(builder: (_) => const AppLayoutPatient());
+      case Routes.appLayoutDoctor:
+        return MaterialPageRoute(builder: (_) => const AppLayoutDoctor());
       case Routes.notification:
         return MaterialPageRoute(builder: (_) => const NotificationScreen());
       case Routes.ChatScreen:
@@ -118,7 +121,17 @@ class AppRouter {
       case Routes.AnalysisScreen:
         return MaterialPageRoute(builder: (_) => const AnalysisScreen());
       case Routes.chatScreenPatient:
-        return MaterialPageRoute(builder: (_) => const ChatScreenPatient());
+        final doctorId = settings.arguments as int?;
+        if (doctorId == null) {
+          return MaterialPageRoute(
+            builder: (_) => Scaffold(
+              body: Center(child: Text('Error: No doctorId provided')),
+            ),
+          );
+        }
+        return MaterialPageRoute(
+          builder: (_) => ChatScreenPatient(doctorId: doctorId),
+        );
       case Routes.appointmentDetailsPatientScreen:
         return MaterialPageRoute(
           builder: (_) => const AppointmentDetailsPatientScreen(),
@@ -160,7 +173,11 @@ class AppRouter {
       case Routes.AvailabilityScreen:
         return MaterialPageRoute(builder: (_) => AvailabilityScreen());
       case Routes.DoctorListScreen:
-        return MaterialPageRoute(builder: (_) => const DoctorListScreen());
+        final arguments = settings.arguments as Map<String, String>?;
+        final specialization = arguments?['specialization'] ?? '';
+        return MaterialPageRoute(
+          builder: (_) => DoctorListScreen(specialization: specialization), // Fix: Named argument
+        );
       case Routes.LogOuPatientScreen:
         return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
       case Routes.FilterPatientScreen:
@@ -173,15 +190,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const PerscriptionsPattientScreen());
       case Routes.TreatmentsPlansScreenPatient:
         return MaterialPageRoute(builder: (_) => const TreatmentsPlansScreenPatient());
-
       default:
         return MaterialPageRoute(
-          builder:
-              (_) => Scaffold(
-                body: Center(
-                  child: Text("No route defined for ${settings.name}"),
-                ),
-              ),
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text("No route defined for ${settings.name}"),
+            ),
+          ),
         );
     }
   }

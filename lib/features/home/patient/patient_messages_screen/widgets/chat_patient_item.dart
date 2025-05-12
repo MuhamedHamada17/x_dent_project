@@ -4,16 +4,19 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import '../data/models/get_all_doctors_model.dart';
 
 class ChatPatientItem extends StatelessWidget {
-  const ChatPatientItem({super.key});
+  final DoctorData allDoctor;
+
+  const ChatPatientItem({super.key, required this.allDoctor});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         GestureDetector(
-          onTap: () => context.pushNamed(Routes.chatScreenPatient),
+          onTap: () => context.pushNamed(Routes.chatScreenPatient, arguments: allDoctor.id),
           child: Padding(
             padding: const EdgeInsets.only(
               bottom: 10,
@@ -36,14 +39,16 @@ class ChatPatientItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Ahmed Khaled",
+                            allDoctor.name ?? "Mohamed Hamada",
                             style: TextStyles.font20BlackRegular,
                           ),
-                          Text("9:32 AM", style: TextStyles.font14GreyRegular),
+                          Text(
+                            "9:32 AM", // Replace with dynamic time if available
+                            style: TextStyles.font14GreyRegular,
+                          ),
                         ],
                       ),
                       const SizedBox(height: 4),
-                      Text("Okay.", style: TextStyles.font14GreyRegular),
                     ],
                   ),
                 ),

@@ -4,25 +4,25 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefHelper {
-  // private constructor to prevent creating instances of this class
+  // Private constructor to prevent creating instances of this class
   SharedPrefHelper._();
 
   /// Removes a value from SharedPreferences with given [key].
-  static removeData(String key) async {
+  static Future<void> removeData(String key) async {
     debugPrint('SharedPrefHelper: Data with key "$key" has been removed');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.remove(key);
   }
 
   /// Removes all keys and values in SharedPreferences.
-  static clearAllData() async {
+  static Future<void> clearAllData() async {
     debugPrint('SharedPrefHelper: All data has been cleared');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
   }
 
   /// Saves a [value] with a [key] in SharedPreferences.
-  static setData(String key, dynamic value) async {
+  static Future<void> setData(String key, dynamic value) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     debugPrint('SharedPrefHelper: Set data with key "$key" and value "$value"');
     switch (value.runtimeType) {
@@ -40,7 +40,7 @@ class SharedPrefHelper {
         break;
       default:
         debugPrint('SharedPrefHelper: Unsupported type for key "$key"');
-        return null;
+        throw Exception('Unsupported type for key "$key"');
     }
   }
 
@@ -73,10 +73,9 @@ class SharedPrefHelper {
   }
 
   /// Saves a sensitive [value] with a [key] in FlutterSecureStorage (e.g., access_token).
-  static setSecuredString(String key, String value) async {
+  static Future<void> setSecuredString(String key, String value) async {
     const flutterSecureStorage = FlutterSecureStorage();
-    debugPrint(
-        'FlutterSecureStorage: Set secured string with key "$key" and value "$value"');
+    debugPrint('FlutterSecureStorage: Set secured string with key "$key" and value "$value"');
     await flutterSecureStorage.write(key: key, value: value);
   }
 
@@ -88,7 +87,7 @@ class SharedPrefHelper {
   }
 
   /// Removes all keys and values in FlutterSecureStorage.
-  static clearAllSecuredData() async {
+  static Future<void> clearAllSecuredData() async {
     debugPrint('FlutterSecureStorage: All secured data has been cleared');
     const flutterSecureStorage = FlutterSecureStorage();
     await flutterSecureStorage.deleteAll();
@@ -111,6 +110,7 @@ class SharedPrefHelper {
   /// Saves access token in FlutterSecureStorage.
   static Future<void> saveAccessToken(String token) async {
     await setSecuredString('access_token', token);
+    debugPrint('SharedPrefHelper: Saved access token: $token');
   }
 
   /// Gets full user name from SharedPreferences.
@@ -118,17 +118,19 @@ class SharedPrefHelper {
     return await getString('full_name');
   }
 
-  /// Clears all user-related data (name and token).
+  /// Clears all user-related data (name, role, and token).
   static Future<void> clearUserData() async {
     await removeData('first_name');
     await removeData('last_name');
     await removeData('full_name');
+    await removeData('user_role');
     await clearAllSecuredData();
   }
 
   /// Checks if the user is logged in by verifying the existence of a valid access token.
   static Future<bool> checkIfLoggedInUser() async {
     String token = await getSecuredString('access_token');
+    debugPrint('SharedPrefHelper: Checking if logged in, token: $token');
     return token.isNotEmpty;
   }
 
@@ -156,5 +158,61 @@ class SharedPrefHelper {
     int appointmentId = await getInt('appointment_id');
     debugPrint('SharedPrefHelper: Retrieved appointment ID: $appointmentId');
     return appointmentId;
+  }
+
+  /// Checks if the app is launched for the first time.
+  static Future<bool> isFirstLaunch() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirst = prefs.getBool('is_first_launch') ?? true;
+    debugPrint('SharedPrefHelper: Is first launch: $isFirst');
+    return isFirst;
+  }
+
+  /// Sets the first launch status.
+  static Future<void> setFirstLaunch(bool value) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('is_first_launch', value);
+    debugPrint('SharedPrefHelper: Set first launch to: $value');
+    bool storedValue = prefs.getBool('is_first_launch') ?? true;
+    debugPrint('SharedPrefHelper: Verified stored first launch: $storedValue');
+  }
+
+  /// Saves user role (doctor or patient) in SharedPreferences.
+  static Future<void> saveUserRole(String role) async {
+    await setData('user_role', role);
+    debugPrint('SharedPrefHelper: Saved user role: $role');
+  }
+
+  /// Gets user role from SharedPreferences.
+  static Future<String> getUserRole() async {
+    String role = await getString('user_role');
+    debugPrint('SharedPrefHelper: Retrieved user role: $role');
+    return role;
+  }
+
+  /// Saves doctor's name in SharedPreferences using doctor_id as key.
+  static Future<void> saveDoctorName(int doctorId, String name) async {
+    await setData('doctor_name_$doctorId', name);
+    debugPrint('SharedPrefHelper: Saved doctor name for ID $doctorId: $name');
+  }
+
+  /// Gets doctor's name from SharedPreferences using doctor_id.
+  static Future<String> getDoctorName(int doctorId) async {
+    String name = await getString('doctor_name_$doctorId');
+    debugPrint('SharedPrefHelper: Retrieved doctor name for ID $doctorId: $name');
+    return name;
+  }
+
+  /// Clears all doctor names from SharedPreferences.
+  static Future<void> clearAllDoctorNames() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final keys = prefs.getKeys();
+    for (String key in keys) {
+      if (key.startsWith('doctor_name_')) {
+        await prefs.remove(key);
+        debugPrint('SharedPrefHelper: Removed doctor name with key: $key');
+      }
+    }
+    debugPrint('SharedPrefHelper: All doctor names cleared');
   }
 }

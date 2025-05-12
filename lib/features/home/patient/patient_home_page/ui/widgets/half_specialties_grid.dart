@@ -6,7 +6,7 @@ class HalfSpecialtiesGrid extends StatelessWidget {
   const HalfSpecialtiesGrid({super.key});
 
   final List<Map<String, String>> specialties = const [
-    {"image": "assets/png/cavi.png", "name": "Cavities"},
+    {"image": "assets/png/cavi.png", "name": "Cavity"}, // تعديل من Cavities إلى Cavity
     {"image": "assets/png/Dental.png", "name": "Dental Hygiene"},
     {"image": "assets/png/Implants.png", "name": "Implants"},
     {"image": "assets/png/orthopedicspng.png", "name": "Orthopedics"},
