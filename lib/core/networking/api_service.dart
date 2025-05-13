@@ -22,7 +22,8 @@ import 'package:x_dent_project/features/forget_password/otp/data/models/otp_resp
 import 'package:x_dent_project/features/forget_password/reset_password/data/models/reset_password_request_body.dart';
 import 'package:x_dent_project/features/forget_password/reset_password/data/models/reset_password_response_body.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/cancel_appointment_model.dart';
-import '../../features/home/patient/patient_messages_screen/data/models/get_all_doctors_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_messages_screen/data/models/get_all_doctors_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/specialization_doctors_model.dart'; // Add this import
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -31,6 +32,7 @@ part 'api_service.g.dart';
 abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
+  // Existing endpoints
   @POST(ApiConstants.login)
   Future<LoginResponseBody> login(@Body() LoginRequestBody loginRequestBody);
 
@@ -102,8 +104,15 @@ abstract class ApiService {
       @Path('id') int appointmentId,
       );
 
-  @GET(ApiConstants.getAllDoctors) // New endpoint
+  @GET(ApiConstants.getAllDoctors)
   Future<GetAllDoctorsResponse> getAllDoctors(
       @Header('Authorization') String token,
+      );
+
+  // New endpoint for filtering doctors by specialization
+  @GET(ApiConstants.filterSpecializationDoctors)
+  Future<SpecializationDoctorsResponse> filterDoctors(
+      @Header('Authorization') String token,
+      @Query('specialization_names') String specialization,
       );
 }

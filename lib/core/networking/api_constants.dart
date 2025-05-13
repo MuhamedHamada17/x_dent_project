@@ -15,6 +15,7 @@ class ApiConstants {
   static const String resetPassword = "/api/auth/reset-password";
   static const String cancelAppointment = "/api/patient/{id}/cancel";
   static const String  getAllDoctors= "/api/doctors";
+  static const String filterSpecializationDoctors = "/api/doctors/filter";
 
 }
 

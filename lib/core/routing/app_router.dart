@@ -173,7 +173,11 @@ class AppRouter {
       case Routes.AvailabilityScreen:
         return MaterialPageRoute(builder: (_) => AvailabilityScreen());
       case Routes.DoctorListScreen:
-        return MaterialPageRoute(builder: (_) => const DoctorListScreen());
+        final arguments = settings.arguments as Map<String, String>?;
+        final specialization = arguments?['specialization'] ?? '';
+        return MaterialPageRoute(
+          builder: (_) => DoctorListScreen(specialization: specialization), // Fix: Named argument
+        );
       case Routes.LogOuPatientScreen:
         return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
       case Routes.FilterPatientScreen:
@@ -186,7 +190,6 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const PerscriptionsPattientScreen());
       case Routes.TreatmentsPlansScreenPatient:
         return MaterialPageRoute(builder: (_) => const TreatmentsPlansScreenPatient());
-
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

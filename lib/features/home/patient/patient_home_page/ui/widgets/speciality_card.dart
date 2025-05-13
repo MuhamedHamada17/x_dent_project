@@ -2,20 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
-import '../../../../../../core/helpers/spacing.dart';
-import '../../../../../../core/theiming/colors.dart';
-import '../../../../../../core/theiming/styles.dart';
+import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
+import 'package:x_dent_project/core/theiming/styles.dart';
 
 class SpecialtyCard extends StatelessWidget {
   final String image;
   final String name;
+  final VoidCallback? onTap;
 
-  const SpecialtyCard({super.key, required this.image, required this.name});
+  const SpecialtyCard({
+    super.key,
+    required this.image,
+    required this.name,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () => context.pushNamed(Routes.DoctorListScreen),
+      onTap: onTap ?? () => Navigator.pushNamed(
+        context,
+        Routes.DoctorListScreen,
+        arguments: {'specialization': name.toLowerCase()},
+      ),
       child: Container(
         width: 110.w,
         height: 110.h,
@@ -25,7 +35,7 @@ class SpecialtyCard extends StatelessWidget {
           border: const Border(
             bottom: BorderSide(
               color: ColorsManager.mainYellow,
-              width: 4, // ✅ تحديد البوردر فقط من الأسفل
+              width: 4,
             ),
           ),
         ),
@@ -35,12 +45,12 @@ class SpecialtyCard extends StatelessWidget {
             Image.asset(image, width: 50, height: 50),
             verticalSpace(10),
             SizedBox(
-              width: 90.w, // ✅ التحكم في عرض النص داخل الحاوية
+              width: 90.w,
               child: Text(
                 name,
                 style: TextStyles.font14WhiteRegular,
-                maxLines: 1, // ✅ منع النص الطويل من النزول لسطر آخر
-                overflow: TextOverflow.ellipsis, // ✅ إذا كان طويلًا يتم اقتصاصه بـ ...
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
               ),
             ),
