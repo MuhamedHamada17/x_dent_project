@@ -8,7 +8,7 @@ class AllSpecialtiesGrid extends StatelessWidget {
   const AllSpecialtiesGrid({super.key});
 
   final List<Map<String, String>> specialties = const [
-    {"image": "assets/png/cavi.png", "name": "Cavity"}, // تعديل من Cavities إلى Cavity
+    {"image": "assets/png/cavi.png", "name": "Cavity"},
     {"image": "assets/png/Dental.png", "name": "Dental Hygiene"},
     {"image": "assets/png/Implants.png", "name": "Implants"},
     {"image": "assets/png/orthopedicspng.png", "name": "Orthopedics"},
@@ -41,10 +41,18 @@ class AllSpecialtiesGrid extends StatelessWidget {
             image: specialty["image"]!,
             name: specialty["name"]!,
             onTap: () {
-              Navigator.pushNamed(
-                context,
+              final specialization = specialty["name"]!.toLowerCase();
+              if (specialization.isEmpty) {
+                debugPrint('AllSpecialtiesGrid: Error - Specialization is empty');
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Error: No specialization selected')),
+                );
+                return;
+              }
+              debugPrint('AllSpecialtiesGrid: Navigating to DoctorListScreen with specialization: $specialization');
+              context.pushNamed(
                 Routes.DoctorListScreen,
-                arguments: {'specialization': specialty["name"]!.toLowerCase()},
+                arguments: {'specialization': specialization},
               );
             },
           );

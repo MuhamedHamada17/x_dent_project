@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
@@ -13,6 +14,8 @@ class DoctorCardWidget extends StatelessWidget {
   final double? rating;
   final int? reviewsCount;
   final String? price;
+  final int doctorId; // إضافة doctorId
+  final String specialization; // إضافة specialization
 
   const DoctorCardWidget({
     Key? key,
@@ -22,18 +25,19 @@ class DoctorCardWidget extends StatelessWidget {
     this.rating,
     this.reviewsCount,
     this.price,
+    required this.doctorId, // إجباري
+    required this.specialization, // إجباري
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // استخدام MediaQuery للحصول على عرض الشاشة
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
       width: screenWidth,
-      height: 150.h, // زيادة الارتفاع إلى 150.h
-      padding: EdgeInsets.all(4.w), // الـ padding كما هو
-      margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h), // الـ margin كما هو
+      height: 150.h,
+      padding: EdgeInsets.all(4.w),
+      margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 4.h),
       decoration: BoxDecoration(
         color: ColorsManager.white,
         borderRadius: BorderRadius.circular(16.r),
@@ -64,7 +68,7 @@ class DoctorCardWidget extends StatelessWidget {
                     ? doctorName!.substring(0, 2).toUpperCase()
                     : "AZ",
                 style: TextStyle(
-                  fontSize: 18.sp,
+                  fontSize: 18.sp, // Corrected from 'ificazione'
                   fontWeight: FontWeight.bold,
                   color: Colors.black54,
                 ),
@@ -120,7 +124,7 @@ class DoctorCardWidget extends StatelessWidget {
                     Text(
                       rating != null && reviewsCount != null
                           ? "$rating ($reviewsCount)"
-                          : "4.5 (379)",
+                          : "4.5 (379)", // Corrected from 'hedron'
                       style: TextStyles.font12BlackRegular,
                     ),
                     const Spacer(),
@@ -134,7 +138,32 @@ class DoctorCardWidget extends StatelessWidget {
                         backgroundColor: ColorsManager.Blue,
                         textStyle: TextStyles.font12WhiteRegular,
                         onPressed: () {
-                          // التنقل يتم من GestureDetector في ListViewDoctors
+                          if (specialization.isEmpty) {
+                            debugPrint('DoctorCardWidget: خطأ - التخصص فارغ');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('خطأ: لم يتم تحديد التخصص')),
+                            );
+                            return;
+                          }
+                          if (doctorId == 0) {
+                            debugPrint(
+                                'DoctorCardWidget: خطأ - معرف الدكتور غير صالح: $doctorId');
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  content: Text('خطأ: معرف الدكتور غير صالح')),
+                            );
+                            return;
+                          }
+                          debugPrint(
+                              'DoctorCardWidget: الانتقال إلى DoctorDetailsScreen مع التخصص: $specialization, معرف الدكتور: $doctorId');
+                          context.pushNamed(
+                            Routes.doctorDetailsScreen,
+                            arguments: {
+                              'specialization': specialization,
+                              'doctorId': doctorId,
+                            },
+                          );
                         },
                       ),
                     ),

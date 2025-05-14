@@ -12,7 +12,12 @@ import 'package:x_dent_project/features/home/patient/patient_home_page/ui/widget
 import '../../logic/specialization_doctors_state.dart';
 
 class ListViewDoctors extends StatelessWidget {
-  const ListViewDoctors({super.key});
+  final String specialization; // Add specialization parameter
+
+  const ListViewDoctors({
+    super.key,
+    required this.specialization, // Make specialization required
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +31,7 @@ class ListViewDoctors extends StatelessWidget {
           );
         } else if (state is SpecializationDoctorsSuccess) {
           if (state.data.data.isEmpty) {
-            return  Center(
+            return Center(
               child: Text(
                 'No doctors found for this specialization',
                 style: TextStyles.font16BlueRegular,
@@ -53,6 +58,8 @@ class ListViewDoctors extends StatelessWidget {
                     rating: doctor.average_rating.toDouble(),
                     reviewsCount: doctor.reviews_count,
                     price: doctor.price?.toString(),
+                    doctorId: doctor.id, // Pass doctorId
+                    specialization: specialization, // Pass specialization
                   ),
                 );
               },

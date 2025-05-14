@@ -28,6 +28,8 @@ import 'package:x_dent_project/features/home/patient/patient_messages_screen/dat
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/logic/get_all_doctors_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/repos/specialization_doctors_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/logic/specialization_doctors_cubit.dart';
+import '../../features/home/patient/patient_home_page/data/repos/time-slots_repo.dart';
+import '../../features/home/patient/patient_home_page/logic/time_slots_cubit.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -106,4 +108,7 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SpecializationDoctorsRepo>(() => SpecializationDoctorsRepo(getIt()));
   getIt.registerFactory<SpecializationDoctorsCubit>(() => SpecializationDoctorsCubit());
   debugPrint('SpecializationDoctorsRepo and SpecializationDoctorsCubit registered');
+
+  getIt.registerLazySingleton<TimeSlotsRepo>(() => TimeSlotsRepo(getIt()));
+  getIt.registerFactory<TimeSlotsCubit>(() => TimeSlotsCubit(getIt<TimeSlotsRepo>()));
 }
