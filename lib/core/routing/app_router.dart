@@ -25,6 +25,7 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/pr
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/availablity_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/profile_setting/profile_settings.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/ui/screens/appointment-details_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/doctor_details_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/doctor_list_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/notification.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/ui/screens/patient_home_page.dart';
@@ -55,6 +56,8 @@ import 'routes.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
+    final arguments = settings.arguments; // Keep as dynamic to log raw arguments
+
     switch (settings.name) {
       case Routes.splashScreen:
         return MaterialPageRoute(builder: (_) => const SplashScreen());
@@ -121,10 +124,11 @@ class AppRouter {
       case Routes.AnalysisScreen:
         return MaterialPageRoute(builder: (_) => const AnalysisScreen());
       case Routes.chatScreenPatient:
-        final doctorId = settings.arguments as int?;
+        final doctorId = arguments as int?;
         if (doctorId == null) {
+          debugPrint('AppRouter: Error - No doctorId provided for chatScreenPatient: $arguments');
           return MaterialPageRoute(
-            builder: (_) => Scaffold(
+            builder: (_) => const Scaffold(
               body: Center(child: Text('Error: No doctorId provided')),
             ),
           );
@@ -173,10 +177,17 @@ class AppRouter {
       case Routes.AvailabilityScreen:
         return MaterialPageRoute(builder: (_) => AvailabilityScreen());
       case Routes.DoctorListScreen:
-        final arguments = settings.arguments as Map<String, String>?;
-        final specialization = arguments?['specialization'] ?? '';
+        if (arguments is Map<String, dynamic> && arguments['specialization'] is String && arguments['specialization'].isNotEmpty) {
+          debugPrint('AppRouter: Navigating to DoctorListScreen with specialization: ${arguments['specialization']}');
+          return MaterialPageRoute(
+            builder: (_) => DoctorListScreen(specialization: arguments['specialization']),
+          );
+        }
+        debugPrint('AppRouter: Error - Invalid or empty specialization for DoctorListScreen: $arguments');
         return MaterialPageRoute(
-          builder: (_) => DoctorListScreen(specialization: specialization), // Fix: Named argument
+          builder: (_) => const Scaffold(
+            body: Center(child: Text('Error: Invalid or empty specialization')),
+          ),
         );
       case Routes.LogOuPatientScreen:
         return MaterialPageRoute(builder: (_) => const LogOutPatientScreen());
@@ -190,11 +201,28 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const PerscriptionsPattientScreen());
       case Routes.TreatmentsPlansScreenPatient:
         return MaterialPageRoute(builder: (_) => const TreatmentsPlansScreenPatient());
+      case Routes.doctorDetailsScreen:
+        if (arguments is Map<String, dynamic> && arguments['specialization'] is String && arguments['doctorId'] is int && arguments['specialization'].isNotEmpty && arguments['doctorId'] != 0) {
+          debugPrint('AppRouter: Navigating to DoctorDetailsScreen with specialization: ${arguments['specialization']}, doctorId: ${arguments['doctorId']}');
+          return MaterialPageRoute(
+            builder: (_) => DoctorDetailsScreen(
+              specialization: arguments['specialization'],
+              doctorId: arguments['doctorId'],
+            ),
+          );
+        }
+        debugPrint('AppRouter: Error - Invalid arguments for DoctorDetailsScreen: $arguments');
+        return MaterialPageRoute(
+          builder: (_) => const Scaffold(
+            body: Center(child: Text('Error: Invalid doctor details')),
+          ),
+        );
       default:
+        debugPrint('AppRouter: Error - No route defined for: ${settings.name}');
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: Center(
-              child: Text("No route defined for ${settings.name}"),
+              child: Text('No route defined for ${settings.name}'),
             ),
           ),
         );

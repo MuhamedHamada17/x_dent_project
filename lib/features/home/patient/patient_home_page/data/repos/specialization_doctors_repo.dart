@@ -22,9 +22,15 @@ class SpecializationDoctorsRepo {
       }
       final response = await _apiService.filterDoctors(
         'Bearer $token',
-        specialization, // إرسال التخصص كـ string بدل array
+        specialization,
       );
       print('Full API Response: ${response.toJson()}');
+      // Check if any doctor has invalid ID
+      for (var doctor in response.data) {
+        if (doctor.id == 0 || doctor.id == null) {
+          print('Warning: Doctor with invalid ID found: ${doctor.toJson()}');
+        }
+      }
       return ApiResult.success(response);
     } catch (error) {
       print('Error in Repo: $error');

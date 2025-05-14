@@ -53,6 +53,8 @@ class Routes {
   static const String PerscriptionsPattientScreen = "/PerscriptionsPattientScreen";
   static const String TreatmentsPlansScreenPatient = "/TreatmentsPlansScreenPatient";
   static const String appLayoutDoctor = "/appLayoutDoctor";
+  static const String doctorDetailsScreen = "/doctorDetailsScreen";
+
 
 
 }
