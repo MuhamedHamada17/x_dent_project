@@ -8,6 +8,8 @@ import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/specialization_doctors_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/logic/make_appointment_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/logic/make_appointment_state.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/logic/time_slots_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/logic/time_slots_state.dart';
 import '../../../../../../core/theiming/colors.dart';
@@ -33,24 +35,20 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
   String? selectedDay;
   String selectedTime = '';
 
-  // تحويل اليوم إلى صيغة yyyy-MM-dd للـ API
   String _formatDateForApi(String day) {
     try {
       if (day.toLowerCase().startsWith('today')) {
         return DateFormat('yyyy-MM-dd').format(DateTime.now());
       }
-      // إذا كان اليوم بصيغة "19 May" أو "d MMM"
       if (day.contains(' ')) {
         final parts = day.split(' ');
         if (parts.length >= 2) {
           final parsedDate = DateFormat('d MMM').parse(parts.skip(parts[0].toLowerCase() == 'today' ? 1 : 0).join(' '));
-          // إضافة السنة الحالية أو القادمة بناءً على التاريخ
           final now = DateTime.now();
           final year = parsedDate.month < now.month ? now.year + 1 : now.year;
           return DateFormat('yyyy-MM-dd').format(DateTime(year, parsedDate.month, parsedDate.day));
         }
       }
-      // إذا كان اليوم بصيغة اسم يوم (Monday, Tuesday, إلخ)
       final daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
       if (daysOfWeek.contains(day)) {
         final now = DateTime.now();
@@ -61,7 +59,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
         final targetDate = now.add(Duration(days: daysUntilTarget));
         return DateFormat('yyyy-MM-dd').format(targetDate);
       }
-      // إذا كان اليوم بصيغة yyyy-MM-dd
       DateFormat('yyyy-MM-dd').parse(day);
       return day;
     } catch (e) {
@@ -94,8 +91,11 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
       );
     }
 
-    return BlocProvider(
-      create: (context) => GetIt.instance<TimeSlotsCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => GetIt.instance<TimeSlotsCubit>()),
+        BlocProvider(create: (context) => GetIt.instance<MakeAppointmentCubit>()),
+      ],
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: ColorsManager.white,
@@ -266,16 +266,25 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                 ),
                 Column(
                   children: [
-                    Image.asset(
-                      "assets/png/writeRating.png",
-                      width: 44.w,
-                      height: 44.h,
+                    GestureDetector(
+                      onTap: () {
+                        context.pushNamed(
+                          Routes.AddRatingDialogScreen,
+                          arguments: {
+                            'doctorId': widget.doctorId,
+                          },
+                        );
+                      },
+                      child: Image.asset(
+                        "assets/png/writeRating.png",
+                        width: 44.w,
+                        height: 44.h,
+                      ),
                     ),
                     Text(
-                      '${doctor.reviews_count}+',
-                      style: TextStyles.font14BlueRegular,
-                    ),
-                    Text('Reviews', style: TextStyles.font12BlackRegular),
+                        '${doctor.reviews_count}+',
+                        style: TextStyles.font14BlueRegular),
+                    Text('Add Rating', style: TextStyles.font12BlackRegular),
                   ],
                 ),
               ],
@@ -416,49 +425,70 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
               child: SizedBox(
                 width: 221.w,
                 height: 44.h,
-                child: ElevatedButton(
-                  onPressed: selectedDay == null || selectedTime.isEmpty
-                      ? null
-                      : () async {
-                    await SharedPrefHelper.saveDoctorData(widget.doctorId, doctor);
-                    await SharedPrefHelper.saveAppointmentId(widget.doctorId);
-                    final booked = await _bookAppointment(
-                      context,
-                      widget.doctorId,
-                      _formatDateForApi(selectedDay!),
-                      selectedTime,
+                child: BlocConsumer<MakeAppointmentCubit, MakeAppointmentState>(
+                  listener: (context, state) {
+                    state.whenOrNull(
+                      success: (response) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Appointment booked with ${doctor.name}')),
+                        );
+                        Navigator.pushNamed(
+                          context,
+                          Routes.appointmentDetailsPatientScreen,
+                          arguments: {
+                            'doctorId': widget.doctorId,
+                            'doctorName': doctor.name,
+                            'date': selectedDay,
+                            'time': selectedTime,
+                          },
+                        );
+                      },
+                      error: (error) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Failed to book appointment: ${error.message}')),
+                        );
+                      },
                     );
-                    if (booked) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Appointment booked with ${doctor.name}')),
-                      );
-                      Navigator.pushNamed(
-                        context,
-                        Routes.appointmentDetailsPatientScreen,
-                        arguments: {
-                          'doctorId': widget.doctorId,
-                          'doctorName': doctor.name,
-                          'date': selectedDay,
-                          'time': selectedTime,
-                        },
-                      );
-                    }
                   },
-                  child: Text(
-                    'Make Appointment',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.normal,
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: ColorsManager.Blue,
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  ),
+                  builder: (context, state) {
+                    return ElevatedButton(
+                      onPressed: selectedDay == null || selectedTime.isEmpty || state is Loading
+                          ? null
+                          : () async {
+                        await SharedPrefHelper.saveDoctorData(widget.doctorId, doctor);
+                        await SharedPrefHelper.saveAppointmentId(widget.doctorId);
+                        context.read<MakeAppointmentCubit>().makeAppointment(
+                          doctorId: widget.doctorId,
+                          day: _formatDateForApi(selectedDay!),
+                          time: selectedTime,
+                        );
+                      },
+                      child: state is Loading
+                          ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: 2,
+                        ),
+                      )
+                          : Text(
+                        'Make Appointment',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.normal,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        softWrap: false,
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: ColorsManager.Blue,
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -466,25 +496,5 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
         ),
       ),
     );
-  }
-
-  Future<bool> _bookAppointment(BuildContext context, int doctorId, String date, String time) async {
-    try {
-      final token = await SharedPrefHelper.getSecuredString('access_token');
-      if (token.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Please log in to book an appointment')),
-        );
-        return false;
-      }
-      debugPrint('Booking appointment: doctorId=$doctorId, date=$date, time=$time');
-      return true;
-    } catch (e) {
-      debugPrint('Error booking appointment: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to book appointment: $e')),
-      );
-      return false;
-    }
   }
 }
