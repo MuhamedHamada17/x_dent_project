@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../../core/theiming/colors.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
+import 'package:x_dent_project/core/theiming/styles.dart';
 
 class ListTimesWidget extends StatefulWidget {
   final String initialTime;
   final Function(String) onTimeSelected;
+  final List<String> availableTimes;
 
   const ListTimesWidget({
     Key? key,
     required this.initialTime,
     required this.onTimeSelected,
+    required this.availableTimes,
   }) : super(key: key);
 
   @override
@@ -23,23 +25,33 @@ class _ListTimesWidgetState extends State<ListTimesWidget> {
   @override
   void initState() {
     super.initState();
-    selectedTime = widget.initialTime;
+    selectedTime = widget.availableTimes.contains(widget.initialTime)
+        ? widget.initialTime
+        : widget.availableTimes.isNotEmpty
+        ? widget.availableTimes.first
+        : '';
   }
 
   @override
   Widget build(BuildContext context) {
+    if (widget.availableTimes.isEmpty) {
+      return Center(
+        child: Text(
+          'No available times',
+          style: TextStyles.font16BlueRegular,
+        ),
+      );
+    }
+
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: [
-          _buildTimeButton('7:00 PM'),
-          SizedBox(width: 6),
-          _buildTimeButton('8:00 PM'),
-          SizedBox(width: 6),
-          _buildTimeButton('9:00 PM'),
-          SizedBox(width: 6),
-          _buildTimeButton('10:00 PM'),
-        ],
+        children: widget.availableTimes.map((time) {
+          return Padding(
+            padding: EdgeInsets.only(right: 6.w),
+            child: _buildTimeButton(time),
+          );
+        }).toList(),
       ),
     );
   }
@@ -48,7 +60,7 @@ class _ListTimesWidgetState extends State<ListTimesWidget> {
     bool isSelected = selectedTime == time;
     return SizedBox(
       width: 80.w,
-      height: 37.h, // تعديل الارتفاع إلى 25.h
+      height: 37.h,
       child: ElevatedButton(
         onPressed: () {
           setState(() {
