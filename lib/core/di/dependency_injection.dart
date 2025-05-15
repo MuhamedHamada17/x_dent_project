@@ -28,6 +28,12 @@ import 'package:x_dent_project/features/home/patient/patient_messages_screen/dat
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/logic/get_all_doctors_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/repos/specialization_doctors_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/logic/specialization_doctors_cubit.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/logic/time_slots_cubit.dart';
+import 'package:x_dent_project/features/rating/patient/add%20rating/data/repos/add_rating_repo.dart';
+import 'package:x_dent_project/features/rating/patient/add%20rating/logic/add_rating_cubit.dart';
+import '../../features/filter_patient/data/repo/filterd_doctors_repo.dart';
+import '../../features/filter_patient/logic/get_doctors_and_filters.dart';
+import '../../features/home/patient/patient_home_page/data/repos/time-slots_repo.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -106,4 +112,14 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<SpecializationDoctorsRepo>(() => SpecializationDoctorsRepo(getIt()));
   getIt.registerFactory<SpecializationDoctorsCubit>(() => SpecializationDoctorsCubit());
   debugPrint('SpecializationDoctorsRepo and SpecializationDoctorsCubit registered');
+
+  // Time Slots
+  getIt.registerLazySingleton<TimeSlotsRepo>(() => TimeSlotsRepo(getIt()));
+  getIt.registerFactory<TimeSlotsCubit>(() => TimeSlotsCubit(getIt<TimeSlotsRepo>()));
+
+  // Add Rating
+  getIt.registerLazySingleton<AddRatingRepo>(() => AddRatingRepo(getIt()));
+  getIt.registerFactory<AddRatingCubit>(() => AddRatingCubit());
+  debugPrint('AddRatingRepo and AddRatingCubit registered');
+
 }

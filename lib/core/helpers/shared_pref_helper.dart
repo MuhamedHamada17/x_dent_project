@@ -166,7 +166,50 @@ class SharedPrefHelper {
     return doctor;
   }
 
-  // دوال إضافية مخصصة لتخزين واسترداد بيانات المستخدم
+  /// Saves available slots for a given doctor and date in SharedPreferences as JSON.
+  static Future<void> saveAvailableSlots(int doctorId, String date, List<String> slots) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final key = 'available_slots_${doctorId}_$date';
+    final jsonString = jsonEncode(slots);
+    await sharedPreferences.setString(key, jsonString);
+    debugPrint('SharedPrefHelper: Saved available slots for doctorId $doctorId, date $date with key "$key"');
+  }
+
+  /// Gets available slots for a given doctor and date from SharedPreferences.
+  static Future<List<String>> getAvailableSlots(int doctorId, String date) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final key = 'available_slots_${doctorId}_$date';
+    final jsonString = sharedPreferences.getString(key);
+    if (jsonString == null || jsonString.isEmpty) {
+      debugPrint('SharedPrefHelper: No available slots found for doctorId $doctorId, date $date');
+      return [];
+    }
+    final slots = List<String>.from(jsonDecode(jsonString));
+    debugPrint('SharedPrefHelper: Retrieved ${slots.length} available slots for doctorId $doctorId, date $date');
+    return slots;
+  }
+
+  /// Clears available slots for a given doctor and date.
+  static Future<void> clearAvailableSlots(int doctorId, String date) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final key = 'available_slots_${doctorId}_$date';
+    await sharedPreferences.remove(key);
+    debugPrint('SharedPrefHelper: Cleared available slots for doctorId $doctorId, date $date with key "$key"');
+  }
+
+  /// Clears all available slots for all doctors and dates.
+  static Future<void> clearAllAvailableSlots() async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    final keys = sharedPreferences.getKeys();
+    for (String key in keys) {
+      if (key.startsWith('available_slots_')) {
+        await sharedPreferences.remove(key);
+        debugPrint('SharedPrefHelper: Removed available slots with key: $key');
+      }
+    }
+    debugPrint('SharedPrefHelper: All available slots cleared');
+  }
+
   /// Saves user data (first_name, last_name, full_name) in SharedPreferences.
   static Future<void> saveUserData({
     required String firstName,

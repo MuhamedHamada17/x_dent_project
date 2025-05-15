@@ -194,7 +194,18 @@ class AppRouter {
       case Routes.FilterPatientScreen:
         return MaterialPageRoute(builder: (_) => const FilterPatientScreen());
       case Routes.AddRatingDialogScreen:
-        return MaterialPageRoute(builder: (_) => const AddRatingDialogScreen());
+        if (arguments is Map<String, dynamic> && arguments['doctorId'] is int && arguments['doctorId'] != 0) {
+          debugPrint('AppRouter: Navigating to AddRatingDialogScreen with doctorId: ${arguments['doctorId']}');
+          return MaterialPageRoute(
+            builder: (_) => AddRatingDialogScreen(doctorId: arguments['doctorId']),
+          );
+        }
+        debugPrint('AppRouter: Error - Invalid or missing doctorId for AddRatingDialogScreen: $arguments');
+        return MaterialPageRoute(
+          builder: (_) => const Scaffold(
+            body: Center(child: Text('Error: Invalid or missing doctorId')),
+          ),
+        );
       case Routes.ProfileSettingsPatient:
         return MaterialPageRoute(builder: (_) => const ProfileSettingsPatient());
       case Routes.PerscriptionsPattientScreen:
