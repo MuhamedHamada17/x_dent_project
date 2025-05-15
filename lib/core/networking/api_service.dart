@@ -25,6 +25,8 @@ import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/da
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/data/models/get_all_doctors_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/specialization_doctors_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/time_slots_model.dart';
+import 'package:x_dent_project/features/rating/patient/add%20rating/data/models/add_rating_request_model.dart';
+import '../../features/rating/patient/add rating/data/models/add_rating_response_model.dart';
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -121,4 +123,13 @@ abstract class ApiService {
       @Path('doctorId') int doctorId,
       @Query('date') String date,
       );
+
+  @POST(ApiConstants.addReview)
+  @Headers({'Content-Type': 'application/json'})
+  Future<AddRatingResponse> submitReview(
+      @Header('Authorization') String token,
+      @Path('doctorId') int doctorId,
+      @Body() AddRatingRequest request,
+      );
+
 }

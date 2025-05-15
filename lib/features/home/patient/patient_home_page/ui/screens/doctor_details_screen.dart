@@ -266,16 +266,26 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                 ),
                 Column(
                   children: [
-                    Image.asset(
-                      "assets/png/writeRating.png",
-                      width: 44.w,
-                      height: 44.h,
+                    GestureDetector(
+                      onTap: () {
+                        context.pushNamed(
+                          Routes.AddRatingDialogScreen,
+                          arguments: {
+                            'doctorId': widget.doctorId, // تمرير doctorId لـ AddRatingDialogScreen
+                          },
+                        );
+                      },
+                      child: Image.asset(
+                        "assets/png/writeRating.png",
+                        width: 44.w,
+                        height: 44.h,
+                      ),
                     ),
                     Text(
                       '${doctor.reviews_count}+',
                       style: TextStyles.font14BlueRegular,
                     ),
-                    Text('Reviews', style: TextStyles.font12BlackRegular),
+                    Text('Add Rating', style: TextStyles.font12BlackRegular),
                   ],
                 ),
               ],
