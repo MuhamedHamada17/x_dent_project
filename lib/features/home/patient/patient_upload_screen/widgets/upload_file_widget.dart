@@ -5,25 +5,31 @@ import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 
 class UploadFileWidget extends StatefulWidget {
-  const UploadFileWidget({super.key});
+  final Function(String?) onFileSelected; // Callback to pass file path to parent
+
+  const UploadFileWidget({super.key, required this.onFileSelected});
 
   @override
-  _UploadCVFieldState createState() => _UploadCVFieldState();
+  _UploadFileWidgetState createState() => _UploadFileWidgetState();
 }
 
-class _UploadCVFieldState extends State<UploadFileWidget> {
+class _UploadFileWidgetState extends State<UploadFileWidget> {
   String? fileName; // To store the selected file name
+  String? filePath; // To store the selected file path
 
   Future<void> pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['pdf', 'doc', 'docx'],
+      type: FileType.image, // Allow any image type
     );
 
     if (result != null) {
       setState(() {
         fileName = result.files.single.name;
+        filePath = result.files.single.path;
       });
+      widget.onFileSelected(filePath); // Pass file path to parent
+    } else {
+      widget.onFileSelected(null); // Notify parent if no file is selected
     }
   }
 
@@ -39,19 +45,17 @@ class _UploadCVFieldState extends State<UploadFileWidget> {
               onPressed: pickFile,
               style: ElevatedButton.styleFrom(
                 fixedSize: Size(110.w, 45.h),
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8),
                     bottomLeft: Radius.circular(8),
                   ),
                 ),
-                backgroundColor: Color(
-                  0xffFCA103,
-                ), // Matches the button in your UI
+                backgroundColor: const Color(0xffFCA103),
               ),
-              child:  Text(
+              child: Text(
                 "Choose file",
-                style: TextStyles.font12WhiteRegular
+                style: TextStyles.font12WhiteRegular,
               ),
             ),
             SizedBox(
@@ -63,8 +67,8 @@ class _UploadCVFieldState extends State<UploadFileWidget> {
                   fillColor: ColorsManager.white,
                   filled: true,
                   focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: ColorsManager.mainYellow, width: 1.3),
-                    borderRadius: BorderRadius.only(
+                    borderSide: const BorderSide(color: ColorsManager.mainYellow, width: 1.3),
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(8),
                       bottomRight: Radius.circular(8),
                     ),
@@ -76,7 +80,7 @@ class _UploadCVFieldState extends State<UploadFileWidget> {
                       color: ColorsManager.Grey.withOpacity(.8),
                       width: 1.3,
                     ),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topRight: Radius.circular(8),
                       bottomRight: Radius.circular(8),
                     ),

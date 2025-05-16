@@ -90,7 +90,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                     borderRadius: BorderRadius.circular(16),
                   ),
                   title: Text(
-                    "Add Review",
+                    "إضافة تقييم",
                     style: TextStyles.font28BlackMedium,
                   ),
                   content: SingleChildScrollView(
@@ -161,7 +161,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                         ),
                         SizedBox(height: 16.h),
                         Text(
-                          "Enter Review",
+                          "أدخل تقييمك",
                           style: TextStyles.font14BlackSemi,
                         ),
                         SizedBox(height: 12.h),
@@ -187,7 +187,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                                 width: 2.0,
                               ),
                             ),
-                            hintText: "Write your review...",
+                            hintText: "اكتب تقييمك هنا...",
                           ),
                         ),
                       ],
@@ -198,7 +198,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                       children: [
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: Text("Cancel", style: TextStyles.font22BlackMedium),
+                          child: Text("إلغاء", style: TextStyles.font22BlackMedium),
                         ),
                         const Spacer(),
                         BlocConsumer<AddRatingCubit, AddRatingState>(
@@ -208,13 +208,16 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                               loading: () {},
                               success: (response) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(response.message)),
+                                  SnackBar(content: Text('تم إرسال التقييم بنجاح: ${response.message}')),
                                 );
                                 Navigator.of(context).pop();
                               },
                               error: (error) {
+                                String errorMessage = error.message.contains('The service is not available')
+                                    ? 'The evaluation could not be submitted. Please check your connection or doctor ID.'
+                                    : error.message;
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text(error.message)),
+                                  SnackBar(content: Text(errorMessage)),
                                 );
                               },
                             );
@@ -226,24 +229,31 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                                 onPressed: () async {
                                   if (_rating == 0) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Please select a rating')),
+                                      const SnackBar(
+                                          content: Text('Please choose a rating')),
                                     );
                                     return;
                                   }
                                   if (_reviewText.trim().isEmpty) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Please enter a review')),
+                                      const SnackBar(content: Text('Please enter evaluation text')),
                                     );
                                     return;
                                   }
                                   final token = await SharedPrefHelper.getSecuredString('access_token');
                                   if (token.isEmpty) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Please log in to submit a review')),
+                                      const SnackBar(content: Text('Please log in to submit your review.')),
                                     );
                                     return;
                                   }
-                                  debugPrint('AddRatingScreen: Submitting review - doctorId: ${widget.doctorId}, rating: $_rating, review: $_reviewText');
+                                  if (widget.doctorId <= 0) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content: Text('The doctor ID is invalid')),
+                                    );
+                                    return;
+                                  }
+                                  debugPrint('AddRatingScreen: Submitting review - doctorId: ${widget.doctorId}, rating: $_rating, review: $_reviewText, token: $token (length: ${token.length})');
                                   context.read<AddRatingCubit>().submitReview(
                                     token: token,
                                     doctorId: widget.doctorId,
