@@ -17,7 +17,10 @@ class ApiConstants {
   static const String getAllDoctors = "/api/doctors";
   static const String filterSpecializationDoctors = "/api/doctors/filter";
   static const String availableSlots = "/api/doctors/{doctorId}/appointments/available_slots";
-  static const String addReview = "/api/doctors/{doctorId}/reviews";
+  static const String addReview = "/api/doctors/{doctorId}/reviews/create";
+  static const String makeAppointment = "/api/doctors/{doctorId}/appointments/book";
+  static const String uploadXrays = "/api/xray/upload";
+
 }
 
 class ApiErrors {
