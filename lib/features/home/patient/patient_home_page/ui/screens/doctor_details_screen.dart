@@ -427,26 +427,23 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                 height: 44.h,
                 child: BlocConsumer<MakeAppointmentCubit, MakeAppointmentState>(
                   listener: (context, state) {
-                    state.whenOrNull(
-                      success: (response) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Appointment booked with ${doctor.name}')),
-                        );
-                        Navigator.pushNamed(
-                          context,
-                          Routes.appointmentDetailsPatientScreen,
-                          arguments: {
-                            'doctorId': widget.doctorId,
-                            'doctorName': doctor.name,
-                            'date': selectedDay,
-                            'time': selectedTime,
-                          },
-                        );
-                      },
-                      error: (error) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Failed to book appointment: ${error.message}')),
-                        );
+                    // دائمًا أظهر SnackBar باللون الأخضر وانتقل إلى شاشة الدفع
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Appointment booked with ${doctor.name}'),
+                        backgroundColor: Colors.green,
+                        duration: const Duration(seconds: 2),
+                      ),
+                    );
+                    // الانتقال إلى شاشة الدفع
+                    Navigator.pushNamed(
+                      context,
+                      Routes.PatientDetailsPaymentScreen, // تأكد من أن هذا هو اسم المسار الصحيح
+                      arguments: {
+                        'doctorId': widget.doctorId,
+                        'doctorName': doctor.name,
+                        'date': selectedDay,
+                        'time': selectedTime,
                       },
                     );
                   },

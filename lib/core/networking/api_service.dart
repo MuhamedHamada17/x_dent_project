@@ -30,6 +30,7 @@ import 'package:x_dent_project/features/home/patient/patient_home_page/data/mode
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/make_appointment_response_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_upload_screen/data/models/upload_xrays_response_model.dart';
 import 'package:x_dent_project/features/rating/patient/add%20rating/data/models/add_rating_response_model.dart';
+import '../../features/home/patient/patient_profile_settings/data/models/display_xrays_model.dart';
 import '../../features/home/patient/patient_upload_screen/data/models/upload_xrays_request_model.dart';
 import 'api_constants.dart';
 
@@ -128,9 +129,6 @@ abstract class ApiService {
       @Query('date') String date,
       );
 
-  // ملاحظة: تأكد من أن المسار المحدد في ApiConstants.addReview (مثل /doctors/{doctorId}/reviews)
-  // موجود على الخادم. إذا كان الخادم يتطلب مسارًا مختلفًا (مثل /reviews)،
-  // يجب تحديث ApiConstants.addReview وإعادة تكوين الطلب.
   @POST(ApiConstants.addReview)
   @Headers({
     'Content-Type': 'application/json',
@@ -155,5 +153,9 @@ abstract class ApiService {
   Future<UploadXraysResponse> uploadXrays(
       @Header('Authorization') String token,
       @Body() UploadXraysRequest request,
+      );
+  @GET(ApiConstants.DisplayXraysPatient)
+  Future<DisplayXraysResponse> displayXrays(
+      @Header('Authorization') String token,
       );
 }

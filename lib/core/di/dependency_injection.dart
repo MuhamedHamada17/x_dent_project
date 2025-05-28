@@ -36,6 +36,8 @@ import '../../features/filter_patient/logic/get_doctors_and_filters.dart';
 import '../../features/home/patient/patient_home_page/data/repos/make_appointment_repo.dart';
 import '../../features/home/patient/patient_home_page/data/repos/time-slots_repo.dart';
 import '../../features/home/patient/patient_home_page/logic/make_appointment_cubit.dart';
+import '../../features/home/patient/patient_profile_settings/data/repo/display_xrays_repo.dart';
+import '../../features/home/patient/patient_profile_settings/logic/display_xrays_cubit.dart';
 import '../../features/home/patient/patient_upload_screen/data/repos/upload_xrays_repo.dart';
 import '../../features/home/patient/patient_upload_screen/logic/upload_xrays_cubit.dart';
 import '../networking/dio_factory.dart';
@@ -134,4 +136,8 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<UploadXraysRepo>(() => UploadXraysRepo(getIt()));
   getIt.registerFactory<UploadXraysCubit>(() => UploadXraysCubit());
   debugPrint('UploadXraysRepo and UploadXraysCubit registered');
+
+  getIt.registerLazySingleton<DisplayXraysRepo>(() => DisplayXraysRepoImpl(getIt()));
+  getIt.registerFactory<DisplayXraysCubit>(() => DisplayXraysCubit(getIt()));
+  debugPrint('DisplayXraysRepo and DisplayXraysCubit registered');
 }
