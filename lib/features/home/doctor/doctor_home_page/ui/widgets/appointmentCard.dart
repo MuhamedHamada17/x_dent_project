@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/model/home_model.dart';
 
 class AppointmentCard extends StatelessWidget {
   const AppointmentCard({super.key});

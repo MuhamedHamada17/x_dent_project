@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
-import 'package:x_dent_project/core/networking/api_error_model.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/rating/patient/add%20rating/logic/add_rating_cubit.dart';
@@ -90,7 +89,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                     borderRadius: BorderRadius.circular(16),
                   ),
                   title: Text(
-                    "إضافة تقييم",
+                    "Add Rating",
                     style: TextStyles.font28BlackMedium,
                   ),
                   content: SingleChildScrollView(
@@ -161,7 +160,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                         ),
                         SizedBox(height: 16.h),
                         Text(
-                          "أدخل تقييمك",
+                          "Enter your review",
                           style: TextStyles.font14BlackSemi,
                         ),
                         SizedBox(height: 12.h),
@@ -187,7 +186,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                                 width: 2.0,
                               ),
                             ),
-                            hintText: "اكتب تقييمك هنا...",
+                            hintText: "Write your review here...",
                           ),
                         ),
                       ],
@@ -198,7 +197,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                       children: [
                         TextButton(
                           onPressed: () => Navigator.of(context).pop(),
-                          child: Text("إلغاء", style: TextStyles.font22BlackMedium),
+                          child: Text("Cancel", style: TextStyles.font22BlackMedium),
                         ),
                         const Spacer(),
                         BlocConsumer<AddRatingCubit, AddRatingState>(
@@ -208,7 +207,10 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                               loading: () {},
                               success: (response) {
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('تم إرسال التقييم بنجاح: ${response.message}')),
+                                  SnackBar(
+                                    content: Text(' ${response.message}'),
+                                    backgroundColor: Colors.green,
+                                  ),
                                 );
                                 Navigator.of(context).pop();
                               },
@@ -224,7 +226,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                           },
                           builder: (context, state) {
                             return state.maybeWhen(
-                              loading: () => const CircularProgressIndicator(),
+                              loading: () => CircularProgressIndicator(color: ColorsManager.Blue),
                               orElse: () => ElevatedButton(
                                 onPressed: () async {
                                   if (_rating == 0) {
@@ -236,7 +238,7 @@ class _AddRatingDialogScreenState extends State<AddRatingDialogScreen> with Tick
                                   }
                                   if (_reviewText.trim().isEmpty) {
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      const SnackBar(content: Text('Please enter evaluation text')),
+                                      const SnackBar(content: Text('Please enter review text')),
                                     );
                                     return;
                                   }

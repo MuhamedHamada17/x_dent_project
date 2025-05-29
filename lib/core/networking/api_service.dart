@@ -120,6 +120,9 @@ abstract class ApiService {
   Future<SpecializationDoctorsResponse> filterDoctors(
       @Header('Authorization') String token,
       @Query('specialization_names') String specialization,
+      @Query('review_rating') int? reviewRating,
+      @Query('min_price') int? minPrice,
+      @Query('max_price') int? maxPrice,
       );
 
   @GET(ApiConstants.availableSlots)

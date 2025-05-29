@@ -61,7 +61,7 @@ import 'routes.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
-    final arguments = settings.arguments; // Keep as dynamic to log raw arguments
+    final arguments = settings.arguments;
 
     switch (settings.name) {
       case Routes.splashScreen:

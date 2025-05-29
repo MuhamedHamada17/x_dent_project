@@ -4,171 +4,221 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/search_text_form.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/model/home_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/model/home_servies.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/info_card.dart';
 
 class DoctorHomeScreen extends StatelessWidget {
-  const DoctorHomeScreen({super.key});
+  const DoctorHomeScreen({super.key, this.homeModel});
+
+  final HomeModel? homeModel;
+
+  Future<HomeModel> getHomeData() async {
+    return await HomeService().getDoctorHome();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 230.h,
-            color: ColorsManager.lighterBLUE,
-          ),
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 50, right: 16, left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "  Welcome,\n  Dr Mohamed Ali",
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 16),
-                          child: Icon(
-                            Icons.notifications_none_outlined,
-                            size: 32,
-                          ),
-                        ),
-                      ],
+    return FutureBuilder<HomeModel>(
+      future: homeModel != null ? Future.value(homeModel) : getHomeData(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
+        } else if (snapshot.hasError) {
+          return Scaffold(
+            body: Center(child: Text('Error: ${snapshot.error}')),
+          );
+        } else if (!snapshot.hasData) {
+          return const Scaffold(body: Center(child: Text('No data')));
+        }
+
+        final model = snapshot.data!;
+
+        return Scaffold(
+          backgroundColor: Colors.white,
+          body: Stack(
+            children: [
+              Container(
+                width: double.infinity,
+                height: 230.h,
+                color: ColorsManager.lighterBLUE,
+              ),
+              SafeArea(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 50,
+                      right: 16,
+                      left: 16,
                     ),
-                    verticalSpace(22),
-                    SizedBox(
-                      height: 42.h,
-                      child: SearchTextForm(
-                        borderColor: ColorsManager.Black,
-                        hintStyle: TextStyles.font14GreyRegular,
-                      ),
-                    ),
-                    verticalSpace(32),
-                    Row(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Column(
+                        // Header
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            InfoCard(
-                              title: "Total\nAppointments",
-                              number: "12",
-                              bgColor: ColorsManager.Blue,
-                              textColor: Colors.white,
-                            ),
-                            verticalSpace(19),
-                            Container(
-                              width: 160.h,
-                              height: 65.h,
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 15,
-                                vertical: 8,
-                              ),
-                              decoration: BoxDecoration(
-                                color: ColorsManager.lighterBLUE,
-                                borderRadius: BorderRadius.circular(22),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: ColorsManager.Blue.withOpacity(.7),
-                                    spreadRadius: 2,
-                                    blurRadius: 5,
-                                    offset: Offset(0, 3.5),
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Upcoming",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.w400,
-                                    ),
-                                  ),
-                                  Text(
-                                    "6",
-                                    style: TextStyle(
-                                      fontSize: 30,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        horizontalSpace(16),
-                        Column(
-                          children: [
-                            verticalSpace(5),
                             Text(
-                              "   February 8,\n                2025",
-                              textAlign: TextAlign.center,
-                              style: TextStyles.font22BlackMedium,
+                              "  Welcome,\n  Dr Mohamed Ali",
+                              style: TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                            SizedBox(height: 15),
-                            StatusCard(
-                              title: "Completed",
-                              number: "5",
-                              color: Color(0xff029509),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 16),
+                              child: Icon(
+                                Icons.notifications_none_outlined,
+                                size: 32,
+                              ),
                             ),
-                            verticalSpace(16),
-                            StatusCard(
-                              title: "Canceled",
-                              number: "1",
-                              color: Color(0xffD51212),
-                            ),
-                            verticalSpace(8),
                           ],
                         ),
+
+                        verticalSpace(22),
+
+                        SizedBox(
+                          height: 42.h,
+                          child: SearchTextForm(
+                            borderColor: ColorsManager.Black,
+                            hintStyle: TextStyles.font14GreyRegular,
+                          ),
+                        ),
+
+                        verticalSpace(32),
+
+                        /// ✅ عرض البيانات بغض النظر عن الـ status (للتجربة)
+                        // if (model.status == 'doctor') ...[
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                InfoCard(
+                                  title: "Total\nAppointments",
+                                  number:
+                                      model.totalAppointments?.toString() ??
+                                      '0',
+                                  bgColor: ColorsManager.Blue,
+                                  textColor: Colors.white,
+                                ),
+                                verticalSpace(19),
+                                Container(
+                                  width: 160.h,
+                                  height: 65.h,
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 15,
+                                    vertical: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: ColorsManager.lighterBLUE,
+                                    borderRadius: BorderRadius.circular(22),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: ColorsManager.Blue.withOpacity(
+                                          .7,
+                                        ),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: Offset(0, 3.5),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Upcoming",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w400,
+                                        ),
+                                      ),
+                                      Text(
+                                        model.pendingAppointmentsCount
+                                                ?.toString() ??
+                                            '0',
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            horizontalSpace(16),
+                            Column(
+                              children: [
+                                verticalSpace(5),
+                                Text(
+                                  "   February 8,\n                2025",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyles.font22BlackMedium,
+                                ),
+                                SizedBox(height: 15),
+                                StatusCard(
+                                  title: "Completed",
+                                  number:
+                                      model.completedAppointmentsCount
+                                          ?.toString() ??
+                                      '0',
+                                  color: Color(0xff029509),
+                                ),
+                                verticalSpace(16),
+                                StatusCard(
+                                  title: "Canceled",
+                                  number:
+                                      model.canceledAppointmentsCount
+                                          ?.toString() ??
+                                      '0',
+                                  color: Color(0xffD51212),
+                                ),
+                                verticalSpace(8),
+                              ],
+                            ),
+                          ],
+                        ),
+                        // ],
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Upcoming Appointments",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: const Color.fromARGB(255, 0, 0, 0),
+                                ),
+                              ),
+                              Text(
+                                "See All",
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        verticalSpace(12),
+                        AppointmentCard(),
                       ],
                     ),
-                    verticalSpace(16),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Upcoming Appointments",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w400,
-                              color: const Color.fromARGB(255, 0, 0, 0),
-                            ),
-                          ),
-                          Text(
-                            "See All",
-                            style: TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    verticalSpace(12),
-                    AppointmentCard(),
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

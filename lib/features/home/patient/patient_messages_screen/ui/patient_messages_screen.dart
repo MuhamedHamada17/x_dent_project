@@ -25,24 +25,7 @@ class PatientMessagesScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 32, right: 16, left: 16),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        size: 26,
-                        color: Colors.black,
-                      ),
-                      onPressed: () {
-                        // Check if the screen can pop (for pushed route)
-                        if (Navigator.of(context).canPop()) {
-                          Navigator.of(context).pop();
-                        } else {
-                          // Fallback: Navigate to AppLayoutPatient
-                          Navigator.of(context).pushReplacementNamed(Routes.AppLayoutPatient);
-                          // Note: To switch to Home tab, we need app_layout_patient.dart
-                          // Example: context.read<AppLayoutCubit>().changeTab(0);
-                        }
-                      },
-                    ),
+
                     Expanded(
                       child: SizedBox(
                         height: 38.h,

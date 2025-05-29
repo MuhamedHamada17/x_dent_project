@@ -9,10 +9,10 @@ class AppTextButton extends StatelessWidget {
   final double? verticalPadding;
   final double? buttonWidth;
   final double? buttonHeight;
-  final String? buttonText; // اختياري
-  final TextStyle? textStyle; // اختياري
-  final Widget? child; // اختياري لدعم Widgets زي CircularProgressIndicator
-  final VoidCallback? onPressed; // اختياري
+  final String? buttonText;
+  final TextStyle? textStyle;
+  final Widget? child;
+  final VoidCallback? onPressed;
 
   const AppTextButton({
     super.key,
@@ -50,15 +50,15 @@ class AppTextButton extends StatelessWidget {
           Size(buttonWidth?.w ?? double.maxFinite, buttonHeight ?? 50.h),
         ),
       ),
-      onPressed: onPressed ?? () {}, // قيمة افتراضية دالة فارغة
+      onPressed: onPressed ?? () {},
       child: child ??
           Text(
-            buttonText ?? 'Button', // نص افتراضي
+            buttonText ?? 'Button',
             style: textStyle ??
                 const TextStyle(
                   color: Colors.black,
                   fontSize: 16,
-                ), // ستايل افتراضي
+                ),
           ),
     );
   }

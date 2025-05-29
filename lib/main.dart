@@ -26,7 +26,7 @@ void main() async {
     debugPrint('main: role: $role');
     initialRoute = role == 'doctor' ? Routes.appLayoutDoctor : Routes.AppLayoutPatient;
   } else {
-    initialRoute = Routes.loginPatientScreen; // Default to patient login
+    initialRoute = Routes.loginPatientScreen;
   }
   debugPrint('main: initialRoute: $initialRoute');
 

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'api_error_model.dart';
 
-// ✅ قائمة بأكواد الأخطاء API والأخطاء المحلية
 class ResponseCode {
   static const int SUCCESS = 200;
   static const int NO_CONTENT = 201;
@@ -12,7 +11,6 @@ class ResponseCode {
   static const int INTERNAL_SERVER_ERROR = 500;
   static const int API_LOGIC_ERROR = 422;
 
-  // الأكواد الخاصة بالأخطاء المحلية
   static const int CONNECT_TIMEOUT = -1;
   static const int CANCEL = -2;
   static const int RECEIVE_TIMEOUT = -3;
@@ -22,7 +20,6 @@ class ResponseCode {
   static const int DEFAULT = -7;
 }
 
-// ✅ رسائل الخطأ بناءً على نوعه
 class ResponseMessage {
   static const String BAD_REQUEST = "Bad request. Please try again.";
   static const String UNAUTHORIZED = "Unauthorized access.";
@@ -41,7 +38,6 @@ class ResponseMessage {
   static const String DEFAULT = "Unexpected error occurred.";
 }
 
-// ✅ فئة لتخزين نوع الخطأ ومعلوماته
 class ErrorHandler implements Exception {
   final ApiErrorModel apiErrorModel;
 
@@ -49,7 +45,6 @@ class ErrorHandler implements Exception {
       : apiErrorModel = _handleError(error);
 }
 
-// ✅ دالة لمعالجة الأخطاء القادمة من `Dio`
 ApiErrorModel _handleError(dynamic error) {
   if (error is DioException) {
     switch (error.type) {
@@ -98,7 +93,6 @@ ApiErrorModel _handleError(dynamic error) {
   }
 }
 
-// ✅ دالة لمعالجة الأخطاء القادمة من `DioResponse`
 ApiErrorModel _handleBadResponse(Response? response) {
   if (response != null && response.data != null) {
     try {

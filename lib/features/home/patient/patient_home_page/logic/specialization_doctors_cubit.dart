@@ -12,16 +12,29 @@ class SpecializationDoctorsCubit extends Cubit<SpecializationDoctorsState> {
   final SpecializationDoctorsRepo _specializationDoctorsRepo =
   GetIt.instance<SpecializationDoctorsRepo>();
 
-  Future<void> filterDoctors(String specialization) async {
-    print('filterDoctors called with specialization: $specialization');
+  Future<void> filterDoctors({
+    required String specialization,
+    int? reviewRating,
+    int? minPrice,
+    int? maxPrice,
+  }) async {
+    print('filterDoctors called with specialization: $specialization, reviewRating: $reviewRating, minPrice: $minPrice, maxPrice: $maxPrice');
     emit(SpecializationDoctorsLoading());
     try {
       final result = await _specializationDoctorsRepo.filterDoctorsBySpecialization(
         specialization: specialization,
+        reviewRating: reviewRating,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
       );
       result.when(
         success: (response) {
           print('SpecializationDoctorsCubit: Response Data: ${response.data}');
+          if (response.data.isEmpty) {
+            emit(SpecializationDoctorsError(
+                'There are no doctors matching specialty $specialization '));
+            return;
+          }
           // Save doctors list to SharedPreferences
           SharedPrefHelper.saveDoctors(specialization, response.data);
           // Save each doctor individually
@@ -41,7 +54,7 @@ class SpecializationDoctorsCubit extends Cubit<SpecializationDoctorsState> {
       );
     } catch (e) {
       print('SpecializationDoctorsCubit: Exception: $e');
-      emit(SpecializationDoctorsError(e.toString()));
+      emit(SpecializationDoctorsError('An unexpected error occurred:$e'));
     }
   }
 }
