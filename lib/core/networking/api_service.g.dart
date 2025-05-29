@@ -540,11 +540,18 @@ class _ApiService implements ApiService {
   Future<SpecializationDoctorsResponse> filterDoctors(
     String token,
     String specialization,
+    int? reviewRating,
+    int? minPrice,
+    int? maxPrice,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
-      r'specialization_names': specialization
+      r'specialization_names': specialization,
+      r'review_rating': reviewRating,
+      r'min_price': minPrice,
+      r'max_price': maxPrice,
     };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;

@@ -18,7 +18,7 @@ class AppLayoutPatient extends StatefulWidget {
 class _AppLayoutPatientState extends State<AppLayoutPatient> {
   int _selectedIndex = 0;
   final PageController _pageController = PageController();
-  final GlobalKey _pageViewKey = GlobalKey(); // إضافة GlobalKey
+  final GlobalKey _pageViewKey = GlobalKey();
 
   final List<Widget> screens = [
     const PatientHomePage(),
@@ -29,7 +29,7 @@ class _AppLayoutPatientState extends State<AppLayoutPatient> {
   ];
 
   void onItemTapped(int index) {
-    if (_selectedIndex == index) return; // منع التنقل لو نفس الـ index
+    if (_selectedIndex == index) return;
     _pageController.animateToPage(
       index,
       duration: const Duration(milliseconds: 300),
@@ -50,10 +50,10 @@ class _AppLayoutPatientState extends State<AppLayoutPatient> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        key: _pageViewKey, // إضافة GlobalKey
+        key: _pageViewKey,
         controller: _pageController,
         physics: const NeverScrollableScrollPhysics(),
-        children: screens, // استخدام children بدل itemBuilder
+        children: screens,
         onPageChanged: (index) {
           setState(() {
             _selectedIndex = index;

@@ -1,29 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
-import '../../../../core/theiming/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../../core/theiming/styles.dart';
 
 class FilterPatientScreen extends StatefulWidget {
-  const FilterPatientScreen({Key? key}) : super(key: key);
+  const FilterPatientScreen({Key? super.key});
 
   @override
   State<FilterPatientScreen> createState() => _FilterPatientScreenState();
 }
 
 class _FilterPatientScreenState extends State<FilterPatientScreen> {
-  // حقول لتخزين القيم المدخلة
   String selectedLocation = 'Any area';
   double minReview = 0.0;
   RangeValues priceRange = const RangeValues(0, 1000);
   int minYear = 0;
   int maxYear = 50;
-
-  // المراجعات المختارة
   String selectedReviewOption = 'Any';
 
-  // قائمة التخصصات
   final List<String> specialties = [
-    'Cavities',
+    'cavity',
     'Dental Hygiene',
     'Orthopedics',
     'Implants',
@@ -36,10 +32,8 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
     'Radiology',
   ];
 
-  // لتخزين التخصصات المختارة
   List<String> selectedSpecialties = [];
 
-  // دالة لإعادة تعيين (Reset) كل القيم
   void _resetAll() {
     setState(() {
       selectedLocation = 'Any area';
@@ -51,7 +45,6 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
     });
   }
 
-  // دالة للتحكم في اختيار أو إلغاء اختيار تخصص معين
   void _toggleSpecialty(String specialty) {
     setState(() {
       if (selectedSpecialties.contains(specialty)) {
@@ -62,9 +55,23 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
     });
   }
 
+  int? _getReviewRating() {
+    switch (selectedReviewOption) {
+      case '1.5+':
+        return 1;
+      case '3+':
+        return 3;
+      case '4+':
+        return 4;
+      case 'Any':
+        return null;
+      default:
+        return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // تأكد من تهيئة ScreenUtil إذا لم يكن مُهيئ مسبقاً
     ScreenUtil.init(context);
 
     return Scaffold(
@@ -96,7 +103,6 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // اختيار الموقع
             Text(
               'Location',
               style: TextStyles.font14GreySemi,
@@ -129,13 +135,10 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
                 ),
               ),
             ),
-
             const SizedBox(height: 16),
-
-            // المراجعات
             Text(
               'Reviews',
-              style: TextStyles.font14GreySemi
+              style: TextStyles.font14GreySemi,
             ),
             const SizedBox(height: 8),
             Wrap(
@@ -147,13 +150,10 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
                 _buildCustomChip('4+'),
               ],
             ),
-
             const SizedBox(height: 16),
-
-            // نطاق السعر
             Text(
               'Price range',
-              style: TextStyles.font14GreySemi
+              style: TextStyles.font14GreySemi,
             ),
             const SizedBox(height: 8),
             RangeSlider(
@@ -180,13 +180,10 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
                 Text('\$${priceRange.end.round()}', style: TextStyles.font14GreySemi),
               ],
             ),
-
             const SizedBox(height: 16),
-
-            // سنوات الخبرة
             Text(
               'Year in Practice',
-              style:TextStyles.font14GreySemi
+              style: TextStyles.font14GreySemi,
             ),
             const SizedBox(height: 8),
             Row(
@@ -246,13 +243,10 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
                 ),
               ],
             ),
-
             const SizedBox(height: 16),
-
-            // التخصصات
             Text(
               'Specialty',
-              style:TextStyles.font14GreySemi
+              style: TextStyles.font14GreySemi,
             ),
             const SizedBox(height: 8),
             Wrap(
@@ -262,21 +256,27 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
                 return _buildCustomChip(spec, isSpecialty: true);
               }).toList(),
             ),
-
             const SizedBox(height: 24),
-
-            // زر عرض النتائج
             Center(
               child: SizedBox(
                 width: 161.w,
                 height: 44.h,
                 child: ElevatedButton(
                   onPressed: () {
-                    debugPrint('Location: $selectedLocation');
-                    debugPrint('Review: $selectedReviewOption');
-                    debugPrint('Price range: ${priceRange.start} - ${priceRange.end}');
-                    debugPrint('Years in practice: $minYear - $maxYear');
-                    debugPrint('Specialties: $selectedSpecialties');
+                    if (selectedSpecialties.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('الرجاء اختيار تخصص واحد على الأقل')),
+                      );
+                      return;
+                    }
+                    final filterData = {
+                      'specialization': selectedSpecialties.join(','),
+                      'reviewRating': _getReviewRating(),
+                      'minPrice': priceRange.start.round(),
+                      'maxPrice': priceRange.end.round(),
+                    };
+                    debugPrint('FilterPatientScreen: Returning filter data: $filterData');
+                    Navigator.pop(context, filterData);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: ColorsManager.Blue,
@@ -286,7 +286,8 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
                   ),
                   child: Text(
                     'View Result',
-                    style: TextStyles.font18WhiteRegular,)
+                    style: TextStyles.font18WhiteRegular,
+                  ),
                 ),
               ),
             ),
@@ -296,9 +297,7 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
     );
   }
 
-  // تابع مساعد لبناء شريحة (Chip) مخصصة لكل من الريفيو والتخصص
   Widget _buildCustomChip(String label, {bool isSpecialty = false}) {
-    // إذا كانت شريحة الريفيو أو التخصص تريد أن تكون دائماً بنفس اللون (لايت بلو) والنص أسود
     return ChoiceChip(
       label: Text(
         label,
@@ -307,20 +306,13 @@ class _FilterPatientScreenState extends State<FilterPatientScreen> {
           fontSize: 14,
         ),
       ),
-      selected: (isSpecialty)
-          ? selectedSpecialties.contains(label)
-          : selectedReviewOption == label,
-      // نجعل الخلفية دائماً "لايت بلو"
+      selected: (isSpecialty) ? selectedSpecialties.contains(label) : selectedReviewOption == label,
       selectedColor: ColorsManager.lighterBLUE,
       backgroundColor: ColorsManager.lighterBLUE,
       onSelected: (selected) {
         setState(() {
           if (isSpecialty) {
-            if (selectedSpecialties.contains(label)) {
-              selectedSpecialties.remove(label);
-            } else {
-              selectedSpecialties.add(label);
-            }
+            _toggleSpecialty(label);
           } else {
             selectedReviewOption = label;
           }

@@ -9,31 +9,72 @@ class SpecializationDoctorsRepo {
 
   SpecializationDoctorsRepo(this._apiService);
 
+  String _mapSpecialization(String specialization) {
+    final specializationMap = {
+      'Cavities': 'cavity',
+      'Dental Hygiene': 'dental_hygiene',
+      'Orthopedics': 'orthopedics',
+      'Implants': 'implants',
+      'Dentures': 'dentures',
+      'Surgery': 'surgery',
+      'Periodontology': 'periodontology',
+      'Veneers': 'veneers',
+      'Cosmetics': 'cosmetics',
+      'Extraction': 'extraction',
+      'Radiology': 'radiology',
+    };
+    return specializationMap[specialization] ?? specialization.toLowerCase();
+  }
+
   Future<ApiResult<SpecializationDoctorsResponse>> filterDoctorsBySpecialization({
     required String specialization,
+    int? reviewRating,
+    int? minPrice,
+    int? maxPrice,
   }) async {
     try {
       final token = await SharedPrefHelper.getSecuredString('access_token');
-      print('Token: $token');
-      print('Specialization sent: $specialization');
       if (token.isEmpty) {
-        print('No token found');
+        print('No token found in SharedPreferences');
         return ApiResult.failure(ErrorHandler.handle(Exception('No token found')));
       }
+
+      final cleanedSpecialization = _mapSpecialization(specialization.trim());
+      if (cleanedSpecialization.isEmpty) {
+        print('Error: Specialization is empty');
+        return ApiResult.failure(ErrorHandler.handle(Exception('Specialization cannot be empty')));
+      }
+
+      final adjustedMinPrice = minPrice != null && minPrice > 0 ? minPrice : null;
+      final adjustedMaxPrice = maxPrice != null && maxPrice > 0 ? maxPrice : null;
+      final adjustedReviewRating = reviewRating != null && reviewRating > 0 ? reviewRating : null;
+
+      print('Sending API request with: '
+          'specialization=$cleanedSpecialization, '
+          'reviewRating=$adjustedReviewRating, '
+          'minPrice=$adjustedMinPrice, '
+          'maxPrice=$adjustedMaxPrice, '
+          'token=Bearer $token');
+
       final response = await _apiService.filterDoctors(
         'Bearer $token',
-        specialization,
+        cleanedSpecialization,
+        adjustedReviewRating,
+        adjustedMinPrice,
+        adjustedMaxPrice,
       );
-      print('Full API Response: ${response.toJson()}');
-      // Check if any doctor has invalid ID
-      for (var doctor in response.data) {
-        if (doctor.id == 0 || doctor.id == null) {
-          print('Warning: Doctor with invalid ID found: ${doctor.toJson()}');
-        }
+
+      print('Filter response received: ${response.toJson()}');
+
+      if (response.data.isEmpty) {
+        print('No doctors found for specialization: $cleanedSpecialization with provided filters');
+        return ApiResult.success(response);
       }
+
+      print('Found ${response.data.length} doctors');
       return ApiResult.success(response);
     } catch (error) {
-      print('Error in Repo: $error');
+      print('Error in filterDoctorsBySpecialization: $error');
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }

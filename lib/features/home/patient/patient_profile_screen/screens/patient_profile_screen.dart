@@ -22,8 +22,8 @@ class PatientProfileScreen extends StatefulWidget {
 }
 
 class _PatientProfileScreenState extends State<PatientProfileScreen> {
-  String fullName = 'Guest'; // قيمة افتراضية
-  String initials = 'DR'; // قيمة افتراضية للـ CircleAvatar
+  String fullName = 'Guest';
+  String initials = 'DR';
 
   @override
   void initState() {
@@ -62,12 +62,6 @@ class _PatientProfileScreenState extends State<PatientProfileScreen> {
             title: Text("Profile", style: TextStyles.font20BlackRegular),
             backgroundColor: Colors.white,
             elevation: 0,
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
           ),
           body: SingleChildScrollView(
             child: Column(
