@@ -26,7 +26,12 @@ import 'package:x_dent_project/features/home/patient/patient_messages_screen/dat
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/specialization_doctors_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/time_slots_model.dart';
 import 'package:x_dent_project/features/rating/patient/add%20rating/data/models/add_rating_request_model.dart';
-import '../../features/rating/patient/add rating/data/models/add_rating_response_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/make_appointment_request_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/make_appointment_response_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_upload_screen/data/models/upload_xrays_response_model.dart';
+import 'package:x_dent_project/features/rating/patient/add%20rating/data/models/add_rating_response_model.dart';
+import '../../features/home/patient/patient_profile_settings/data/models/display_xrays_model.dart';
+import '../../features/home/patient/patient_upload_screen/data/models/upload_xrays_request_model.dart';
 import 'api_constants.dart';
 
 part 'api_service.g.dart';
@@ -125,11 +130,32 @@ abstract class ApiService {
       );
 
   @POST(ApiConstants.addReview)
-  @Headers({'Content-Type': 'application/json'})
+  @Headers({
+    'Content-Type': 'application/json',
+    'Accept': 'application/json'
+  })
   Future<AddRatingResponse> submitReview(
       @Header('Authorization') String token,
       @Path('doctorId') int doctorId,
       @Body() AddRatingRequest request,
       );
 
+  @POST(ApiConstants.makeAppointment)
+  @Headers({'Content-Type': 'application/json'})
+  Future<MakeAppointmentResponse> makeAppointment(
+      @Header('Authorization') String token,
+      @Path('id') int doctorId,
+      @Body() MakeAppointmentRequest request,
+      );
+
+  @POST(ApiConstants.uploadXrays)
+  @MultiPart()
+  Future<UploadXraysResponse> uploadXrays(
+      @Header('Authorization') String token,
+      @Body() UploadXraysRequest request,
+      );
+  @GET(ApiConstants.DisplayXraysPatient)
+  Future<DisplayXraysResponse> displayXrays(
+      @Header('Authorization') String token,
+      );
 }

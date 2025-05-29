@@ -33,7 +33,13 @@ import 'package:x_dent_project/features/rating/patient/add%20rating/data/repos/a
 import 'package:x_dent_project/features/rating/patient/add%20rating/logic/add_rating_cubit.dart';
 import '../../features/filter_patient/data/repo/filterd_doctors_repo.dart';
 import '../../features/filter_patient/logic/get_doctors_and_filters.dart';
+import '../../features/home/patient/patient_home_page/data/repos/make_appointment_repo.dart';
 import '../../features/home/patient/patient_home_page/data/repos/time-slots_repo.dart';
+import '../../features/home/patient/patient_home_page/logic/make_appointment_cubit.dart';
+import '../../features/home/patient/patient_profile_settings/data/repo/display_xrays_repo.dart';
+import '../../features/home/patient/patient_profile_settings/logic/display_xrays_cubit.dart';
+import '../../features/home/patient/patient_upload_screen/data/repos/upload_xrays_repo.dart';
+import '../../features/home/patient/patient_upload_screen/logic/upload_xrays_cubit.dart';
 import '../networking/dio_factory.dart';
 
 final getIt = GetIt.instance;
@@ -122,4 +128,16 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<AddRatingCubit>(() => AddRatingCubit());
   debugPrint('AddRatingRepo and AddRatingCubit registered');
 
+  getIt.registerLazySingleton<MakeAppointmentRepo>(() => MakeAppointmentRepo(getIt()));
+  getIt.registerFactory<MakeAppointmentCubit>(() => MakeAppointmentCubit(getIt()));
+  debugPrint('MakeAppointmentRepo and MakeAppointmentCubit registered');
+
+  // Upload X-rays
+  getIt.registerLazySingleton<UploadXraysRepo>(() => UploadXraysRepo(getIt()));
+  getIt.registerFactory<UploadXraysCubit>(() => UploadXraysCubit());
+  debugPrint('UploadXraysRepo and UploadXraysCubit registered');
+
+  getIt.registerLazySingleton<DisplayXraysRepo>(() => DisplayXraysRepoImpl(getIt()));
+  getIt.registerFactory<DisplayXraysCubit>(() => DisplayXraysCubit(getIt()));
+  debugPrint('DisplayXraysRepo and DisplayXraysCubit registered');
 }
