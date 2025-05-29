@@ -1,11 +1,14 @@
 class ApiConstants {
-  static const String apiBaseUrl = "https://laravel-production-d517.up.railway.app";
+  static const String apiBaseUrl =
+      "https://laravel-production-d517.up.railway.app";
 
   static const String login = "/api/auth/login";
   static const String signupPatient = "/api/auth/patient/register";
-  static const String cancelledAppointment = "/api/patient/cancelled/appointments";
+  static const String cancelledAppointment =
+      "/api/patient/cancelled/appointments";
   static const String upcomingAppointment = "/api/patient/pending/appointments";
-  static const String confirmedAppointment = "/api/patient/confirmed/appointments";
+  static const String confirmedAppointment =
+      "/api/patient/confirmed/appointments";
   static const String changePasswordPatient = "/api/profile/change-password";
   static const String editProfilePatient = "/api/profile/edit";
   static const String logoutPatient = "/api/auth/logout";
@@ -16,8 +19,10 @@ class ApiConstants {
   static const String cancelAppointment = "/api/patient/{id}/cancel";
   static const String getAllDoctors = "/api/doctors";
   static const String filterSpecializationDoctors = "/api/doctors/filter";
-  static const String availableSlots = "/api/doctors/{doctorId}/appointments/available_slots";
+  static const String availableSlots =
+      "/api/doctors/{doctorId}/appointments/available_slots";
   static const String addReview = "/api/doctors/{doctorId}/reviews";
+  static const String doctorHome = "/api/doctor/home";
 }
 
 class ApiErrors {
