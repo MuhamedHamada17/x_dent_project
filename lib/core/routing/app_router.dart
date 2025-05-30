@@ -37,14 +37,19 @@ import 'package:x_dent_project/features/home/patient/patient_profile_screen/scre
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/edit_profile_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/screens/help_center_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/widgets/log_out_patient_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/display_xrays_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/perscriptions_pattient_screen.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/profile_settings_patient.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/treatments_plans_screen.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/screens/xrays_patient_screen.dart';
 import 'package:x_dent_project/features/layout/layout_doctor/lay_out_doctor.dart';
 import 'package:x_dent_project/features/layout/layout_patient/lay_out_patient.dart';
 import 'package:x_dent_project/features/login/login_doctor/ui/login_doctor_screen.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/login_patient_screen.dart';
 import 'package:x_dent_project/features/on_boarding/on_boarding_screen.dart';
+import 'package:x_dent_project/features/payment/ui/patient_details_patyment_screen.dart';
+import 'package:x_dent_project/features/payment/ui/screens/add_cart_screen.dart';
+import 'package:x_dent_project/features/payment/ui/screens/payment_method_screen.dart';
 import 'package:x_dent_project/features/rating/patient/add%20rating/ui/add_rating_screen.dart';
 import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen1.dart';
 import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen2.dart';
@@ -208,6 +213,34 @@ class AppRouter {
         );
       case Routes.ProfileSettingsPatient:
         return MaterialPageRoute(builder: (_) => const ProfileSettingsPatient());
+      case Routes.PatientDetailsPaymentScreen:
+        return MaterialPageRoute(builder: (_) => const PatientDetailsPaymentScreen());
+      case Routes.PaymentMethodScreen:
+        return MaterialPageRoute(builder: (_) => const PaymentMethodScreen());
+      case Routes.AddCartScreen:
+        return MaterialPageRoute(builder: (_) => const AddCartScreen());
+      case Routes.XraysPatientScreen:
+        return MaterialPageRoute(builder: (_) => const XraysPatientScreen());
+      case Routes.DisplayXraysScreen:
+        if (arguments is Map<String, dynamic> &&
+            arguments['imageUrl'] is String &&
+            arguments['uploadedAt'] is String &&
+            arguments['imageUrl'].isNotEmpty &&
+            arguments['uploadedAt'].isNotEmpty) {
+          debugPrint('AppRouter: Navigating to DisplayXraysScreen with imageUrl: ${arguments['imageUrl']}, uploadedAt: ${arguments['uploadedAt']}');
+          return MaterialPageRoute(
+            builder: (_) => DisplayXraysScreen(
+              imageUrl: arguments['imageUrl'],
+              uploadedAt: arguments['uploadedAt'],
+            ),
+          );
+        }
+        debugPrint('AppRouter: Error - Invalid or missing arguments for DisplayXraysScreen: $arguments');
+        return MaterialPageRoute(
+          builder: (_) => const Scaffold(
+            body: Center(child: Text('Error: Invalid or missing X-ray details')),
+          ),
+        );
       case Routes.PerscriptionsPattientScreen:
         return MaterialPageRoute(builder: (_) => const PerscriptionsPattientScreen());
       case Routes.TreatmentsPlansScreenPatient:

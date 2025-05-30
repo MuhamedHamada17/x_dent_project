@@ -17,8 +17,16 @@ class AddRatingRepo {
     required String rating,
   }) async {
     try {
+      if (token.isEmpty) {
+        debugPrint('AddRatingRepo: Error - Token is empty');
+        return ApiResult.failure(ErrorHandler.handle(Exception('التوكن غير موجود. يرجى تسجيل الدخول.')));
+      }
+      if (doctorId <= 0) {
+        debugPrint('AddRatingRepo: Error - Invalid doctorId: $doctorId');
+        return ApiResult.failure(ErrorHandler.handle(Exception('معرف الطبيب غير صالح.')));
+      }
       debugPrint(
-          'AddRatingRepo: Sending review - token: $token, doctorId: $doctorId, review: $review, rating: $rating');
+          'AddRatingRepo: Sending review - token: $token (length: ${token.length}), doctorId: $doctorId, review: $review, rating: $rating');
       final response = await _apiService.submitReview(
         'Bearer $token',
         doctorId,
@@ -31,6 +39,9 @@ class AddRatingRepo {
       return ApiResult.success(response);
     } catch (error) {
       debugPrint('AddRatingRepo: Error submitting review: $error');
+      if (error.toString().contains('404')) {
+        return ApiResult.failure(ErrorHandler.handle(Exception('الخدمة غير متوفرة. يرجى التحقق من معرف الطبيب أو الاتصال بالدعم.')));
+      }
       return ApiResult.failure(ErrorHandler.handle(error));
     }
   }
