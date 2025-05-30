@@ -19,9 +19,13 @@ class ApiConstants {
   static const String availableSlots = "/api/doctors/{doctorId}/appointments/available_slots";
   static const String addReview = "/api/doctors/{doctorId}/reviews/create";
   static const String doctorHome = "/api/doctor/home";
+<<<<<<< HEAD
+  static const String patientXray = "/api/doctor/patient/:id/xrays";
+=======
   static const String makeAppointment = "/api/doctors/{doctorId}/appointments/book";
   static const String uploadXrays = "/api/xray/upload";
   static const String DisplayXraysPatient = "/api/patient/xrays";
+>>>>>>> fcf7abb44b4e618f257a2e66d995a4ed60666095
 }
 
 class ApiErrors {

@@ -137,7 +137,7 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                               backgroundColor: ColorsManager.Blue,
                               textStyle: TextStyles.font20whiteRegular,
                               onPressed: () {
-                                context.pushNamed(Routes.patientHomeScreen);
+                                context.pushNamed(Routes.appLayoutDoctor);
                                 if (loginCubit.formKey.currentState!
                                     .validate()) {
                                   loginCubit.login();
