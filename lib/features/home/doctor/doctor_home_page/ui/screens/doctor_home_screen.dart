@@ -4,8 +4,8 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/search_text_form.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/model/home_model.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/model/home_servies.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/home_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/home_servies.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/appointmentCard.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/ui/widgets/info_card.dart';
 
@@ -179,14 +179,17 @@ class DoctorHomeScreen extends StatelessWidget {
                                       '0',
                                   color: Color(0xffD51212),
                                 ),
-                                verticalSpace(8),
+                                verticalSpace(16),
                               ],
                             ),
                           ],
                         ),
                         // ],
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 2,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

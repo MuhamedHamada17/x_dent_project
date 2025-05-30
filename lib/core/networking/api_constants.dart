@@ -23,6 +23,7 @@ class ApiConstants {
       "/api/doctors/{doctorId}/appointments/available_slots";
   static const String addReview = "/api/doctors/{doctorId}/reviews";
   static const String doctorHome = "/api/doctor/home";
+  static const String patientXray = "/api/doctor/patient/:id/xrays";
 }
 
 class ApiErrors {
