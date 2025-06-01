@@ -6,6 +6,8 @@ import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/da
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/completed_appointment_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/upcoming_appointment_model.dart';
 import 'package:x_dent_project/features/login/login_doctor/data/models/login_request_body.dart';
+import 'package:x_dent_project/features/signUp/doctor/data/models/Sign_up_request_doctor_model.dart';
+import 'package:x_dent_project/features/signUp/doctor/data/models/Sign_up_response_doctor_model.dart';
 import 'package:x_dent_project/features/signUp/patient/data/models/sign_patient_request_body.dart';
 import 'package:x_dent_project/features/signUp/patient/data/models/sign_patient_response_body.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/change_password_patient_response.dart';
@@ -44,121 +46,123 @@ abstract class ApiService {
   Future<LoginResponseBody> login(@Body() LoginRequestBody loginRequestBody);
 
   @POST(ApiConstants.signupPatient)
-  Future<SignPatientResponseBody> signUpPatient(@Body() SignPatientRequestBody requestBody);
+  Future<SignPatientResponseBody> signUpPatient(
+    @Body() SignPatientRequestBody requestBody,
+  );
+
+  @POST(ApiConstants.SignUpDoctor)
+  Future<SignUpResponseDoctorModel> signUpDoctor(
+    @Body() SignUpRequestDoctorModel requestBody,
+  );
 
   @GET(ApiConstants.upcomingAppointment)
   Future<AppointmentResponse> getUpcomingAppointments(
-      @Header('Authorization') String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   @GET(ApiConstants.cancelledAppointment)
   Future<CancelledAppointmentResponse> getCancelledAppointments(
-      @Header('Authorization') String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   @GET(ApiConstants.confirmedAppointment)
   Future<CompletedAppointmentResponse> getConfirmedAppointments(
-      @Header('Authorization') String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   @POST(ApiConstants.changePasswordPatient)
   Future<ChangePasswordPatientResponse> changePassword(
-      @Header('Authorization') String token,
-      @Body() ChangePasswordPatientRequest requestBody,
-      );
+    @Header('Authorization') String token,
+    @Body() ChangePasswordPatientRequest requestBody,
+  );
 
   @PUT(ApiConstants.editProfilePatient)
   @Headers({'Content-Type': 'application/json'})
   Future<EditProfilePatientResponse> editProfilePatient(
-      @Header('Authorization') String token,
-      @Body() EditProfilePatientRequest requestBody,
-      );
+    @Header('Authorization') String token,
+    @Body() EditProfilePatientRequest requestBody,
+  );
 
   @POST(ApiConstants.logoutPatient)
   @Headers({'Content-Type': 'application/json'})
   Future<LogoutPatientResponse> logout(
-      @Header('Authorization') String token,
-      @Body() LogoutPatientRequest requestBody,
-      );
+    @Header('Authorization') String token,
+    @Body() LogoutPatientRequest requestBody,
+  );
 
   @GET(ApiConstants.treatmentPlanPatient)
   Future<TreatmentPlanResponse> getTreatmentPlans(
-      @Header('Authorization') String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   @POST(ApiConstants.forgetPassword)
   @Headers({'Content-Type': 'application/json'})
   Future<ForgetPasswordResponseBody> sendForgetPasswordCode(
-      @Body() ForgetPasswordRequestBody request,
-      );
+    @Body() ForgetPasswordRequestBody request,
+  );
 
   @POST(ApiConstants.otp)
   @Headers({'Content-Type': 'application/json'})
-  Future<OtpResponseBody> verifyOtpCode(
-      @Body() OtpRequestBody request,
-      );
+  Future<OtpResponseBody> verifyOtpCode(@Body() OtpRequestBody request);
 
   @POST(ApiConstants.resetPassword)
   @Headers({'Content-Type': 'application/json'})
   Future<ResetPasswordResponseBody> resetPassword(
-      @Body() ResetPasswordRequestBody request,
-      );
+    @Body() ResetPasswordRequestBody request,
+  );
 
   @PATCH(ApiConstants.cancelAppointment)
   @Headers({'Content-Type': 'application/json'})
   Future<CancelAppointmentModel> cancelAppointment(
-      @Header('Authorization') String token,
-      @Path('id') int appointmentId,
-      );
+    @Header('Authorization') String token,
+    @Path('id') int appointmentId,
+  );
 
   @GET(ApiConstants.getAllDoctors)
   Future<GetAllDoctorsResponse> getAllDoctors(
-      @Header('Authorization') String token,
-      );
+    @Header('Authorization') String token,
+  );
 
   @GET(ApiConstants.filterSpecializationDoctors)
   Future<SpecializationDoctorsResponse> filterDoctors(
-      @Header('Authorization') String token,
-      @Query('specialization_names') String specialization,
-      @Query('review_rating') int? reviewRating,
-      @Query('min_price') int? minPrice,
-      @Query('max_price') int? maxPrice,
-      );
+    @Header('Authorization') String token,
+    @Query('specialization_names') String specialization,
+    @Query('review_rating') int? reviewRating,
+    @Query('min_price') int? minPrice,
+    @Query('max_price') int? maxPrice,
+  );
 
   @GET(ApiConstants.availableSlots)
   Future<TimeSlotsResponse> getAvailableSlots(
-      @Header('Authorization') String token,
-      @Path('doctorId') int doctorId,
-      @Query('date') String date,
-      );
+    @Header('Authorization') String token,
+    @Path('doctorId') int doctorId,
+    @Query('date') String date,
+  );
 
   @POST(ApiConstants.addReview)
-  @Headers({
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  })
+  @Headers({'Content-Type': 'application/json', 'Accept': 'application/json'})
   Future<AddRatingResponse> submitReview(
-      @Header('Authorization') String token,
-      @Path('doctorId') int doctorId,
-      @Body() AddRatingRequest request,
-      );
+    @Header('Authorization') String token,
+    @Path('doctorId') int doctorId,
+    @Body() AddRatingRequest request,
+  );
 
   @POST(ApiConstants.makeAppointment)
   @Headers({'Content-Type': 'application/json'})
   Future<MakeAppointmentResponse> makeAppointment(
-      @Header('Authorization') String token,
-      @Path('id') int doctorId,
-      @Body() MakeAppointmentRequest request,
-      );
+    @Header('Authorization') String token,
+    @Path('id') int doctorId,
+    @Body() MakeAppointmentRequest request,
+  );
 
   @POST(ApiConstants.uploadXrays)
   @MultiPart()
   Future<UploadXraysResponse> uploadXrays(
-      @Header('Authorization') String token,
-      @Body() UploadXraysRequest request,
-      );
+    @Header('Authorization') String token,
+    @Body() UploadXraysRequest request,
+  );
   @GET(ApiConstants.DisplayXraysPatient)
   Future<DisplayXraysResponse> displayXrays(
-      @Header('Authorization') String token,
-      );
+    @Header('Authorization') String token,
+  );
 }
