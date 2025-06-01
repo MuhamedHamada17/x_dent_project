@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:x_dent_project/core/networking/api_constants.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/home_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/doctor_home_model.dart';
 
 class HomeService {
   final Dio _dio = Dio(
@@ -8,7 +8,7 @@ class HomeService {
       baseUrl: ApiConstants.apiBaseUrl,
       headers: {
         'Authorization':
-            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbGFyYXZlbHByb2plY3QtcHJvZHVjdGlvbi1kMjc5LnVwLnJhaWx3YXkuYXBwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzQ4NTc3Mjk3LCJleHAiOjE3NDg1OTE2OTcsIm5iZiI6MTc0ODU3NzI5NywianRpIjoiR2ttaGpqMmJuZkpZd2hLMSIsInN1YiI6IjciLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.PbcRfgEOm4IOCFug6iReax84e1w3q5zIwZtRr8hFZCk',
+            'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbGFyYXZlbHByb2plY3QtcHJvZHVjdGlvbi1kMjc5LnVwLnJhaWx3YXkuYXBwL2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzQ4NjE0MTMzLCJleHAiOjE3NDg2Mjg1MzMsIm5iZiI6MTc0ODYxNDEzMywianRpIjoiSDY2MWpiSmJ6UDVrQ2VBayIsInN1YiI6IjkiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.5TTihKP3ESEPg71ffM4wBPm4j0l4B_IzXLvHNSgHCl4',
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },

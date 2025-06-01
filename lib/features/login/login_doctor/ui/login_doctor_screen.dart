@@ -8,14 +8,13 @@ import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/core/widgets/app_text_form_field.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/widgets/app_bar_login.dart';
 import 'package:x_dent_project/features/login/login_patient/ui/widgets/log_with.dart';
-
 import 'package:x_dent_project/features/signUp/doctor/ui/screens/sign_up_doctor_screen1.dart';
-
+import 'package:x_dent_project/features/signUp/patient/ui/screens/signup_patient/sign_up_patient_screen.dart';
 import '../../../../core/di/dependency_injection.dart';
 import '../../../../core/helpers/spacing.dart';
 import '../../../../core/routing/routes.dart';
-import '../logic/login_cubit.dart';
-import '../logic/login_state.dart';
+import '../../login_doctor/logic/login_cubit.dart';
+import '../../login_doctor/logic/login_state.dart';
 
 class LoginDoctorScreen extends StatelessWidget {
   const LoginDoctorScreen({super.key});
@@ -24,13 +23,13 @@ class LoginDoctorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => getIt<LoginCubit>(),
-      child: const _LoginDoctorScreenContent(),
+      child: const _LoginPatientScreenContent(),
     );
   }
 }
 
-class _LoginDoctorScreenContent extends StatelessWidget {
-  const _LoginDoctorScreenContent();
+class _LoginPatientScreenContent extends StatelessWidget {
+  const _LoginPatientScreenContent();
 
   @override
   Widget build(BuildContext context) {
@@ -137,7 +136,6 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                               backgroundColor: ColorsManager.Blue,
                               textStyle: TextStyles.font20whiteRegular,
                               onPressed: () {
-                                context.pushNamed(Routes.appLayoutDoctor);
                                 if (loginCubit.formKey.currentState!
                                     .validate()) {
                                   loginCubit.login();
@@ -195,7 +193,7 @@ class _LoginDoctorScreenContent extends StatelessWidget {
                 },
                 success: (loginResponse) {
                   context.pop();
-                  context.pushNamed(Routes.patientHomeScreen);
+                  context.pushNamed(Routes.appLayoutDoctor);
                 },
                 error: (error) {
                   _setupErrorState(context, error.message);
