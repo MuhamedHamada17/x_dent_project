@@ -1,4 +1,4 @@
-class HomeModel {
+class DoctorHomeResponseModel {
   String? status;
   int? totalAppointments;
   int? pendingAppointmentsCount;
@@ -6,7 +6,7 @@ class HomeModel {
   int? completedAppointmentsCount;
   List<PendingAppointments>? pendingAppointments;
 
-  HomeModel({
+  DoctorHomeResponseModel({
     this.status,
     this.totalAppointments,
     this.pendingAppointmentsCount,
@@ -15,7 +15,7 @@ class HomeModel {
     this.pendingAppointments,
   });
 
-  HomeModel.fromJson(Map<String, dynamic> json) {
+  DoctorHomeResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     totalAppointments = json['total_appointments'];
     pendingAppointmentsCount = json['pending_appointments_count'];

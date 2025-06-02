@@ -41,8 +41,7 @@ class ResponseMessage {
 class ErrorHandler implements Exception {
   final ApiErrorModel apiErrorModel;
 
-  ErrorHandler.handle(dynamic error)
-      : apiErrorModel = _handleError(error);
+  ErrorHandler.handle(dynamic error) : apiErrorModel = _handleError(error);
 }
 
 ApiErrorModel _handleError(dynamic error) {
