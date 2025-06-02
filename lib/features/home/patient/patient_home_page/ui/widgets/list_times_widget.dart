@@ -9,11 +9,11 @@ class ListTimesWidget extends StatefulWidget {
   final List<String> availableTimes;
 
   const ListTimesWidget({
-    Key? key,
+    super.key,
     required this.initialTime,
     required this.onTimeSelected,
     required this.availableTimes,
-  }) : super(key: key);
+  });
 
   @override
   _ListTimesWidgetState createState() => _ListTimesWidgetState();
@@ -68,18 +68,18 @@ class _ListTimesWidgetState extends State<ListTimesWidget> {
             widget.onTimeSelected(time);
           });
         },
-        child: Text(
-          time,
-          style: TextStyle(
-            color: isSelected ? Colors.white : ColorsManager.Blue,
-          ),
-        ),
         style: ElevatedButton.styleFrom(
           backgroundColor: isSelected ? ColorsManager.Blue : ColorsManager.lighterBLUE,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.r),
             side: BorderSide.none,
+          ),
+        ),
+        child: Text(
+          time,
+          style: TextStyle(
+            color: isSelected ? Colors.white : ColorsManager.Blue,
           ),
         ),
       ),

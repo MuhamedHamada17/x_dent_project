@@ -12,7 +12,7 @@ import 'package:x_dent_project/features/rating/patient/add%20rating/logic/add_ra
 class AddRatingDialogScreen extends StatefulWidget {
   final int doctorId;
 
-  const AddRatingDialogScreen({Key? key, required this.doctorId}) : super(key: key);
+  const AddRatingDialogScreen({super.key, required this.doctorId});
 
   @override
   State<AddRatingDialogScreen> createState() => _AddRatingDialogScreenState();

@@ -18,7 +18,7 @@ class DoctorCardWidget extends StatelessWidget {
   final String specialization; // إضافة specialization
 
   const DoctorCardWidget({
-    Key? key,
+    super.key,
     this.doctorName,
     this.specialty,
     this.imagePath,
@@ -27,7 +27,7 @@ class DoctorCardWidget extends StatelessWidget {
     this.price,
     required this.doctorId, // إجباري
     required this.specialization, // إجباري
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +128,7 @@ class DoctorCardWidget extends StatelessWidget {
                       style: TextStyles.font12BlackRegular,
                     ),
                     const Spacer(),
-                    Container(
+                    SizedBox(
                       width: 90.w,
                       height: 35.h,
                       child: AppTextButton(

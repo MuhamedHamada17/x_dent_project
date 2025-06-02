@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
-import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/deactivate_account.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/delete_account.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/name_with_arrow.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/name_with_switch.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/section.dart'

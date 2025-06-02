@@ -200,7 +200,7 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
                                     );
                                     return;
                                   }
-                                  if (doctor.id == 0 || doctor.id == null) {
+                                  if (doctor.id == 0) {
                                     debugPrint('DoctorListScreen: Error - Invalid Doctor ID: ${doctor.id}');
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       const SnackBar(content: Text('Error: The doctor ID is invalid')),

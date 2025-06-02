@@ -16,7 +16,7 @@ class TreatmentPlanPatientRepo {
       debugPrint('Treatment Plans Fetch Attempt: Getting token');
       final token = await SharedPrefHelper.getSecuredString('access_token');
       debugPrint('Treatment Plans Token: $token');
-      if (token == null || token.isEmpty) {
+      if (token.isEmpty) {
         debugPrint('Treatment Plans failed: No token found');
         return ApiResult.failure(
           ErrorHandler.handle(Exception('No token found')),

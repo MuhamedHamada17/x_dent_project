@@ -8,7 +8,6 @@ import 'package:x_dent_project/core/widgets/search_text_form.dart';
 import 'package:x_dent_project/features/home/patient/patient_messages_screen/widgets/chat_patient_item.dart';
 import '../logic/get_all_doctors_cubit.dart';
 import '../logic/get_all_doctors_state.dart';
-import 'package:x_dent_project/core/routing/routes.dart';
 
 class PatientMessagesScreen extends StatelessWidget {
   const PatientMessagesScreen({super.key});

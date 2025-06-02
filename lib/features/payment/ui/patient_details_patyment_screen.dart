@@ -182,6 +182,11 @@ class _PatientDetailsPaymentScreenState extends State<PatientDetailsPaymentScree
                           );
                         }
                       },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: ColorsManager.Blue,
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      ),
                       child: Text(
                         'Continue',
                         style: TextStyle(
@@ -191,11 +196,6 @@ class _PatientDetailsPaymentScreenState extends State<PatientDetailsPaymentScree
                         ),
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: ColorsManager.Blue,
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       ),
                     ),
                   ),

@@ -6,7 +6,7 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 class BillDetailsRow extends StatelessWidget {
   final String label;
   final String value;
-  BillDetailsRow({super.key, required this.label, required this.value});
+  const BillDetailsRow({super.key, required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {

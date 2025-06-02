@@ -83,10 +83,6 @@ class LogOutPatientScreen extends StatelessWidget {
                           ),
                         )
                             : AppTextButton(
-                          child: Text(
-                            "Log Out",
-                            style: TextStyles.font22WhiteMedium,
-                          ),
                           borderRadius: 25,
                           verticalPadding: 4.h,
                           backgroundColor: ColorsManager.Blue,
@@ -97,6 +93,10 @@ class LogOutPatientScreen extends StatelessWidget {
                               context.read<LogoutPatientCubit>().logout();
                             });
                           },
+                          child: Text(
+                            "Log Out",
+                            style: TextStyles.font22WhiteMedium,
+                          ),
                         ),
                       ),
                     ],

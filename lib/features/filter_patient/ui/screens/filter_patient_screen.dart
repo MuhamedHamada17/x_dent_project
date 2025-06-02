@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../core/theiming/styles.dart';
 
 class FilterPatientScreen extends StatefulWidget {
-  const FilterPatientScreen({Key? super.key});
+  const FilterPatientScreen({super.key});
 
   @override
   State<FilterPatientScreen> createState() => _FilterPatientScreenState();

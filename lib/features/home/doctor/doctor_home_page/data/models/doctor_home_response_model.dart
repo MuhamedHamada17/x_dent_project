@@ -24,21 +24,21 @@ class DoctorHomeResponseModel {
     if (json['pending_appointments'] != null) {
       pendingAppointments = <PendingAppointments>[];
       json['pending_appointments'].forEach((v) {
-        pendingAppointments!.add(new PendingAppointments.fromJson(v));
+        pendingAppointments!.add(PendingAppointments.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    data['total_appointments'] = this.totalAppointments;
-    data['pending_appointments_count'] = this.pendingAppointmentsCount;
-    data['canceled_appointments_count'] = this.canceledAppointmentsCount;
-    data['completed_appointments_count'] = this.completedAppointmentsCount;
-    if (this.pendingAppointments != null) {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    data['total_appointments'] = totalAppointments;
+    data['pending_appointments_count'] = pendingAppointmentsCount;
+    data['canceled_appointments_count'] = canceledAppointmentsCount;
+    data['completed_appointments_count'] = completedAppointmentsCount;
+    if (pendingAppointments != null) {
       data['pending_appointments'] =
-          this.pendingAppointments!.map((v) => v.toJson()).toList();
+          pendingAppointments!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -72,23 +72,23 @@ class PendingAppointments {
     appointmentDate = json['appointment_date'];
     appointmentTime = json['appointment_time'];
     patient =
-        json['patient'] != null ? new Patient.fromJson(json['patient']) : null;
+        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['day'] = this.day;
-    data['status'] = this.status;
-    data['appointment_date'] = this.appointmentDate;
-    data['appointment_time'] = this.appointmentTime;
-    if (this.patient != null) {
-      data['patient'] = this.patient!.toJson();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['day'] = day;
+    data['status'] = status;
+    data['appointment_date'] = appointmentDate;
+    data['appointment_time'] = appointmentTime;
+    if (patient != null) {
+      data['patient'] = patient!.toJson();
     }
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }
@@ -97,8 +97,8 @@ class Patient {
   int? id;
   String? name;
   int? age;
-  Null? phone;
-  Null? message;
+  Null phone;
+  Null message;
 
   Patient({this.id, this.name, this.age, this.phone, this.message});
 
@@ -111,12 +111,12 @@ class Patient {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['age'] = this.age;
-    data['phone'] = this.phone;
-    data['message'] = this.message;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['age'] = age;
+    data['phone'] = phone;
+    data['message'] = message;
     return data;
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:x_dent_project/core/networking/api_error_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/edit_profile_patient_request_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/edit_profile_patient_response_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/repos/edit_profile_patient_repo.dart';
@@ -23,15 +22,6 @@ class EditProfilePatientCubit extends Cubit<EditProfilePatientState> {
     emit(const EditProfilePatientState.loading());
 
     final token = await SharedPrefHelper.getSecuredString('access_token');
-    if (token == null) {
-      emit(EditProfilePatientState.error(
-        error: ApiErrorModel(
-          message: 'Access token not found',
-          statusCode: 401,
-        ),
-      ));
-      return;
-    }
 
     final request = EditProfilePatientRequest(
       firstName: firstNameController.text.trim(),

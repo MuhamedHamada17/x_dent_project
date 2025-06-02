@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:x_dent_project/core/networking/api_result.dart';
 import 'package:x_dent_project/core/networking/api_error_handler.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';

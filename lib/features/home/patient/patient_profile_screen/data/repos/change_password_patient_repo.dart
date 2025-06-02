@@ -15,13 +15,6 @@ class ChangePasswordPatientRepo {
     try {
       // Retrieve token from SharedPreferences
       final token = await SharedPrefHelper.getSecuredString('access_token');
-      if (token == null) {
-        return ApiResult.failure(
-          ErrorHandler.handle(
-            Exception('No token found'),
-          ),
-        );
-      }
 
       final response = await _apiService.changePassword(
         'Bearer $token',

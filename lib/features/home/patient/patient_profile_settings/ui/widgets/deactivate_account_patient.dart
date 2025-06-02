@@ -31,7 +31,7 @@ class DeactivateAccountPatient extends StatelessWidget {
                   Text("Deactivate", style: TextStyles.font28BlackMedium),
                 ],
               ),
-              content: Container(
+              content: SizedBox(
                 width: 310.w,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:x_dent_project/core/networking/api_error_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_response_model.dart';
 
 part 'logout_patient_state.freezed.dart';
