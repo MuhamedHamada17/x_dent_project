@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/logic/doctor_home_cubit.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/repos/doctor_home_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/appointment_patient_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/appointment_patient_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/cancel_appointment_repo.dart';
@@ -192,4 +194,10 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<DisplayXraysCubit>(() => DisplayXraysCubit(getIt()));
   debugPrint('DisplayXraysRepo and DisplayXraysCubit registered');
+  // Doctor Home
+  getIt.registerLazySingleton<DoctorHomeRepository>(
+    () => DoctorHomeRepository(getIt()),
+  );
+  getIt.registerFactory<DoctorHomeCubit>(() => DoctorHomeCubit(getIt()));
+  debugPrint('DoctorHomeRepository and DoctorHomeCubit registered');
 }
