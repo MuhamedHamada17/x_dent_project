@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
-import 'package:x_dent_project/core/theiming/styles.dart';
 
 class Section extends StatelessWidget {
   final String text;

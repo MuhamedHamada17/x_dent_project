@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/treatment_plan_patient_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/logic/treatment_plan_patient_state.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/widgets/treatment_plan_row_patient.dart';

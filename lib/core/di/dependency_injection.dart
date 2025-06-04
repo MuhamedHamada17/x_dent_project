@@ -35,8 +35,6 @@ import 'package:x_dent_project/features/home/patient/patient_home_page/logic/spe
 import 'package:x_dent_project/features/home/patient/patient_home_page/logic/time_slots_cubit.dart';
 import 'package:x_dent_project/features/rating/patient/add%20rating/data/repos/add_rating_repo.dart';
 import 'package:x_dent_project/features/rating/patient/add%20rating/logic/add_rating_cubit.dart';
-import '../../features/filter_patient/data/repo/filterd_doctors_repo.dart';
-import '../../features/filter_patient/logic/get_doctors_and_filters.dart';
 import '../../features/home/patient/patient_home_page/data/repos/make_appointment_repo.dart';
 import '../../features/home/patient/patient_home_page/data/repos/time-slots_repo.dart';
 import '../../features/home/patient/patient_home_page/logic/make_appointment_cubit.dart';

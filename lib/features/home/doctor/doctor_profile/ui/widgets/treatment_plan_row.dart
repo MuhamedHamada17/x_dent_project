@@ -10,7 +10,7 @@ class TreatmentPlanRow extends StatelessWidget {
   final String session;
   final String date;
 
-  const TreatmentPlanRow(this.isCompleted, this.session, this.date);
+  const TreatmentPlanRow(this.isCompleted, this.session, this.date, {super.key});
 
   @override
   Widget build(BuildContext context) {

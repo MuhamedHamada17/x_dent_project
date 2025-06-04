@@ -1,8 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
-import 'package:x_dent_project/core/networking/api_result.dart';
 import '../data/models/otp_request_body.dart';
-import '../data/models/otp_response_body.dart';
 import '../data/repos/otp_repo.dart';
 import 'otp_state.dart';
 

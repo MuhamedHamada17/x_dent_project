@@ -87,6 +87,11 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                       context.pushNamed(Routes.AddCartScreen);
                     }
                   },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: ColorsManager.Blue,
+                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  ),
                   child: Text(
                     'Continue',
                     style: TextStyle(
@@ -96,11 +101,6 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                     ),
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: ColorsManager.Blue,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   ),
                 ),
               ),

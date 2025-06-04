@@ -12,11 +12,11 @@ class ListDaysWidget extends StatefulWidget {
   final DoctorData doctorData;
 
   const ListDaysWidget({
-    Key? key,
+    super.key,
     required this.initialDay,
     required this.onDaySelected,
     required this.doctorData,
-  }) : super(key: key);
+  });
 
   @override
   _ListDaysWidgetState createState() => _ListDaysWidgetState();
@@ -107,18 +107,18 @@ class _ListDaysWidgetState extends State<ListDaysWidget> {
             widget.onDaySelected(day);
           });
         },
-        child: Text(
-          displayDay,
-          style: TextStyle(
-            color: isSelected ? Colors.white : ColorsManager.Blue,
-          ),
-        ),
         style: ElevatedButton.styleFrom(
           backgroundColor: isSelected ? ColorsManager.Blue : ColorsManager.lighterBLUE,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.r),
             side: BorderSide.none,
+          ),
+        ),
+        child: Text(
+          displayDay,
+          style: TextStyle(
+            color: isSelected ? Colors.white : ColorsManager.Blue,
           ),
         ),
       ),

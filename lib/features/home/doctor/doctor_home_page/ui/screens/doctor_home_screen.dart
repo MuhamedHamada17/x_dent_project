@@ -39,12 +39,10 @@ class DoctorHomeScreen extends StatelessWidget {
                 );
               }
               if (loginSnapshot.hasData && loginSnapshot.data == true) {
-                // المستخدم مسجل لكن التوكن غير موجود، جرب جلب التوكن مرة أخرى
+                // المستخدم مسجل لكن التوكن غير موجود
                 return BlocProvider(
-                  create:
-                      (context) =>
-                          GetIt.I<DoctorHomeCubit>()
-                            ..fetchDoctorHomeData(token),
+                  create: (context) =>
+                      GetIt.I<DoctorHomeCubit>()..fetchDoctorHomeData(token),
                   child: _buildHomeContent(context),
                 );
               } else {
@@ -56,19 +54,13 @@ class DoctorHomeScreen extends StatelessWidget {
                       children: [
                         const Text('الرجاء إكمال التسجيل أو تسجيل الدخول'),
                         ElevatedButton(
-                          onPressed:
-                              () => Navigator.pushReplacementNamed(
-                                context,
-                                '/signup',
-                              ),
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, '/signup'),
                           child: const Text('إكمال التسجيل'),
                         ),
                         ElevatedButton(
-                          onPressed:
-                              () => Navigator.pushReplacementNamed(
-                                context,
-                                '/login',
-                              ),
+                          onPressed: () =>
+                              Navigator.pushReplacementNamed(context, '/login'),
                           child: const Text('تسجيل الدخول'),
                         ),
                       ],
@@ -82,9 +74,8 @@ class DoctorHomeScreen extends StatelessWidget {
 
         // إذا كان التوكن موجود، اعرض المحتوى
         return BlocProvider(
-          create:
-              (context) =>
-                  GetIt.I<DoctorHomeCubit>()..fetchDoctorHomeData(token),
+          create: (context) =>
+              GetIt.I<DoctorHomeCubit>()..fetchDoctorHomeData(token),
           child: _buildHomeContent(context),
         );
       },
@@ -92,84 +83,75 @@ class DoctorHomeScreen extends StatelessWidget {
   }
 
   Widget _buildHomeContent(BuildContext context) {
-    return BlocBuilder<DoctorHomeCubit, DoctorHomeState>(
-      builder: (context, state) {
-        return state.when(
-          initial:
-              () => const Scaffold(
-                body: Center(child: CircularProgressIndicator()),
-              ),
-          loading:
-              () => const Scaffold(
-                body: Center(child: CircularProgressIndicator()),
-              ),
-          loaded:
-              (model) => Scaffold(
-                backgroundColor: Colors.white,
-                body: Stack(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 230.h,
+            color: ColorsManager.lighterBLUE,
+          ),
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 50, right: 16, left: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 230.h,
-                      color: ColorsManager.lighterBLUE,
-                    ),
-                    SafeArea(
-                      child: SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 50,
-                            right: 16,
-                            left: 16,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        FutureBuilder<String>(
+                          future: SharedPrefHelper.getFullName(),
+                          builder: (context, nameSnapshot) {
+                            final doctorName =
+                                nameSnapshot.data?.isNotEmpty ?? false
+                                    ? nameSnapshot.data!
+                                    : 'Dr omar eid';
+                            return Text(
+                              "  Welcome\n  Dr $doctorName",
+                              style: const TextStyle(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            );
+                          },
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 16),
+                          child: Icon(
+                            Icons.notifications_none_outlined,
+                            size: 32,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                      ],
+                    ),
+                    verticalSpace(22),
+                    SizedBox(
+                      height: 42.h,
+                      child: SearchTextForm(
+                        borderColor: ColorsManager.Black,
+                        hintStyle: TextStyles.font14GreyRegular,
+                      ),
+                    ),
+                    verticalSpace(32),
+                    BlocBuilder<DoctorHomeCubit, DoctorHomeState>(
+                      builder: (context, state) {
+                        return state.when(
+                          initial: () =>
+                              const Center(child: CircularProgressIndicator()),
+                          loading: () =>
+                              const Center(child: CircularProgressIndicator()),
+                          loaded: (model) => Column(
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  FutureBuilder<String>(
-                                    future: SharedPrefHelper.getFullName(),
-                                    builder: (context, nameSnapshot) {
-                                      final doctorName =
-                                          nameSnapshot.data?.isNotEmpty ?? false
-                                              ? nameSnapshot.data!
-                                              : 'Dr omar eid';
-                                      return Text(
-                                        "  Welcome\n  Dr $doctorName",
-                                        style: const TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.only(right: 16),
-                                    child: Icon(
-                                      Icons.notifications_none_outlined,
-                                      size: 32,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              verticalSpace(22),
-                              SizedBox(
-                                height: 42.h,
-                                child: SearchTextForm(
-                                  borderColor: ColorsManager.Black,
-                                  hintStyle: TextStyles.font14GreyRegular,
-                                ),
-                              ),
-                              verticalSpace(32),
                               Row(
                                 children: [
                                   Column(
                                     children: [
                                       InfoCard(
-                                        title: "Total \ Appointments",
-                                        number:
-                                            model.totalAppointments
+                                        title: "Total  Appointments",
+                                        number: model.totalAppointments
                                                 ?.toString() ??
                                             '0',
                                         bgColor: ColorsManager.Blue,
@@ -180,18 +162,15 @@ class DoctorHomeScreen extends StatelessWidget {
                                         width: 160.h,
                                         height: 65.h,
                                         padding: const EdgeInsets.symmetric(
-                                          horizontal: 15,
-                                          vertical: 8,
-                                        ),
+                                            horizontal: 15, vertical: 8),
                                         decoration: BoxDecoration(
                                           color: ColorsManager.lighterBLUE,
-                                          borderRadius: BorderRadius.circular(
-                                            22,
-                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(22),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: ColorsManager
-                                                  .Blue.withOpacity(.7),
+                                              color: ColorsManager.Blue
+                                                  .withOpacity(.7),
                                               spreadRadius: 2,
                                               blurRadius: 5,
                                               offset: const Offset(0, 3.5),
@@ -236,8 +215,7 @@ class DoctorHomeScreen extends StatelessWidget {
                                       const SizedBox(height: 15),
                                       StatusCard(
                                         title: "Completed",
-                                        number:
-                                            model.completedAppointmentsCount
+                                        number: model.completedAppointmentsCount
                                                 ?.toString() ??
                                             '0',
                                         color: const Color(0xff029509),
@@ -245,8 +223,7 @@ class DoctorHomeScreen extends StatelessWidget {
                                       verticalSpace(16),
                                       StatusCard(
                                         title: "Canceled",
-                                        number:
-                                            model.canceledAppointmentsCount
+                                        number: model.canceledAppointmentsCount
                                                 ?.toString() ??
                                             '0',
                                         color: const Color(0xffD51212),
@@ -258,9 +235,7 @@ class DoctorHomeScreen extends StatelessWidget {
                               ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                  vertical: 2,
-                                ),
+                                    horizontal: 16, vertical: 2),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -287,34 +262,34 @@ class DoctorHomeScreen extends StatelessWidget {
                               AppointmentCard(),
                             ],
                           ),
-                        ),
-                      ),
+                          error: (error) => Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('خطأ: ${error.message}'),
+                                ElevatedButton(
+                                  onPressed: () async {
+                                    final token =
+                                        await SharedPrefHelper.getToken();
+                                    context
+                                        .read<DoctorHomeCubit>()
+                                        .fetchDoctorHomeData(token);
+                                  },
+                                  child: const Text('إعادة المحاولة'),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
               ),
-          error:
-              (error) => Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('خطأ: ${error.message}'),
-                      ElevatedButton(
-                        onPressed: () async {
-                          final token = await SharedPrefHelper.getToken();
-                          context.read<DoctorHomeCubit>().fetchDoctorHomeData(
-                            token,
-                          );
-                        },
-                        child: const Text('إعادة المحاولة'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-        );
-      },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

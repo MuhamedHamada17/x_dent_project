@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_request_model.dart';
-import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/models/logout_patient_response_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_profile_screen/data/repos/logout_patient_repo.dart';
 import 'logout_patient_state.dart';
 
@@ -15,10 +14,6 @@ class LogoutPatientCubit extends Cubit<LogoutPatientState> {
 
     // جلب التوكن من SharedPreferences
     final token = await SharedPrefHelper.getSecuredString('access_token');
-    if (token == null) {
-      emit(const LogoutPatientState.error(error: 'No token found'));
-      return;
-    }
 
     final response = await _logoutPatientRepo.logout(
       token,

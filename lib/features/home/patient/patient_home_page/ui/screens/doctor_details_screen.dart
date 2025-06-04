@@ -317,11 +317,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                   height: 25.h,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text(
-                      doctor.location ?? 'Unknown Location',
-                      style: TextStyles.font12WhiteRegular,
-                      overflow: TextOverflow.ellipsis,
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorsManager.Blue,
                       elevation: 0,
@@ -329,6 +324,11 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                         borderRadius: BorderRadius.circular(20.r),
                         side: BorderSide.none,
                       ),
+                    ),
+                    child: Text(
+                      doctor.location ?? 'Unknown Location',
+                      style: TextStyles.font12WhiteRegular,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -338,10 +338,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                   height: 25.h,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text(
-                      'Other location',
-                      style: TextStyles.font12BlueRegular,
-                    ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ColorsManager.lighterBLUE,
                       elevation: 0,
@@ -349,6 +345,10 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                         borderRadius: BorderRadius.circular(20.r),
                         side: BorderSide.none,
                       ),
+                    ),
+                    child: Text(
+                      'Other location',
+                      style: TextStyles.font12BlueRegular,
                     ),
                   ),
                 ),
@@ -411,8 +411,8 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                               );
                             }
                           },
-                          child: const Text('Retry'),
                           style: ElevatedButton.styleFrom(backgroundColor: ColorsManager.Blue),
+                          child: const Text('Retry'),
                         ),
                       ],
                     ),
@@ -460,6 +460,11 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                           time: selectedTime,
                         );
                       },
+                      style: ElevatedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        backgroundColor: ColorsManager.Blue,
+                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                      ),
                       child: state is Loading
                           ? const SizedBox(
                         width: 20,
@@ -478,11 +483,6 @@ class _DoctorDetailsScreenState extends State<DoctorDetailsScreen> {
                         ),
                         overflow: TextOverflow.ellipsis,
                         softWrap: false,
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: ColorsManager.Blue,
-                        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       ),
                     );
                   },

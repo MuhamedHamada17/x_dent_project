@@ -31,7 +31,7 @@ class DeleteTreatmentPlan extends StatelessWidget {
                   Text("Delete", style: TextStyles.font28BlackMedium),
                 ],
               ),
-              content: Container(
+              content: SizedBox(
                 width: 300.w,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

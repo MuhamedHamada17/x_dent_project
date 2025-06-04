@@ -7,7 +7,7 @@ class BrowseCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 208.h,
       width: 340.w,
       child: Image.asset("assets/png/Drop File.png")

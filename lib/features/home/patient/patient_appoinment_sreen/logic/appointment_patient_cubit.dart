@@ -1,9 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import '../data/repos/appointment_patient_repo.dart';
-import '../data/models/upcoming_appointment_model.dart';
-import '../data/models/cancelled_appointment_model.dart';
-import '../data/models/completed_appointment_model.dart';
 import 'appointment_patient_state.dart';
 
 class AppointmentPatientCubit extends Cubit<AppointmentPatientState> {

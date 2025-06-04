@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:x_dent_project/core/networking/api_error_model.dart';
 import '../data/repos/treatment_plan_patient_repo.dart';
 import 'treatment_plan_patient_state.dart';
 
