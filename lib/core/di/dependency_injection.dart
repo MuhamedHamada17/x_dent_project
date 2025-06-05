@@ -2,8 +2,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/repos/doctors_appointments_repository.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_appointments_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/logic/doctor_home_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/repos/doctor_home_repo.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_patient_list_repo.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/patient_details_repo.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_list_cubit.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/patient_details_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/appointment_patient_repo.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/logic/appointment_patient_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/cancel_appointment_repo.dart';
@@ -198,4 +204,23 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<DoctorHomeCubit>(() => DoctorHomeCubit(getIt()));
   debugPrint('DoctorHomeRepository and DoctorHomeCubit registered');
+  // Doctor Patient List
+  getIt.registerLazySingleton<DoctorPatientListRepository>(
+      () => DoctorPatientListRepositoryImpl(getIt()));
+  getIt.registerFactory<DoctorPatientListCubit>(
+      () => DoctorPatientListCubit(getIt()));
+  debugPrint(
+      'DoctorPatientListRepository and DoctorPatientListCubit registered');
+// Doctor Patient Details
+  getIt.registerLazySingleton<PatientDetailsRepository>(
+      () => PatientDetailsRepositoryImpl(getIt()));
+  getIt
+      .registerFactory<PatientDetailsCubit>(() => PatientDetailsCubit(getIt()));
+  debugPrint('PatientDetailsRepository and PatientDetailsCubit registered');
+  // Doctor ِAll Appointments
+  getIt.registerLazySingleton<DoctorsAppointmentsRepository>(
+      () => DoctorsAppointmentsRepository(getIt()));
+  getIt.registerFactory<DoctorsAppointmentsCubit>(
+      () => DoctorsAppointmentsCubit(getIt()));
+  debugPrint('PatientDetailsRepository and PatientDetailsCubit registered');
 }

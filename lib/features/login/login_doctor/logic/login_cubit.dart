@@ -33,12 +33,16 @@ class LoginCubit extends Cubit<LoginState<LoginResponseBody>> {
           firstName: loginResponse.authData.data.firstName,
           lastName: loginResponse.authData.data.lastName,
           fullName:
-          '${loginResponse.authData.data.firstName} ${loginResponse.authData.data.lastName}',
+              '${loginResponse.authData.data.firstName} ${loginResponse.authData.data.lastName}',
         );
         await SharedPrefHelper.saveAccessToken(
             loginResponse.authData.accessToken);
         await SharedPrefHelper.saveUserRole(loginResponse.authData.data.role);
+        // إضافة حفظ doctor_id
+        await SharedPrefHelper.saveDoctorId(loginResponse.authData.data.id);
         emit(LoginState.success(loginResponse));
+        debugPrint(
+            'LoginCubit: Login successful, doctor_id: ${loginResponse.authData.data.id}');
       },
       failure: (error) {
         emit(LoginState.error(error: error.apiErrorModel));
