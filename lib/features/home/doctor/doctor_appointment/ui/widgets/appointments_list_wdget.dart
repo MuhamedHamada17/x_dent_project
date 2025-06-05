@@ -73,7 +73,9 @@ class AppointmentsListWidget extends StatelessWidget {
                               child: Text(
                                 appointment.status == 'pending'
                                     ? "Upcoming"
-                                    : "Completed",
+                                    : appointment.status == 'cancelled'
+                                        ? "cancelled"
+                                        : "Completed",
                                 style: TextStyles.font16BlackRegular,
                               ),
                             ),

@@ -8,7 +8,14 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 
 class XrayFileScreen extends StatelessWidget {
-  const XrayFileScreen({super.key});
+  final String imageUrl;
+  final String uploadedAt;
+
+  const XrayFileScreen({
+    super.key,
+    required this.imageUrl,
+    required this.uploadedAt,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,24 +37,47 @@ class XrayFileScreen extends StatelessWidget {
               width: double.infinity,
               color: ColorsManager.lighterBLUE,
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              child: Text("28/2/2025", style: TextStyles.font22BlackMedium),
+              child: Text(uploadedAt, style: TextStyles.font22BlackMedium),
             ),
             verticalSpace(16),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Image.asset(
-                    'assets/png/Xray_diagnoses.png',
+                  Image.network(
+                    imageUrl,
                     width: double.infinity,
+                    height: 229.h,
                     fit: BoxFit.cover,
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return SizedBox(
+                        width: double.infinity,
+                        height: 229.h,
+                        child: Center(
+                          child: CircularProgressIndicator(
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded /
+                                    loadingProgress.expectedTotalBytes!
+                                : null,
+                            color: ColorsManager.Blue,
+                          ),
+                        ),
+                      );
+                    },
+                    errorBuilder: (context, error, stackTrace) => Image.asset(
+                      'assets/png/Xray_diagnoses.png',
+                      width: double.infinity,
+                      height: 229.h,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   verticalSpace(8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Text(
-                        "Uploaded 28/2/2025 - 8:00PM",
+                        "Uploaded $uploadedAt",
                         style: TextStyles.font12BlackRegular,
                       ),
                       horizontalSpace(10),
@@ -61,7 +91,6 @@ class XrayFileScreen extends StatelessWidget {
               buttonWidth: 130.w,
               verticalPadding: 4.h,
               buttonHeight: 50,
-
               borderRadius: 25,
               backgroundColor: ColorsManager.Blue,
               buttonText: "Analyze",
