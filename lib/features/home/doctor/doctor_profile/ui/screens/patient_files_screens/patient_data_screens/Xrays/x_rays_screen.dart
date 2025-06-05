@@ -60,6 +60,7 @@ class XraysScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.white,
             title: Text("Xrays", style: TextStyles.font20BlackRegular),
             centerTitle: true,
             leading: IconButton(

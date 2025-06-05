@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
@@ -61,7 +62,21 @@ class DoctorProfileMainScreen extends StatelessWidget {
               ),
             ),
             verticalSpace(18),
-            Text("Dr Ahmed Ali", style: TextStyles.font22BlackMedium),
+            FutureBuilder<String>(
+              future: SharedPrefHelper.getFullName(),
+              builder: (context, nameSnapshot) {
+                final doctorName = nameSnapshot.data?.isNotEmpty ?? false
+                    ? nameSnapshot.data!
+                    : 'Dr omar eid';
+                return Text(
+                  "Dr $doctorName",
+                  style: const TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                  ),
+                );
+              },
+            ),
             const SizedBox(height: 5),
             Text("+20 1012345678", style: TextStyles.font12GreyRegular),
             const SizedBox(height: 20),
@@ -76,7 +91,7 @@ class DoctorProfileMainScreen extends StatelessWidget {
               title: "Change Password",
               icon: Icons.lock,
               onTap: () {
-                context.pushNamed(Routes.ChangePasswordScreen);
+                context.pushNamed(Routes.ChangePasswordPatientScreen);
               },
             ),
             ProfileOption(

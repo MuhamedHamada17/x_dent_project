@@ -104,8 +104,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const BillingReportsMainScreen(),
         );
-      case Routes.ChangePasswordScreen:
-        return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
+      // case Routes.ChangePasswordScreen:
+      //   return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       case Routes.EditProfileScreen:
         return MaterialPageRoute(builder: (_) => EditProfileScreen());
       case Routes.HelpCenterScreen:

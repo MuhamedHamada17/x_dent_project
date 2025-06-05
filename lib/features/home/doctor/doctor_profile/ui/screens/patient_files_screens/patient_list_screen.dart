@@ -31,6 +31,7 @@ class PatientFilesScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Scaffold(
+            backgroundColor: Colors.white,
             body: Center(child: CircularProgressIndicator()),
           );
         }
@@ -49,6 +50,7 @@ class PatientFilesScreen extends StatelessWidget {
             child: Scaffold(
               backgroundColor: Colors.white,
               appBar: AppBar(
+                backgroundColor: Colors.white,
                 leading: IconButton(
                   icon: const Icon(Icons.arrow_back),
                   onPressed: () => Navigator.of(context).pop(),
