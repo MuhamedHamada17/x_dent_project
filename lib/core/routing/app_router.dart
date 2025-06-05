@@ -123,7 +123,28 @@ class AppRouter {
       case Routes.XraysScreen:
         return MaterialPageRoute(builder: (_) => const XraysScreen());
       case Routes.XrayFileScreen:
-        return MaterialPageRoute(builder: (_) => const XrayFileScreen());
+        if (arguments is Map<String, dynamic> &&
+            arguments['imageUrl'] is String &&
+            arguments['uploadedAt'] is String &&
+            arguments['imageUrl'].isNotEmpty &&
+            arguments['uploadedAt'].isNotEmpty) {
+          debugPrint(
+              'AppRouter: Navigating to XrayFileScreen with imageUrl: ${arguments['imageUrl']}, uploadedAt: ${arguments['uploadedAt']}');
+          return MaterialPageRoute(
+            builder: (_) => XrayFileScreen(
+              imageUrl: arguments['imageUrl'],
+              uploadedAt: arguments['uploadedAt'],
+            ),
+          );
+        }
+        debugPrint(
+            'AppRouter: Error - Invalid or missing arguments for XrayFileScreen: $arguments');
+        return MaterialPageRoute(
+          builder: (_) => const Scaffold(
+            body:
+                Center(child: Text('Error: Invalid or missing X-ray details')),
+          ),
+        );
       case Routes.MidicalRecordsScreen:
         return MaterialPageRoute(builder: (_) => const MidicalRecordsScreen());
       case Routes.AnalysisScreen:
