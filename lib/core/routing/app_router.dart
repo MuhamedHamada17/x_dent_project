@@ -131,7 +131,8 @@ class AppRouter {
       case Routes.chatScreenPatient:
         final doctorId = arguments as int?;
         if (doctorId == null) {
-          debugPrint('AppRouter: Error - No doctorId provided for chatScreenPatient: $arguments');
+          debugPrint(
+              'AppRouter: Error - No doctorId provided for chatScreenPatient: $arguments');
           return MaterialPageRoute(
             builder: (_) => const Scaffold(
               body: Center(child: Text('Error: No doctorId provided')),
@@ -182,13 +183,18 @@ class AppRouter {
       case Routes.AvailabilityScreen:
         return MaterialPageRoute(builder: (_) => AvailabilityScreen());
       case Routes.DoctorListScreen:
-        if (arguments is Map<String, dynamic> && arguments['specialization'] is String && arguments['specialization'].isNotEmpty) {
-          debugPrint('AppRouter: Navigating to DoctorListScreen with specialization: ${arguments['specialization']}');
+        if (arguments is Map<String, dynamic> &&
+            arguments['specialization'] is String &&
+            arguments['specialization'].isNotEmpty) {
+          debugPrint(
+              'AppRouter: Navigating to DoctorListScreen with specialization: ${arguments['specialization']}');
           return MaterialPageRoute(
-            builder: (_) => DoctorListScreen(specialization: arguments['specialization']),
+            builder: (_) =>
+                DoctorListScreen(specialization: arguments['specialization']),
           );
         }
-        debugPrint('AppRouter: Error - Invalid or empty specialization for DoctorListScreen: $arguments');
+        debugPrint(
+            'AppRouter: Error - Invalid or empty specialization for DoctorListScreen: $arguments');
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
             body: Center(child: Text('Error: Invalid or empty specialization')),
@@ -199,22 +205,29 @@ class AppRouter {
       case Routes.FilterPatientScreen:
         return MaterialPageRoute(builder: (_) => const FilterPatientScreen());
       case Routes.AddRatingDialogScreen:
-        if (arguments is Map<String, dynamic> && arguments['doctorId'] is int && arguments['doctorId'] != 0) {
-          debugPrint('AppRouter: Navigating to AddRatingDialogScreen with doctorId: ${arguments['doctorId']}');
+        if (arguments is Map<String, dynamic> &&
+            arguments['doctorId'] is int &&
+            arguments['doctorId'] != 0) {
+          debugPrint(
+              'AppRouter: Navigating to AddRatingDialogScreen with doctorId: ${arguments['doctorId']}');
           return MaterialPageRoute(
-            builder: (_) => AddRatingDialogScreen(doctorId: arguments['doctorId']),
+            builder: (_) =>
+                AddRatingDialogScreen(doctorId: arguments['doctorId']),
           );
         }
-        debugPrint('AppRouter: Error - Invalid or missing doctorId for AddRatingDialogScreen: $arguments');
+        debugPrint(
+            'AppRouter: Error - Invalid or missing doctorId for AddRatingDialogScreen: $arguments');
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
             body: Center(child: Text('Error: Invalid or missing doctorId')),
           ),
         );
       case Routes.ProfileSettingsPatient:
-        return MaterialPageRoute(builder: (_) => const ProfileSettingsPatient());
+        return MaterialPageRoute(
+            builder: (_) => const ProfileSettingsPatient());
       case Routes.PatientDetailsPaymentScreen:
-        return MaterialPageRoute(builder: (_) => const PatientDetailsPaymentScreen());
+        return MaterialPageRoute(
+            builder: (_) => const PatientDetailsPaymentScreen());
       case Routes.PaymentMethodScreen:
         return MaterialPageRoute(builder: (_) => const PaymentMethodScreen());
       case Routes.AddCartScreen:
@@ -227,7 +240,8 @@ class AppRouter {
             arguments['uploadedAt'] is String &&
             arguments['imageUrl'].isNotEmpty &&
             arguments['uploadedAt'].isNotEmpty) {
-          debugPrint('AppRouter: Navigating to DisplayXraysScreen with imageUrl: ${arguments['imageUrl']}, uploadedAt: ${arguments['uploadedAt']}');
+          debugPrint(
+              'AppRouter: Navigating to DisplayXraysScreen with imageUrl: ${arguments['imageUrl']}, uploadedAt: ${arguments['uploadedAt']}');
           return MaterialPageRoute(
             builder: (_) => DisplayXraysScreen(
               imageUrl: arguments['imageUrl'],
@@ -235,19 +249,28 @@ class AppRouter {
             ),
           );
         }
-        debugPrint('AppRouter: Error - Invalid or missing arguments for DisplayXraysScreen: $arguments');
+        debugPrint(
+            'AppRouter: Error - Invalid or missing arguments for DisplayXraysScreen: $arguments');
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
-            body: Center(child: Text('Error: Invalid or missing X-ray details')),
+            body:
+                Center(child: Text('Error: Invalid or missing X-ray details')),
           ),
         );
       case Routes.PerscriptionsPattientScreen:
-        return MaterialPageRoute(builder: (_) => const PerscriptionsPattientScreen());
+        return MaterialPageRoute(
+            builder: (_) => const PerscriptionsPattientScreen());
       case Routes.TreatmentsPlansScreenPatient:
-        return MaterialPageRoute(builder: (_) => const TreatmentsPlansScreenPatient());
+        return MaterialPageRoute(
+            builder: (_) => const TreatmentsPlansScreenPatient());
       case Routes.doctorDetailsScreen:
-        if (arguments is Map<String, dynamic> && arguments['specialization'] is String && arguments['doctorId'] is int && arguments['specialization'].isNotEmpty && arguments['doctorId'] != 0) {
-          debugPrint('AppRouter: Navigating to DoctorDetailsScreen with specialization: ${arguments['specialization']}, doctorId: ${arguments['doctorId']}');
+        if (arguments is Map<String, dynamic> &&
+            arguments['specialization'] is String &&
+            arguments['doctorId'] is int &&
+            arguments['specialization'].isNotEmpty &&
+            arguments['doctorId'] != 0) {
+          debugPrint(
+              'AppRouter: Navigating to DoctorDetailsScreen with specialization: ${arguments['specialization']}, doctorId: ${arguments['doctorId']}');
           return MaterialPageRoute(
             builder: (_) => DoctorDetailsScreen(
               specialization: arguments['specialization'],
@@ -255,7 +278,8 @@ class AppRouter {
             ),
           );
         }
-        debugPrint('AppRouter: Error - Invalid arguments for DoctorDetailsScreen: $arguments');
+        debugPrint(
+            'AppRouter: Error - Invalid arguments for DoctorDetailsScreen: $arguments');
         return MaterialPageRoute(
           builder: (_) => const Scaffold(
             body: Center(child: Text('Error: Invalid doctor details')),

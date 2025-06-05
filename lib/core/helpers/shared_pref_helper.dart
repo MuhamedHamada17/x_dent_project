@@ -67,14 +67,16 @@ class SharedPrefHelper {
 
   static Future<void> setSecuredString(String key, String value) async {
     const flutterSecureStorage = FlutterSecureStorage();
-    debugPrint('FlutterSecureStorage: Set secured string with key "$key" and value "$value"');
+    debugPrint(
+        'FlutterSecureStorage: Set secured string with key "$key" and value "$value"');
     await flutterSecureStorage.write(key: key, value: value);
   }
 
   static Future<String> getSecuredString(String key) async {
     const flutterSecureStorage = FlutterSecureStorage();
     final value = await flutterSecureStorage.read(key: key) ?? '';
-    debugPrint('FlutterSecureStorage: Get secured string with key "$key", value: "$value" (length: ${value.length})');
+    debugPrint(
+        'FlutterSecureStorage: Get secured string with key "$key", value: "$value" (length: ${value.length})');
     return value;
   }
 
@@ -84,13 +86,15 @@ class SharedPrefHelper {
     await flutterSecureStorage.deleteAll();
   }
 
-  static Future<void> saveDoctors(String specialization, List<DoctorData> doctors) async {
+  static Future<void> saveDoctors(
+      String specialization, List<DoctorData> doctors) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final key = 'doctors_$specialization';
     final doctorsJson = doctors.map((doctor) => doctor.toJson()).toList();
     final jsonString = jsonEncode(doctorsJson);
     await sharedPreferences.setString(key, jsonString);
-    debugPrint('SharedPrefHelper: Saved doctors for specialization "$specialization" with key "$key"');
+    debugPrint(
+        'SharedPrefHelper: Saved doctors for specialization "$specialization" with key "$key"');
   }
 
   static Future<List<DoctorData>> getDoctors(String specialization) async {
@@ -98,12 +102,15 @@ class SharedPrefHelper {
     final key = 'doctors_$specialization';
     final jsonString = sharedPreferences.getString(key);
     if (jsonString == null || jsonString.isEmpty) {
-      debugPrint('SharedPrefHelper: No doctors found for specialization "$specialization"');
+      debugPrint(
+          'SharedPrefHelper: No doctors found for specialization "$specialization"');
       return [];
     }
     final List<dynamic> doctorsJson = jsonDecode(jsonString);
-    final doctors = doctorsJson.map((json) => DoctorData.fromJson(json)).toList();
-    debugPrint('SharedPrefHelper: Retrieved ${doctors.length} doctors for specialization "$specialization"');
+    final doctors =
+        doctorsJson.map((json) => DoctorData.fromJson(json)).toList();
+    debugPrint(
+        'SharedPrefHelper: Retrieved ${doctors.length} doctors for specialization "$specialization"');
     return doctors;
   }
 
@@ -111,7 +118,8 @@ class SharedPrefHelper {
     final sharedPreferences = await SharedPreferences.getInstance();
     final key = 'doctors_$specialization';
     await sharedPreferences.remove(key);
-    debugPrint('SharedPrefHelper: Cleared doctors for specialization "$specialization" with key "$key"');
+    debugPrint(
+        'SharedPrefHelper: Cleared doctors for specialization "$specialization" with key "$key"');
   }
 
   static Future<void> clearAllDoctors() async {
@@ -132,7 +140,8 @@ class SharedPrefHelper {
     final doctorJson = doctor.toJson();
     final jsonString = jsonEncode(doctorJson);
     await sharedPreferences.setString(key, jsonString);
-    debugPrint('SharedPrefHelper: Saved doctor data for ID $doctorId with key "$key"');
+    debugPrint(
+        'SharedPrefHelper: Saved doctor data for ID $doctorId with key "$key"');
   }
 
   static Future<DoctorData?> getDoctorData(int doctorId) async {
@@ -149,24 +158,29 @@ class SharedPrefHelper {
     return doctor;
   }
 
-  static Future<void> saveAvailableSlots(int doctorId, String date, List<String> slots) async {
+  static Future<void> saveAvailableSlots(
+      int doctorId, String date, List<String> slots) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final key = 'available_slots_${doctorId}_$date';
     final jsonString = jsonEncode(slots);
     await sharedPreferences.setString(key, jsonString);
-    debugPrint('SharedPrefHelper: Saved available slots for doctorId $doctorId, date $date with key "$key"');
+    debugPrint(
+        'SharedPrefHelper: Saved available slots for doctorId $doctorId, date $date with key "$key"');
   }
 
-  static Future<List<String>> getAvailableSlots(int doctorId, String date) async {
+  static Future<List<String>> getAvailableSlots(
+      int doctorId, String date) async {
     final sharedPreferences = await SharedPreferences.getInstance();
     final key = 'available_slots_${doctorId}_$date';
     final jsonString = sharedPreferences.getString(key);
     if (jsonString == null || jsonString.isEmpty) {
-      debugPrint('SharedPrefHelper: No available slots found for doctorId $doctorId, date $date');
+      debugPrint(
+          'SharedPrefHelper: No available slots found for doctorId $doctorId, date $date');
       return [];
     }
     final slots = List<String>.from(jsonDecode(jsonString));
-    debugPrint('SharedPrefHelper: Retrieved ${slots.length} available slots for doctorId $doctorId, date $date');
+    debugPrint(
+        'SharedPrefHelper: Retrieved ${slots.length} available slots for doctorId $doctorId, date $date');
     return slots;
   }
 
@@ -174,7 +188,8 @@ class SharedPrefHelper {
     final sharedPreferences = await SharedPreferences.getInstance();
     final key = 'available_slots_${doctorId}_$date';
     await sharedPreferences.remove(key);
-    debugPrint('SharedPrefHelper: Cleared available slots for doctorId $doctorId, date $date with key "$key"');
+    debugPrint(
+        'SharedPrefHelper: Cleared available slots for doctorId $doctorId, date $date with key "$key"');
   }
 
   static Future<void> clearAllAvailableSlots() async {
@@ -203,12 +218,14 @@ class SharedPrefHelper {
 
   static Future<void> saveAccessToken(String token) async {
     await setSecuredString('access_token', token);
-    debugPrint('SharedPrefHelper: Saved access token: $token (length: ${token.length})');
+    debugPrint(
+        'SharedPrefHelper: Saved access token: $token (length: ${token.length})');
   }
 
   static Future<String> getToken() async {
     String token = await getSecuredString('access_token');
-    debugPrint('SharedPrefHelper: Retrieved access token: $token (length: ${token.length})');
+    debugPrint(
+        'SharedPrefHelper: Retrieved access token: $token (length: ${token.length})');
     return token;
   }
 
@@ -227,7 +244,8 @@ class SharedPrefHelper {
 
   static Future<bool> checkIfLoggedInUser() async {
     String token = await getSecuredString('access_token');
-    debugPrint('SharedPrefHelper: Checking if logged in, token: $token (length: ${token.length})');
+    debugPrint(
+        'SharedPrefHelper: Checking if logged in, token: $token (length: ${token.length})');
     return token.isNotEmpty;
   }
 
@@ -286,7 +304,8 @@ class SharedPrefHelper {
 
   static Future<String> getDoctorName(int doctorId) async {
     String name = await getString('doctor_name_$doctorId');
-    debugPrint('SharedPrefHelper: Retrieved doctor name for ID $doctorId: $name');
+    debugPrint(
+        'SharedPrefHelper: Retrieved doctor name for ID $doctorId: $name');
     return name;
   }
 
@@ -300,5 +319,33 @@ class SharedPrefHelper {
       }
     }
     debugPrint('SharedPrefHelper: All doctor names cleared');
+  }
+
+  static Future<void> savePatientId(int patientId) async {
+    await setData('patient_id', patientId);
+    debugPrint('SharedPrefHelper: Saved patient ID: $patientId');
+  }
+
+  static Future<int> getPatientId() async {
+    int patientId = await getInt('patient_id');
+    debugPrint('SharedPrefHelper: Retrieved patient ID: $patientId');
+    return patientId;
+  }
+
+  static Future<void> clearPatientId() async {
+    await removeData('patient_id');
+    debugPrint('SharedPrefHelper: Cleared patient ID');
+  }
+
+  // Added functions for doctor_id
+  static Future<void> saveDoctorId(int doctorId) async {
+    await setData('doctor_id', doctorId);
+    debugPrint('SharedPrefHelper: Saved doctor ID: $doctorId');
+  }
+
+  static Future<int> getDoctorId() async {
+    int doctorId = await getInt('doctor_id');
+    debugPrint('SharedPrefHelper: Retrieved doctor ID: $doctorId');
+    return doctorId;
   }
 }

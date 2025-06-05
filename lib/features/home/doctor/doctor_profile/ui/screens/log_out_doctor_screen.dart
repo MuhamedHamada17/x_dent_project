@@ -2,7 +2,9 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
@@ -19,10 +21,8 @@ class LogOutDoctorScreen extends StatelessWidget {
           DoctorProfileMainScreen(),
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 7, sigmaY: 5),
-
             child: AlertDialog(
               backgroundColor: ColorsManager.OfWhite,
-
               title: Row(
                 children: [
                   Image.asset(
@@ -61,8 +61,7 @@ class LogOutDoctorScreen extends StatelessWidget {
                         backgroundColor: ColorsManager.Blue,
                         textStyle: TextStyles.font22WhiteMedium,
                         onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.pop(context);
+                          context.pushNamed(Routes.loginDoctorScreen);
                         },
                       ),
                     ),

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_appointments_cubit.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_appointments_state.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/appointment_detailes_screens/doctor_appointment_detail_screen.dart';
 
 class AppointmentsListWidget extends StatelessWidget {
@@ -9,76 +12,96 @@ class AppointmentsListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 12, // عدد المواعيد
-      itemBuilder: (context, index) {
-        bool isUpcoming = index < 2;
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (index == 0)
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 6),
-                child: Container(
-                  width: double.infinity,
-                  color: ColorsManager.lighterBLUE,
-                  child: Text(
-                    textAlign: TextAlign.center,
-                    "Saturday 8/2/2025",
-                    style: TextStyles.font12BlackRegular,
-                  ),
-                ),
-              ),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-              decoration: BoxDecoration(
-                border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return BlocBuilder<DoctorsAppointmentsCubit, DoctorsAppointmentsState>(
+      builder: (context, state) {
+        return state.when(
+          initial: () => const Center(child: Text('جاري التحضير...')),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          error: (message) => Center(child: Text('خطأ: $message')),
+          loaded: (data) => ListView.builder(
+            itemCount: data.appointments.length,
+            itemBuilder: (context, index) {
+              final appointment = data.appointments[index];
+              // تحديد تاريخ اليوم بناءً على أول موعد أو اليوم الحالي
+              final displayDate =
+                  index == 0 ? appointment.appointmentDate : null;
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Ahmed Khaled", style: TextStyles.font14BlackRegular),
-                  Row(
-                    children: [
-                      Text("5:00PM", style: TextStyles.font14BlackRegular),
-                      horizontalSpace(10),
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 14,
-                          vertical: 10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: ColorsManager.Blue),
-                        ),
+                  if (displayDate != null)
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 6),
+                      child: Container(
+                        width: double.infinity,
+                        color: ColorsManager.lighterBLUE,
                         child: Text(
-                          isUpcoming ? "Upcoming" : "Completed",
-                          style: TextStyles.font16BlackRegular,
+                          textAlign: TextAlign.center,
+                          appointment.appointmentDate,
+                          style: TextStyles.font12BlackRegular,
                         ),
                       ),
-                      horizontalSpace(10),
-                      GestureDetector(
-                        onTap:
-                            () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return AppointmentDetailsScreen();
-                                },
+                    ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+                    decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(color: Colors.grey.shade300)),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          appointment.patient.name,
+                          style: TextStyles.font14BlackRegular,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              appointment.appointmentTime,
+                              style: TextStyles.font14BlackRegular,
+                            ),
+                            horizontalSpace(10),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 14,
+                                vertical: 10,
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(color: ColorsManager.Blue),
+                              ),
+                              child: Text(
+                                appointment.status == 'pending'
+                                    ? "Upcoming"
+                                    : "Completed",
+                                style: TextStyles.font16BlackRegular,
                               ),
                             ),
-                        child: Icon(
-                          Icons.arrow_forward,
-                          size: 26,
-                          color: ColorsManager.Blue,
+                            horizontalSpace(10),
+                            GestureDetector(
+                              onTap: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return AppointmentDetailsScreen();
+                                  },
+                                ),
+                              ),
+                              child: Icon(
+                                Icons.arrow_forward,
+                                size: 26,
+                                color: ColorsManager.Blue,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
-              ),
-            ),
-          ],
+              );
+            },
+          ),
         );
       },
     );

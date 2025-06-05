@@ -23,7 +23,6 @@ class ReservationPage extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 8),
-
           Row(
             children: [
               Icon(Icons.location_on, size: 24),
@@ -35,7 +34,6 @@ class ReservationPage extends StatelessWidget {
             ],
           ),
           verticalSpace(6),
-
           Row(
             children: [
               Icon(Icons.book, size: 24),
@@ -44,7 +42,6 @@ class ReservationPage extends StatelessWidget {
               Text("#573DK98M", style: TextStyle(color: ColorsManager.Blue)),
             ],
           ),
-
           verticalSpace(16),
           const MapPlaceholder(),
           verticalSpace(16),

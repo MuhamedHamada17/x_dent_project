@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_all_appointments_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_reservation_appointments_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/doctor_home_response_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/doctor_patient_list_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/patient_details_response_model.dart';
 import 'package:x_dent_project/features/login/login_doctor/data/models/login_response_body.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/cancelled_appointment_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/completed_appointment_model.dart';
@@ -162,12 +166,34 @@ abstract class ApiService {
     @Header('Authorization') String token,
     @Body() UploadXraysRequest request,
   );
+
   @GET(ApiConstants.DisplayXraysPatient)
   Future<DisplayXraysResponse> displayXrays(
     @Header('Authorization') String token,
   );
+
   @GET(ApiConstants.doctorHome)
   Future<DoctorHomeResponseModel> getDoctorHome(
+    @Header('Authorization') String token,
+  );
+
+  @GET(ApiConstants.DoctorPatientList)
+  Future<DoctorPatientListModel> getPatientList(
+    @Header('Authorization') String token,
+  );
+
+  @GET(ApiConstants.PatientDetails)
+  Future<PatientDetailsResponse> getPatientDetails(
+    @Header('Authorization') String token,
+    @Path('id') int patientId,
+  );
+
+  @GET(ApiConstants.DoctorsAllAppointments)
+  Future<DoctorsAllAppointmentsModel> getDoctorsAllAppointments(
+    @Header('Authorization') String token,
+  );
+  @GET(ApiConstants.DoctorsReservationAppointments)
+  Future<DoctorsReservationAppointmentsModel> getDoctorReservationAppointment(
     @Header('Authorization') String token,
   );
 }
