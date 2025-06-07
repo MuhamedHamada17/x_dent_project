@@ -10,14 +10,14 @@ import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_treatment_plan_cubit.dart';
 
-class AddPlans extends StatefulWidget {
-  const AddPlans({super.key});
+class DoctorCreateTreatment extends StatefulWidget {
+  const DoctorCreateTreatment({super.key});
 
   @override
-  State<AddPlans> createState() => _AddPlansState();
+  State<DoctorCreateTreatment> createState() => _DoctorCreateTreatmentState();
 }
 
-class _AddPlansState extends State<AddPlans> {
+class _DoctorCreateTreatmentState extends State<DoctorCreateTreatment> {
   final TextEditingController _planNameController = TextEditingController();
   DateTime? _selectedDate;
   final DateFormat _dateFormat = DateFormat('yyyy-MM-dd');
@@ -135,20 +135,21 @@ class _AddPlansState extends State<AddPlans> {
                         final patientId = await SharedPrefHelper.getPatientId();
                         await context
                             .read<DoctorPatientTreatmentPlanCubit>()
-                            .updateTreatmentPlan(
-                              planId: 0, // 0 for new plan
+                            .createTreatmentPlan(
                               name: _planNameController.text,
                               date: _dateFormat.format(_selectedDate!),
+                              patientId: patientId,
                             );
-                        await context
-                            .read<DoctorPatientTreatmentPlanCubit>()
-                            .fetchTreatmentPlans(patientId);
-                        Navigator.pop(context);
+                        if (mounted) {
+                          Navigator.pop(context); // Close dialog
+                          context
+                              .read<DoctorPatientTreatmentPlanCubit>()
+                              .fetchTreatmentPlans(patientId); // Refresh list
+                        }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
-                            content: Text(
-                                "Please enter a plan name and select a date."),
+                            content: Text("Please enter a plan name and date."),
                           ),
                         );
                       }

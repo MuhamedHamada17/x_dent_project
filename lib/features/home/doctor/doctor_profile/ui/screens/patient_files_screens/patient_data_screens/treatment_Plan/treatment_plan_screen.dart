@@ -14,9 +14,14 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/edit_treatment_plan_widget.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/treatment_plan_row.dart';
 
-class TreatmentPlanScreen extends StatelessWidget {
+class TreatmentPlanScreen extends StatefulWidget {
   const TreatmentPlanScreen({super.key});
 
+  @override
+  State<TreatmentPlanScreen> createState() => _TreatmentPlanScreenState();
+}
+
+class _TreatmentPlanScreenState extends State<TreatmentPlanScreen> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<int>(

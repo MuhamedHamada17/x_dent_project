@@ -5,6 +5,7 @@ import 'package:x_dent_project/core/networking/api_error_model.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/doctor_patient_treatment_plan_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/edit_treatment_request.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/doctor_create_treatment_request.dart';
 
 abstract class DoctorPatientTreatmentPlanRepository {
   Future<DoctorPatientTreatmentPlanModel> getTreatmentPlans({
@@ -19,7 +20,14 @@ abstract class DoctorPatientTreatmentPlanRepository {
     required int planId,
     required String name,
     required String date,
-    required int patientId, // Add patientId parameter
+    required int patientId,
+  });
+
+  Future<DoctorPatientTreatmentPlanModel> createTreatmentPlan({
+    required String name,
+    required String date,
+    required String? appointmentTime,
+    required int patientId,
   });
 }
 
@@ -111,7 +119,7 @@ class DoctorPatientTreatmentPlanRepositoryImpl
     required int planId,
     required String name,
     required String date,
-    required int patientId, // Add patientId parameter
+    required int patientId,
   }) async {
     try {
       final token = await SharedPrefHelper.getToken();
@@ -129,10 +137,59 @@ class DoctorPatientTreatmentPlanRepositoryImpl
       final request = EditTreatmentRequest(name: name, date: date);
       await apiService.updateTreatmentPlan(bearerToken, planId, request);
       debugPrint('Treatment plan updated successfully');
-      // Fetch and return the updated treatment plan using patientId
       final updatedPlan = await apiService.getDoctorPatientTreatmentPlans(
           bearerToken, patientId);
       return updatedPlan;
+    } on DioException catch (e) {
+      debugPrint(
+          'DioException: ${e.message}, StatusCode: ${e.response?.statusCode}, Response: ${e.response?.data}');
+      throw ApiErrorModel(
+        success: false,
+        message:
+            e.response?.data['message'] ?? 'An unexpected error occurred: $e',
+        statusCode: e.response?.statusCode ?? 400,
+      );
+    } catch (e) {
+      debugPrint('Unexpected error: $e');
+      throw ApiErrorModel(
+        success: false,
+        message: 'Unexpected error occurred: $e',
+        statusCode: 400,
+      );
+    }
+  }
+
+  @override
+  Future<DoctorPatientTreatmentPlanModel> createTreatmentPlan({
+    required String name,
+    required String date,
+    required String? appointmentTime,
+    required int patientId,
+  }) async {
+    try {
+      final token = await SharedPrefHelper.getToken();
+      if (token.isEmpty) {
+        debugPrint('Error: Token is empty');
+        throw ApiErrorModel(
+          success: false,
+          message: 'Token is empty',
+          statusCode: 400,
+        );
+      }
+      debugPrint('Creating treatment plan for patientId: $patientId');
+      final bearerToken = 'Bearer $token';
+      final request = DoctorCreateTreatmentRequest(
+        name: name,
+        date: date,
+        appointmentTime: appointmentTime,
+      );
+      final response =
+          await apiService.createTreatmentPlan(bearerToken, patientId, request);
+      debugPrint('Treatment plan created successfully');
+      // Convert response to DoctorPatientTreatmentPlanModel
+      final treatmentPlans = await apiService.getDoctorPatientTreatmentPlans(
+          bearerToken, patientId);
+      return treatmentPlans;
     } on DioException catch (e) {
       debugPrint(
           'DioException: ${e.message}, StatusCode: ${e.response?.statusCode}, Response: ${e.response?.data}');
