@@ -11,6 +11,7 @@ import 'package:x_dent_project/core/widgets/app_text_button.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_patient_treatment_plan_repository.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_treatment_plan_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_treatment_plan_state.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/edit_treatment_plan_widget.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/treatment_plan_row.dart';
 
 class TreatmentPlanScreen extends StatelessWidget {
@@ -91,9 +92,14 @@ class _TreatmentPlanBody extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final plan = treatmentPlans.treatmentPlans[index];
                         return TreatmentPlanRow(
-                          plan.status == 1,
-                          plan.name,
-                          plan.date,
+                          isActive: plan.status == 0,
+                          sessionName: plan.name ?? 'Unknown Session',
+                          date: plan.date ?? 'Unknown Date',
+                          planId: plan.id,
+                          showDateInsteadOfDelete: true,
+                          onEdit: () {},
+                          onDelete:
+                              () {}, // Empty callback to disable delete action
                         );
                       },
                     ),

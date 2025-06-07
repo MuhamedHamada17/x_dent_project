@@ -1,22 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/delete_treatment_plan.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/edit_treatment_plan.dart';
 
 class TreatmentPlanRow extends StatelessWidget {
-  final bool isCompleted;
-  final String session;
+  final bool isActive;
+  final String sessionName;
   final String date;
+  final int planId;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
+  final bool showDateInsteadOfDelete;
 
-  const TreatmentPlanRow(this.isCompleted, this.session, this.date,
-      {super.key});
+  const TreatmentPlanRow({
+    super.key,
+    required this.isActive,
+    required this.sessionName,
+    required this.date,
+    required this.planId,
+    required this.onEdit,
+    required this.onDelete,
+    this.showDateInsteadOfDelete = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
       child: Column(
         children: [
           Row(
@@ -27,53 +38,46 @@ class TreatmentPlanRow extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(
                     width: 2,
-                    color: isCompleted ? Colors.green : ColorsManager.Grey,
+                    color: isActive ? Colors.green : Colors.grey,
                   ),
                 ),
                 child: Icon(
-                  isCompleted ? Icons.check : Icons.close,
-                  color: isCompleted ? Colors.green : ColorsManager.Grey,
+                  isActive ? Icons.check : Icons.close,
+                  color: isActive ? Colors.green : Colors.grey,
                 ),
               ),
               horizontalSpace(8),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Text(session, style: TextStyles.font20BlackRegular),
+                  child:
+                      Text(sessionName, style: TextStyles.font20BlackRegular),
                 ),
               ),
               GestureDetector(
-                onTap: () {
-                  date == "Delete "
-                      ? showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return DeleteTreatmentPlan();
-                          },
-                        )
-                      : showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return EditTreatmentPlan();
-                          },
-                        );
-                },
+                onTap: isActive ? onEdit : onDelete,
                 child: Text(
-                  date,
-                  style: date == "Delete "
-                      ? TextStyles.font20RedRegular
-                      : TextStyles.font20BlueRegular,
+                  isActive
+                      ? (showDateInsteadOfDelete ? date : 'Edit')
+                      : (showDateInsteadOfDelete ? date : 'Delete'),
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: isActive
+                        ? ColorsManager.Blue
+                        : (showDateInsteadOfDelete
+                            ? ColorsManager.Blue
+                            : Colors.red),
+                  ),
                 ),
               ),
             ],
           ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-            child: Divider(height: 1, color: ColorsManager.Grey),
+            child: Divider(height: 1, color: Colors.grey),
           ),
         ],
       ),
     );
   }
 }
-//TextStyles.font20BlueRegular

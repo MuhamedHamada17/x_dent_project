@@ -15,7 +15,8 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/pa
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Midical_records/midical_records_file_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/Xrays/anlysis_screens/analysis_screens.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/prescriptions/prescriptions_main_screen.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan_screen.dart'
+    as editTreatment;
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/treatment_plan_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/upcomming_appointment/upcomming_appointment.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_list_screen.dart';
@@ -107,7 +108,7 @@ class AppRouter {
       // case Routes.ChangePasswordScreen:
       //   return MaterialPageRoute(builder: (_) => const ChangePasswordScreen());
       case Routes.EditProfileScreen:
-        return MaterialPageRoute(builder: (_) => EditProfileScreen());
+        return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case Routes.HelpCenterScreen:
         return MaterialPageRoute(builder: (_) => const HelpCenterScreen());
       case Routes.LanguageScreen:
@@ -179,7 +180,7 @@ class AppRouter {
         );
       case Routes.EditTreatmentPlanScreen:
         return MaterialPageRoute(
-          builder: (_) => const EditTreatmentPlanScreen(),
+          builder: (_) => const editTreatment.EditTreatmentPlanScreen(),
         );
       case Routes.EditProfilePatientScreen:
         return MaterialPageRoute(

@@ -138,9 +138,9 @@ class PatientFilesScreen extends StatelessWidget {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(patient.name,
-                                          style: TextStyles.font14BlackRegular),
+                                          style: TextStyles.font16BlackRegular),
                                       Text(patient.appointmentDate,
-                                          style: TextStyles.font14BlackRegular),
+                                          style: TextStyles.font16BlackRegular),
                                     ],
                                   ),
                                 ),
