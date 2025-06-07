@@ -83,7 +83,38 @@ class DoctorPatientTreatmentPlanCubit
         planId: planId,
         name: name,
         date: date,
-        patientId: _patientId!, // Pass patientId
+        patientId: _patientId!,
+      );
+      emit(DoctorPatientTreatmentPlanState.success(treatmentPlans));
+    } catch (e) {
+      if (e is ApiErrorModel) {
+        emit(DoctorPatientTreatmentPlanState.error(e));
+      } else {
+        emit(DoctorPatientTreatmentPlanState.error(
+          ApiErrorModel(
+            success: false,
+            message: 'Unexpected error: $e',
+            statusCode: 400,
+          ),
+        ));
+      }
+    }
+  }
+
+  Future<void> createTreatmentPlan({
+    required String name,
+    required String date,
+    String? appointmentTime,
+    required int patientId,
+  }) async {
+    emit(const DoctorPatientTreatmentPlanState.loading());
+    try {
+      _patientId = patientId;
+      final treatmentPlans = await _repository.createTreatmentPlan(
+        name: name,
+        date: date,
+        appointmentTime: appointmentTime,
+        patientId: patientId,
       );
       emit(DoctorPatientTreatmentPlanState.success(treatmentPlans));
     } catch (e) {

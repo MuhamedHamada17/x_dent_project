@@ -9,6 +9,8 @@ import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/d
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/edit_treatment_request.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/patient_details_response_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/show_patient_xray_model.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/doctor_create_treatment_request.dart';
+import 'package:x_dent_project/features/home/patient/patient_home_page/data/models/doctor_create_treatment_response.dart';
 import 'package:x_dent_project/features/login/login_doctor/data/models/login_response_body.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/cancelled_appointment_model.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/models/completed_appointment_model.dart';
@@ -219,4 +221,12 @@ abstract class ApiService {
   @Headers({'Content-Type': 'application/json'})
   Future<void> updateTreatmentPlan(@Header('Authorization') String token,
       @Path('id') int planId, @Body() EditTreatmentRequest request);
+
+  @POST(ApiConstants.CreatePatientTreatmentPlans)
+  @Headers({'Content-Type': 'application/json'})
+  Future<DoctorCreateTreatmentResponse> createTreatmentPlan(
+    @Header('Authorization') String token,
+    @Path('id') int patientId,
+    @Body() DoctorCreateTreatmentRequest request,
+  );
 }

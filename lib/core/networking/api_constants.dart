@@ -37,6 +37,8 @@ class ApiConstants {
   static const String ShowPatientXrays = "/api/doctor/patient/xrays";
   static const String PatientTreatmentPlans =
       "/api/doctor/patient/{id}/treatment-plans";
+  static const String CreatePatientTreatmentPlans =
+      "/api/doctor/patient/{id}/treatment-plans/create";
 }
 
 class ApiErrors {

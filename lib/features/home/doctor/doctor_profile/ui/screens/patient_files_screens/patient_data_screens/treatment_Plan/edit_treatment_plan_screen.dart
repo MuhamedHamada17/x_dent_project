@@ -33,134 +33,136 @@ class EditTreatmentPlanScreen extends StatelessWidget {
           create: (context) => DoctorPatientTreatmentPlanCubit(
             GetIt.I<DoctorPatientTreatmentPlanRepository>(),
           )..fetchTreatmentPlans(snapshot.data!),
-          child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.white,
-              title:
-                  Text("Treatment Plan", style: TextStyles.font20BlackRegular),
-              centerTitle: true,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.pop(context),
+          child: Builder(
+            builder: (blocContext) => Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                title: Text("Treatment Plan",
+                    style: TextStyles.font20BlackRegular),
+                centerTitle: true,
+                leading: IconButton(
+                  icon: const Icon(Icons.arrow_back),
+                  onPressed: () => Navigator.pop(context),
+                ),
               ),
-            ),
-            body: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  verticalSpace(32),
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16, horizontal: 16),
-                    color: ColorsManager.lighterBLUE,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Status   Session",
-                          style: TextStyles.font12BlackRegular,
-                        ),
-                        Text(
-                          "Date",
-                          style: TextStyles.font12BlackRegular,
-                        ),
-                      ],
-                    ),
-                  ),
-                  verticalSpace(8),
-                  Expanded(
-                    child: Padding(
+              body: SafeArea(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace(32),
+                    Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 16,
-                        vertical: 8,
+                          vertical: 16, horizontal: 16),
+                      color: ColorsManager.lighterBLUE,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Status   Session",
+                            style: TextStyles.font12BlackRegular,
+                          ),
+                          Text(
+                            "Date",
+                            style: TextStyles.font12BlackRegular,
+                          ),
+                        ],
                       ),
-                      child: BlocBuilder<DoctorPatientTreatmentPlanCubit,
-                          DoctorPatientTreatmentPlanState>(
-                        builder: (context, state) {
-                          return state.when(
-                            initial: () =>
-                                const Center(child: Text("جارٍ التحضير...")),
-                            loading: () => const Center(
-                                child: CircularProgressIndicator()),
-                            success: (treatmentPlans) => ListView.builder(
-                              itemCount: treatmentPlans.treatmentPlans.length,
-                              itemBuilder: (context, index) {
-                                final plan =
-                                    treatmentPlans.treatmentPlans[index];
-                                return TreatmentPlanRow(
-                                  isActive: plan.status == 0,
-                                  sessionName: plan.name,
-                                  date: plan.date,
-                                  planId: plan.id,
-                                  onEdit: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (dialogContext) =>
-                                          BlocProvider.value(
-                                        value: context.read<
-                                            DoctorPatientTreatmentPlanCubit>(),
-                                        child: EditTreatmentPlan(
-                                          planId: plan.id,
-                                          initialName: plan.name,
-                                          initialDate: plan.date,
+                    ),
+                    verticalSpace(8),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 8,
+                        ),
+                        child: BlocBuilder<DoctorPatientTreatmentPlanCubit,
+                            DoctorPatientTreatmentPlanState>(
+                          builder: (context, state) {
+                            return state.when(
+                              initial: () =>
+                                  const Center(child: Text("جارٍ التحضير...")),
+                              loading: () => const Center(
+                                  child: CircularProgressIndicator()),
+                              success: (treatmentPlans) => ListView.builder(
+                                itemCount: treatmentPlans.treatmentPlans.length,
+                                itemBuilder: (context, index) {
+                                  final plan =
+                                      treatmentPlans.treatmentPlans[index];
+                                  return TreatmentPlanRow(
+                                    isActive: plan.status == 0,
+                                    sessionName: plan.name,
+                                    date: plan.date,
+                                    planId: plan.id,
+                                    onEdit: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (dialogContext) =>
+                                            BlocProvider.value(
+                                          value: context.read<
+                                              DoctorPatientTreatmentPlanCubit>(),
+                                          child: EditTreatmentPlan(
+                                            planId: plan.id,
+                                            initialName: plan.name,
+                                            initialDate: plan.date,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                  onDelete: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (dialogContext) =>
-                                          BlocProvider.value(
-                                        value: context.read<
-                                            DoctorPatientTreatmentPlanCubit>(),
-                                        child: DeleteTreatmentPlan(
-                                          planId: plan.id,
-                                          planName: plan.name,
+                                      );
+                                    },
+                                    onDelete: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (dialogContext) =>
+                                            BlocProvider.value(
+                                          value: context.read<
+                                              DoctorPatientTreatmentPlanCubit>(),
+                                          child: DeleteTreatmentPlan(
+                                            planId: plan.id,
+                                            planName: plan.name,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                            error: (error) => Center(
-                              child: Text(
-                                error.message,
-                                style: TextStyles.font14RedRegular,
+                                      );
+                                    },
+                                  );
+                                },
                               ),
-                            ),
-                          );
-                        },
+                              error: (error) => Center(
+                                child: Text(
+                                  error.message,
+                                  style: TextStyles.font14RedRegular,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 120,
-                      vertical: 40,
-                    ),
-                    child: Center(
-                      child: AppTextButton(
-                        borderRadius: 25,
-                        verticalPadding: 4,
-                        backgroundColor: ColorsManager.Blue,
-                        buttonText: "Add Plan",
-                        textStyle: TextStyles.font22WhiteMedium,
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (dialogContext) => BlocProvider.value(
-                              value: context
-                                  .read<DoctorPatientTreatmentPlanCubit>(),
-                              child: const AddPlans(),
-                            ),
-                          );
-                        },
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 120,
+                        vertical: 40,
+                      ),
+                      child: Center(
+                        child: AppTextButton(
+                          borderRadius: 25,
+                          verticalPadding: 4,
+                          backgroundColor: ColorsManager.Blue,
+                          buttonText: "Add Plan",
+                          textStyle: TextStyles.font22WhiteMedium,
+                          onPressed: () {
+                            showDialog(
+                              context: blocContext,
+                              builder: (dialogContext) => BlocProvider.value(
+                                value: blocContext
+                                    .read<DoctorPatientTreatmentPlanCubit>(),
+                                child: const DoctorCreateTreatment(),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
