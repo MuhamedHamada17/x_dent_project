@@ -10,7 +10,8 @@ class TreatmentPlanRow extends StatelessWidget {
   final String session;
   final String date;
 
-  const TreatmentPlanRow(this.isCompleted, this.session, this.date, {super.key});
+  const TreatmentPlanRow(this.isCompleted, this.session, this.date,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,24 +46,23 @@ class TreatmentPlanRow extends StatelessWidget {
                 onTap: () {
                   date == "Delete "
                       ? showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return DeleteTreatmentPlan();
-                        },
-                      )
+                          context: context,
+                          builder: (BuildContext context) {
+                            return DeleteTreatmentPlan();
+                          },
+                        )
                       : showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return EditTreatmentPlan();
-                        },
-                      );
+                          context: context,
+                          builder: (BuildContext context) {
+                            return EditTreatmentPlan();
+                          },
+                        );
                 },
                 child: Text(
                   date,
-                  style:
-                      date == "Delete "
-                          ? TextStyles.font20RedRegular
-                          : TextStyles.font20BlueRegular,
+                  style: date == "Delete "
+                      ? TextStyles.font20RedRegular
+                      : TextStyles.font20BlueRegular,
                 ),
               ),
             ],
