@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/delete_treatment_plan.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/edit_treatment_plan.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/delete_treatment_plan_widget.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/edit_treatment_plan_widget.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/widgets/delete_treatment_plan_patient.dart';
+import 'package:x_dent_project/features/home/patient/patient_profile_settings/ui/widgets/edit_treatment_plan_patient.dart';
 
 class TreatmentPlanRowPatient extends StatelessWidget {
   final bool isCompleted;
   final String session;
   final String date;
 
-  const TreatmentPlanRowPatient(this.isCompleted, this.session, this.date, {super.key});
+  const TreatmentPlanRowPatient(this.isCompleted, this.session, this.date,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +48,21 @@ class TreatmentPlanRowPatient extends StatelessWidget {
                 onTap: () {
                   date == "Delete "
                       ? showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return DeleteTreatmentPlan();
-                    },
-                  )
+                          context: context,
+                          builder: (BuildContext context) {
+                            return DeleteTreatmentPlanPatient();
+                          },
+                        )
                       : showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return EditTreatmentPlan();
-                    },
-                  );
+                          context: context,
+                          builder: (BuildContext context) {
+                            return EditTreatmentPlanPatient();
+                          },
+                        );
                 },
                 child: Text(
                   date,
-                  style:
-                  date == "Delete "
+                  style: date == "Delete "
                       ? TextStyles.font20RedRegular
                       : TextStyles.font20BlueRegular,
                 ),

@@ -5,17 +5,18 @@ import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/widgets/app_text_button.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/screens/patient_files_screens/patient_data_screens/treatment_Plan/edit_treatment_plan_screen.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/ui/widgets/calender.dart';
 
-class EditTreatmentPlan extends StatefulWidget {
-  const EditTreatmentPlan({super.key});
+class EditTreatmentPlanPatient extends StatefulWidget {
+  const EditTreatmentPlanPatient({super.key});
 
   @override
-  State<EditTreatmentPlan> createState() => _EditTreatmentPlanState();
+  State<EditTreatmentPlanPatient> createState() =>
+      _EditTreatmentPlanPatientState();
 }
 
-class _EditTreatmentPlanState extends State<EditTreatmentPlan> {
+class _EditTreatmentPlanPatientState extends State<EditTreatmentPlanPatient> {
   DateTime? selectedDate;
 
   void _openDatePicker() async {

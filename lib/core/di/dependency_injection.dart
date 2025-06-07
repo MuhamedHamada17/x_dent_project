@@ -9,9 +9,11 @@ import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doc
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/logic/doctor_home_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/repos/doctor_home_repo.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_patient_list_repo.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_patient_treatment_plan_repository.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/patient_details_repo.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/show_patient_xray_repo.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_list_cubit.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_treatment_plan_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/patient_details_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/show_patient_xray_cubit.dart';
 import 'package:x_dent_project/features/home/patient/patient_appoinment_sreen/data/repos/appointment_patient_repo.dart';
@@ -76,7 +78,7 @@ Future<void> setupGetIt() async {
     () => SignUpDoctorRepo(getIt()),
   );
   getIt.registerFactory<SignUpDoctorCubit>(() => SignUpDoctorCubit(getIt()));
-  debugPrint('SignPatientRepo and SignUpPatientCubit registered');
+  debugPrint('SignUpDoctorRepo and SignUpDoctorCubit registered');
 
   // Get All Doctors
   getIt.registerLazySingleton<GetAllDoctorsRepo>(
@@ -202,12 +204,14 @@ Future<void> setupGetIt() async {
   );
   getIt.registerFactory<DisplayXraysCubit>(() => DisplayXraysCubit(getIt()));
   debugPrint('DisplayXraysRepo and DisplayXraysCubit registered');
+
   // Doctor Home
   getIt.registerLazySingleton<DoctorHomeRepository>(
     () => DoctorHomeRepository(getIt()),
   );
   getIt.registerFactory<DoctorHomeCubit>(() => DoctorHomeCubit(getIt()));
   debugPrint('DoctorHomeRepository and DoctorHomeCubit registered');
+
   // Doctor Patient List
   getIt.registerLazySingleton<DoctorPatientListRepository>(
       () => DoctorPatientListRepositoryImpl(getIt()));
@@ -215,18 +219,21 @@ Future<void> setupGetIt() async {
       () => DoctorPatientListCubit(getIt()));
   debugPrint(
       'DoctorPatientListRepository and DoctorPatientListCubit registered');
-// Doctor Patient Details
+
+  // Doctor Patient Details
   getIt.registerLazySingleton<PatientDetailsRepository>(
       () => PatientDetailsRepositoryImpl(getIt()));
   getIt
       .registerFactory<PatientDetailsCubit>(() => PatientDetailsCubit(getIt()));
   debugPrint('PatientDetailsRepository and PatientDetailsCubit registered');
-  //Show Patient Xrays
+
+  // Show Patient Xrays
   getIt.registerLazySingleton<ShowPatientXrayRepo>(
       () => ShowPatientXrayRepoImpl(getIt()));
   getIt.registerFactory<ShowPatientXrayCubit>(
       () => ShowPatientXrayCubit(getIt()));
   debugPrint('ShowPatientXrayRepo and ShowPatientXrayCubit registered');
+
   // Doctor All Appointments
   getIt.registerLazySingleton<DoctorsAppointmentsRepository>(
       () => DoctorsAppointmentsRepository(getIt()));
@@ -234,11 +241,20 @@ Future<void> setupGetIt() async {
       () => DoctorsAppointmentsCubit(getIt()));
   debugPrint(
       'DoctorsAppointmentsRepository and DoctorsAppointmentsCubit registered');
-  //Doctors Reservation Appointments
+
+  // Doctors Reservation Appointments
   getIt.registerLazySingleton<DoctorsReservationAppointmentsRepository>(
       () => DoctorsReservationAppointmentsRepository(getIt()));
   getIt.registerFactory<DoctorsReservationAppointmentsCubit>(
       () => DoctorsReservationAppointmentsCubit(getIt()));
   debugPrint(
-      'Doctors ReservationAppointmentsRepository and DoctorsReservationAppointmentsCubit registered');
+      'DoctorsReservationAppointmentsRepository and DoctorsReservationAppointmentsCubit registered');
+
+  // Doctor Patient Treatment Plans
+  getIt.registerLazySingleton<DoctorPatientTreatmentPlanRepository>(
+      () => DoctorPatientTreatmentPlanRepositoryImpl(getIt()));
+  getIt.registerFactory<DoctorPatientTreatmentPlanCubit>(
+      () => DoctorPatientTreatmentPlanCubit(getIt()));
+  debugPrint(
+      'DoctorPatientTreatmentPlanRepository and DoctorPatientTreatmentPlanCubit registered');
 }
