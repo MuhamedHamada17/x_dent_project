@@ -2,9 +2,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/repos/doctor_payment_repository.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/repos/doctor_reservation_repository.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/repos/doctors_appointments_repository.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_appointments_cubit.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_payment_appointments_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_reservation_appointments_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/logic/doctor_home_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/repos/doctor_home_repo.dart';
@@ -257,4 +259,8 @@ Future<void> setupGetIt() async {
       () => DoctorPatientTreatmentPlanCubit(getIt()));
   debugPrint(
       'DoctorPatientTreatmentPlanRepository and DoctorPatientTreatmentPlanCubit registered');
+  GetIt.instance.registerSingleton<DoctorPaymentRepository>(
+      DoctorPaymentRepository(GetIt.instance<ApiService>()));
+  GetIt.instance.registerSingleton<DoctorPaymentCubit>(
+      DoctorPaymentCubit(GetIt.instance<DoctorPaymentRepository>()));
 }
