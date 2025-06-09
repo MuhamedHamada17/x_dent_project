@@ -54,7 +54,7 @@ class Appointment {
 class Patient {
   final int id;
   final String name;
-  final int age;
+  final dynamic age;
   final String? phone;
   final String? message;
 

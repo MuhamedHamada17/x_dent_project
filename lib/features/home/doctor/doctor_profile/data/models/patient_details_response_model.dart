@@ -22,7 +22,7 @@ class PatientDetailsResponse {
 class PatientDetailsModel {
   final int id;
   final String name;
-  final int age;
+  final dynamic age;
   final String phone;
   final String email;
   @JsonKey(name: 'first_appointment_date')
