@@ -957,7 +957,9 @@ class _ApiService implements ApiService {
 
   @override
   Future<DoctorsReservationAppointmentsModel> getDoctorReservationAppointment(
-      String token) async {
+    String token,
+    int id,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{r'Authorization': token};
@@ -971,7 +973,7 @@ class _ApiService implements ApiService {
     )
             .compose(
               _dio.options,
-              '/api/doctor/appointments/{id}/detail',
+              '/api/doctor/appointments/${id}/detail',
               queryParameters: queryParameters,
               data: _data,
             )

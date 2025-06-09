@@ -1,26 +1,50 @@
-// doctors_reservation_appointments_repository.dart
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/networking/api_constants.dart';
+import 'package:x_dent_project/core/networking/api_service.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_reservation_appointments_model.dart';
 
-class DoctorsReservationAppointmentsRepository {
-  final Dio dio;
+class DoctorReservationRepository {
+  final ApiService apiService;
 
-  DoctorsReservationAppointmentsRepository(this.dio);
+  DoctorReservationRepository(this.apiService);
 
-  Future<DoctorsReservationAppointmentsModel> fetchReservationAppointment(
-      String token, int appointmentId) async {
+  Future<DoctorsReservationAppointmentsModel> getDoctorReservationAppointment(
+      int id) async {
     try {
-      final response = await dio.get(
-        ApiConstants.DoctorsReservationAppointments.replaceFirst(
-            '{id}', '$appointmentId'),
-        options: Options(
-          headers: {'Authorization': 'Bearer $token'},
-        ),
-      );
-      return DoctorsReservationAppointmentsModel.fromJson(response.data);
+      if (id <= 0) {
+        debugPrint('DoctorReservationRepository: Invalid appointment ID: $id');
+        throw Exception('Invalid appointment ID');
+      }
+
+      final token = await SharedPrefHelper.getSecuredString('access_token');
+      if (token.isEmpty) {
+        debugPrint('DoctorReservationRepository: No token found');
+        throw Exception('No token found');
+      }
+
+      debugPrint(
+          'DoctorReservationRepository: Fetching appointment with ID: $id');
+      final response =
+          await apiService.getDoctorReservationAppointment('Bearer $token', id);
+      debugPrint(
+          'DoctorReservationRepository: Successfully fetched appointment');
+      return response;
+    } on DioException catch (e) {
+      debugPrint('DoctorReservationRepository: DioException: ${e.message}');
+      if (e.response?.statusCode == 404) {
+        throw Exception(ApiErrors.notFoundError);
+      } else if (e.response?.statusCode == 401) {
+        throw Exception(ApiErrors.unauthorizedError);
+      } else if (e.response?.statusCode == 403) {
+        throw Exception(ApiErrors.forbiddenError);
+      } else {
+        throw Exception(ApiErrors.defaultError);
+      }
     } catch (e) {
-      throw Exception('Failed to fetch reservation appointment: $e');
+      debugPrint('DoctorReservationRepository: Error: $e');
+      throw Exception(ApiErrors.defaultError);
     }
   }
 }

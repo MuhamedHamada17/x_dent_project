@@ -1,24 +1,20 @@
-// doctors_reservation_appointments_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/repos/doctor_reservation_repository.dart';
-import 'doctors_reservation_appointments_state.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_reservation_appointments_state.dart';
 
-class DoctorsReservationAppointmentsCubit
-    extends Cubit<DoctorsReservationAppointmentsState> {
-  final DoctorsReservationAppointmentsRepository repository;
+class DoctorReservationCubit extends Cubit<DoctorReservationState> {
+  final DoctorReservationRepository repository;
 
-  DoctorsReservationAppointmentsCubit(this.repository)
-      : super(const DoctorsReservationAppointmentsState.initial());
+  DoctorReservationCubit(this.repository)
+      : super(const DoctorReservationState.initial());
 
-  Future<void> getReservationAppointment(
-      String token, int appointmentId) async {
-    emit(const DoctorsReservationAppointmentsState.loading());
+  Future<void> fetchDoctorReservationAppointment(int id) async {
+    emit(const DoctorReservationState.loading());
     try {
-      final data =
-          await repository.fetchReservationAppointment(token, appointmentId);
-      emit(DoctorsReservationAppointmentsState.loaded(data));
+      final response = await repository.getDoctorReservationAppointment(id);
+      emit(DoctorReservationState.success(response));
     } catch (e) {
-      emit(DoctorsReservationAppointmentsState.error(e.toString()));
+      emit(DoctorReservationState.error(e.toString()));
     }
   }
 }

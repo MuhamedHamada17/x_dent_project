@@ -201,8 +201,8 @@ abstract class ApiService {
   @GET(ApiConstants.DoctorsReservationAppointments)
   Future<DoctorsReservationAppointmentsModel> getDoctorReservationAppointment(
     @Header('Authorization') String token,
+    @Path('id') int id,
   );
-
   @GET(ApiConstants.patientXray)
   Future<ShowPatientXrayResponse> showPatientXray(
     @Header('Authorization') String token,

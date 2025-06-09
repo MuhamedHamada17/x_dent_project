@@ -4,6 +4,24 @@ part 'doctors_reservation_appointments_model.g.dart';
 
 @JsonSerializable()
 class DoctorsReservationAppointmentsModel {
+  final String status;
+  final Appointment appointment;
+
+  DoctorsReservationAppointmentsModel({
+    required this.status,
+    required this.appointment,
+  });
+
+  factory DoctorsReservationAppointmentsModel.fromJson(
+          Map<String, dynamic> json) =>
+      _$DoctorsReservationAppointmentsModelFromJson(json);
+
+  Map<String, dynamic> toJson() =>
+      _$DoctorsReservationAppointmentsModelToJson(this);
+}
+
+@JsonSerializable()
+class Appointment {
   final int id;
   final Patient patient;
   @JsonKey(name: 'appointment_date')
@@ -17,7 +35,7 @@ class DoctorsReservationAppointmentsModel {
   @JsonKey(name: 'treatment_plan')
   final TreatmentPlan treatmentPlan;
 
-  DoctorsReservationAppointmentsModel({
+  Appointment({
     required this.id,
     required this.patient,
     required this.appointmentDate,
@@ -28,12 +46,10 @@ class DoctorsReservationAppointmentsModel {
     required this.treatmentPlan,
   });
 
-  factory DoctorsReservationAppointmentsModel.fromJson(
-          Map<String, dynamic> json) =>
-      _$DoctorsReservationAppointmentsModelFromJson(json);
+  factory Appointment.fromJson(Map<String, dynamic> json) =>
+      _$AppointmentFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$DoctorsReservationAppointmentsModelToJson(this);
+  Map<String, dynamic> toJson() => _$AppointmentToJson(this);
 }
 
 @JsonSerializable()

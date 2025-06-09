@@ -9,19 +9,31 @@ part of 'doctors_reservation_appointments_model.dart';
 DoctorsReservationAppointmentsModel
     _$DoctorsReservationAppointmentsModelFromJson(Map<String, dynamic> json) =>
         DoctorsReservationAppointmentsModel(
-          id: (json['id'] as num).toInt(),
-          patient: Patient.fromJson(json['patient'] as Map<String, dynamic>),
-          appointmentDate: json['appointment_date'] as String,
-          appointmentTime: json['appointment_time'] as String,
-          day: json['day'] as String,
-          estimateDuration: json['estimate_duration'] as String,
           status: json['status'] as String,
-          treatmentPlan: TreatmentPlan.fromJson(
-              json['treatment_plan'] as Map<String, dynamic>),
+          appointment:
+              Appointment.fromJson(json['appointment'] as Map<String, dynamic>),
         );
 
 Map<String, dynamic> _$DoctorsReservationAppointmentsModelToJson(
         DoctorsReservationAppointmentsModel instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'appointment': instance.appointment,
+    };
+
+Appointment _$AppointmentFromJson(Map<String, dynamic> json) => Appointment(
+      id: (json['id'] as num).toInt(),
+      patient: Patient.fromJson(json['patient'] as Map<String, dynamic>),
+      appointmentDate: json['appointment_date'] as String,
+      appointmentTime: json['appointment_time'] as String,
+      day: json['day'] as String,
+      estimateDuration: json['estimate_duration'] as String,
+      status: json['status'] as String,
+      treatmentPlan: TreatmentPlan.fromJson(
+          json['treatment_plan'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
     <String, dynamic>{
       'id': instance.id,
       'patient': instance.patient,
