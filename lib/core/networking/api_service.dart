@@ -2,6 +2,7 @@ import 'package:dio/dio.dart' hide Headers;
 import 'package:retrofit/error_logger.dart';
 import 'package:retrofit/http.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_all_appointments_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_payment_appointments_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_reservation_appointments_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/doctor_home_response_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/doctor_patient_list_model.dart';
@@ -228,5 +229,10 @@ abstract class ApiService {
     @Header('Authorization') String token,
     @Path('id') int patientId,
     @Body() DoctorCreateTreatmentRequest request,
+  );
+  @GET(ApiConstants.DoctorsPaymentAppointments)
+  Future<DoctorsPaymentAppointmentsModel> getDoctorPaymentAppointment(
+    @Header('Authorization') String token,
+    @Path('id') int id,
   );
 }

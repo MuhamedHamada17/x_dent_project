@@ -2,20 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/appointment_detailes_screens/payment_page.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/screens/appointment_detailes_screens/reservation_page.dart';
-import 'package:x_dent_project/features/home/doctor/doctor_appointment/ui/widgets/detail_row.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const AppointmentDetailsScreen(),
-    );
-  }
-}
 
 class AppointmentDetailsScreen extends StatefulWidget {
   final int? appointmentId;
@@ -33,7 +21,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     debugPrint(
-        'AppointmentDetailsScreen: appointmentId = ${widget.appointmentId}');
+        'AppointmentDetailsScreen: Building with appointmentId = ${widget.appointmentId}');
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -76,7 +64,9 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                 index: _currentIndex,
                 children: [
                   ReservationPage(appointmentId: widget.appointmentId),
-                  const PaymentPage(),
+                  PaymentPage(
+                      key: ValueKey(widget.appointmentId),
+                      appointmentId: widget.appointmentId),
                 ],
               ),
             ),
@@ -86,10 +76,10 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
     );
   }
 
-  // Widget لزر التبديل
   Widget _buildTabButton(String title, int index) {
     return GestureDetector(
       onTap: () {
+        debugPrint('AppointmentDetailsScreen: Switching to tab index = $index');
         setState(() {
           _currentIndex = index;
         });
@@ -112,30 +102,6 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class PaymentPage extends StatelessWidget {
-  const PaymentPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 16),
-          Center(child: Text("500 L.E", style: TextStyles.font34BlackBoldOpen)),
-          const SizedBox(height: 16),
-          const SizedBox(height: 8),
-          const DetailRow(label: "Recipient", value: "Dr. Ahmed Mahmoud"),
-          const DetailRow(label: "Date", value: "16/2/2025"),
-          const DetailRow(label: "Reference", value: "2000398466283"),
-          const DetailRow(label: "Payment Method", value: "Mastercard"),
-        ],
       ),
     );
   }
