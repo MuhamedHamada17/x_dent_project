@@ -50,7 +50,7 @@ class PendingAppointments {
   String? status;
   String? appointmentDate;
   String? appointmentTime;
-  Patient? patient;
+  // Patient? patient;
   String? createdAt;
   String? updatedAt;
 
@@ -60,7 +60,7 @@ class PendingAppointments {
     this.status,
     this.appointmentDate,
     this.appointmentTime,
-    this.patient,
+    // this.patient,
     this.createdAt,
     this.updatedAt,
   });
@@ -71,8 +71,8 @@ class PendingAppointments {
     status = json['status'];
     appointmentDate = json['appointment_date'];
     appointmentTime = json['appointment_time'];
-    patient =
-        json['patient'] != null ? Patient.fromJson(json['patient']) : null;
+    // patient =
+    //     json['patient'] != null ? Patient.fromJson(json['patient']) : null;
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -84,9 +84,9 @@ class PendingAppointments {
     data['status'] = status;
     data['appointment_date'] = appointmentDate;
     data['appointment_time'] = appointmentTime;
-    if (patient != null) {
-      data['patient'] = patient!.toJson();
-    }
+    // if (patient != null) {
+    //   data['patient'] = patient!.toJson();
+    // }
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;
@@ -96,7 +96,7 @@ class PendingAppointments {
 class Patient {
   int? id;
   String? name;
-  int? age;
+  dynamic age;
   Null phone;
   Null message;
 

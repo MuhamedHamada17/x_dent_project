@@ -25,7 +25,7 @@ PatientDetailsModel _$PatientDetailsModelFromJson(Map<String, dynamic> json) =>
     PatientDetailsModel(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      age: (json['age'] as num).toInt(),
+      age: json['age'],
       phone: json['phone'] as String,
       email: json['email'] as String,
       firstAppointmentDate: json['first_appointment_date'] as String,

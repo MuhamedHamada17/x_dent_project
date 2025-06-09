@@ -48,7 +48,7 @@ Map<String, dynamic> _$AppointmentToJson(Appointment instance) =>
 Patient _$PatientFromJson(Map<String, dynamic> json) => Patient(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      age: (json['age'] as num).toInt(),
+      age: json['age'],
       phone: json['phone'] as String?,
       message: json['message'] as String?,
     );

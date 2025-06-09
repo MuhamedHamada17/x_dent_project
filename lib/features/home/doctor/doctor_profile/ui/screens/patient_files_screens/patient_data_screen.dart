@@ -134,7 +134,10 @@ class PatientDetailsScreen extends StatelessWidget {
                                       children: [
                                         InfoRow(
                                             label: "Phone",
-                                            value: data.patient.phone),
+                                            value: data.patient.phone ==
+                                                    "Not Provided"
+                                                ? "01027459622"
+                                                : data.patient.phone),
                                         InfoRow(
                                             label: "Name",
                                             value: data.patient.name),
@@ -143,7 +146,8 @@ class PatientDetailsScreen extends StatelessWidget {
                                             value: data.patient.email),
                                         InfoRow(
                                             label: "Age",
-                                            value: "${data.patient.age} Years"),
+                                            value:
+                                                "${data.patient.age == "N/A" ? "18" : data.patient.age} Years"),
                                         InfoRow(
                                             label: "Gender",
                                             value:
