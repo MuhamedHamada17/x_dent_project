@@ -61,8 +61,9 @@ final getIt = GetIt.instance;
 Future<void> setupGetIt() async {
   // Dio & ApiService
   Dio dio = DioFactory.getDio();
+  getIt.registerLazySingleton<Dio>(() => dio); // Register Dio explicitly
   getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
-  debugPrint('ApiService registered');
+  debugPrint('Dio and ApiService registered');
 
   // Login
   getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
@@ -243,13 +244,12 @@ Future<void> setupGetIt() async {
       'DoctorsAppointmentsRepository and DoctorsAppointmentsCubit registered');
 
   // Doctors Reservation Appointments
-  getIt.registerLazySingleton<DoctorsReservationAppointmentsRepository>(
-      () => DoctorsReservationAppointmentsRepository(getIt()));
-  getIt.registerFactory<DoctorsReservationAppointmentsCubit>(
-      () => DoctorsReservationAppointmentsCubit(getIt()));
+  getIt.registerLazySingleton<DoctorReservationRepository>(
+      () => DoctorReservationRepository(getIt()));
+  getIt.registerFactory<DoctorReservationCubit>(
+      () => DoctorReservationCubit(getIt()));
   debugPrint(
-      'DoctorsReservationAppointmentsRepository and DoctorsReservationAppointmentsCubit registered');
-
+      'DoctorReservationRepository and DoctorReservationCubit registered');
   // Doctor Patient Treatment Plans
   getIt.registerLazySingleton<DoctorPatientTreatmentPlanRepository>(
       () => DoctorPatientTreatmentPlanRepositoryImpl(getIt()));

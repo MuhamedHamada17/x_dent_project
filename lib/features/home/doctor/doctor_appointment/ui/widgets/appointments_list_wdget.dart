@@ -81,14 +81,20 @@ class AppointmentsListWidget extends StatelessWidget {
                             ),
                             horizontalSpace(10),
                             GestureDetector(
-                              onTap: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return AppointmentDetailsScreen();
-                                  },
-                                ),
-                              ),
+                              onTap: () {
+                                debugPrint(
+                                    'Navigating to AppointmentDetailsScreen with ID: ${appointment.id}');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return AppointmentDetailsScreen(
+                                        appointmentId: appointment.id,
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
                               child: Icon(
                                 Icons.arrow_forward,
                                 size: 26,

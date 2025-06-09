@@ -18,7 +18,9 @@ class MyApp extends StatelessWidget {
 }
 
 class AppointmentDetailsScreen extends StatefulWidget {
-  const AppointmentDetailsScreen({super.key});
+  final int? appointmentId;
+
+  const AppointmentDetailsScreen({super.key, this.appointmentId});
 
   @override
   State<AppointmentDetailsScreen> createState() =>
@@ -30,6 +32,8 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint(
+        'AppointmentDetailsScreen: appointmentId = ${widget.appointmentId}');
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -54,7 +58,6 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
               ),
             ),
             verticalSpace(16),
-
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 16),
               decoration: BoxDecoration(
@@ -68,11 +71,13 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                 ],
               ),
             ),
-
             Expanded(
               child: IndexedStack(
                 index: _currentIndex,
-                children: const [ReservationPage(), PaymentPage()],
+                children: [
+                  ReservationPage(appointmentId: widget.appointmentId),
+                  const PaymentPage(),
+                ],
               ),
             ),
           ],
