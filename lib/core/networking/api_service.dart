@@ -5,6 +5,7 @@ import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/mode
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_payment_appointments_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/data/models/doctors_reservation_appointments_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/models/doctor_home_response_model.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/doctor_analyzed_image_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/doctor_patient_list_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/doctor_patient_treatment_plan_model.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/models/edit_treatment_request.dart';
@@ -234,5 +235,10 @@ abstract class ApiService {
   Future<DoctorsPaymentAppointmentsModel> getDoctorPaymentAppointment(
     @Header('Authorization') String token,
     @Path('id') int id,
+  );
+  @GET(ApiConstants.doctorAnalyzedImage)
+  Future<DoctorAnalyzedImageResponse> getDoctorAnalyzedImage(
+    @Header('Authorization') String token,
+    @Path('id') int patientId,
   );
 }

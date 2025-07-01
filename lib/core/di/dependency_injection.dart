@@ -10,10 +10,12 @@ import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doc
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_reservation_appointments_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/logic/doctor_home_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_home_page/data/repos/doctor_home_repo.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_analyzed_image_repo.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_patient_list_repo.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/doctor_patient_treatment_plan_repository.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/patient_details_repo.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/show_patient_xray_repo.dart';
+import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_analyzed_image_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_list_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/doctor_patient_treatment_plan_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/logic/patient_details_cubit.dart';
@@ -263,4 +265,10 @@ Future<void> setupGetIt() async {
       DoctorPaymentRepository(GetIt.instance<ApiService>()));
   GetIt.instance.registerSingleton<DoctorPaymentCubit>(
       DoctorPaymentCubit(GetIt.instance<DoctorPaymentRepository>()));
+  // Doctor Analyzed Images
+  getIt.registerLazySingleton<DoctorAnalyzedImageRepo>(
+      () => DoctorAnalyzedImageRepoImpl(getIt()));
+  getIt.registerFactory<DoctorAnalyzedImageCubit>(
+      () => DoctorAnalyzedImageCubit(getIt()));
+  debugPrint('DoctorAnalyzedImageRepo and DoctorAnalyzedImageCubit registered');
 }

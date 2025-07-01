@@ -1,6 +1,6 @@
 class ApiConstants {
   static const String apiBaseUrl =
-      'https://laravelproject-production-d279.up.railway.app';
+      'https://laravelproject-production-d351.up.railway.app';
   static const String login = "/api/auth/login";
   static const String signupPatient = "/api/auth/patient/register";
   static const String cancelledAppointment =
@@ -35,11 +35,11 @@ class ApiConstants {
       "/api/doctor/appointments/{id}/detail";
   static const String DoctorsPaymentAppointments =
       "/api/doctor/appointments/{id}/reservation/detail";
-  static const String ShowPatientXrays = "/api/doctor/patient/xrays";
   static const String PatientTreatmentPlans =
       "/api/doctor/patient/{id}/treatment-plans";
   static const String CreatePatientTreatmentPlans =
       "/api/doctor/patient/{id}/treatment-plans/create";
+  static const String doctorAnalyzedImage = "/api/doctor/patient/{id}/xrays";
 }
 
 class ApiErrors {
