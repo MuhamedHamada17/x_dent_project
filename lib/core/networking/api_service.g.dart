@@ -14,7 +14,7 @@ class _ApiService implements ApiService {
     this.baseUrl,
     this.errorLogger,
   }) {
-    baseUrl ??= 'https://laravelproject-production-d279.up.railway.app';
+    baseUrl ??= 'https://laravelproject-production-d351.up.railway.app';
   }
 
   final Dio _dio;
@@ -1204,6 +1204,43 @@ class _ApiService implements ApiService {
     late DoctorsPaymentAppointmentsModel _value;
     try {
       _value = DoctorsPaymentAppointmentsModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<DoctorAnalyzedImageResponse> getDoctorAnalyzedImage(
+    String token,
+    int patientId,
+  ) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<DoctorAnalyzedImageResponse>(Options(
+      method: 'GET',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/api/doctor/patient/${patientId}/xrays',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late DoctorAnalyzedImageResponse _value;
+    try {
+      _value = DoctorAnalyzedImageResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
