@@ -127,14 +127,17 @@ class AppRouter {
         if (arguments is Map<String, dynamic> &&
             arguments['imageUrl'] is String &&
             arguments['uploadedAt'] is String &&
+            arguments['imageId'] is int &&
             arguments['imageUrl'].isNotEmpty &&
-            arguments['uploadedAt'].isNotEmpty) {
+            arguments['uploadedAt'].isNotEmpty &&
+            arguments['imageId'] != 0) {
           debugPrint(
-              'AppRouter: Navigating to XrayFileScreen with imageUrl: ${arguments['imageUrl']}, uploadedAt: ${arguments['uploadedAt']}');
+              'AppRouter: Navigating to XrayFileScreen with imageUrl: ${arguments['imageUrl']}, uploadedAt: ${arguments['uploadedAt']}, imageId: ${arguments['imageId']}');
           return MaterialPageRoute(
             builder: (_) => XrayFileScreen(
               imageUrl: arguments['imageUrl'],
               uploadedAt: arguments['uploadedAt'],
+              imageId: arguments['imageId'],
             ),
           );
         }

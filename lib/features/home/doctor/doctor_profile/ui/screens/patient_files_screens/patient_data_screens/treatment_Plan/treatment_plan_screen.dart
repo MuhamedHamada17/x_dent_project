@@ -103,8 +103,7 @@ class _TreatmentPlanBody extends StatelessWidget {
                           planId: plan.id,
                           showDateInsteadOfDelete: true,
                           onEdit: () {},
-                          onDelete:
-                              () {}, // Empty callback to disable delete action
+                          onDelete: () {},
                         );
                       },
                     ),

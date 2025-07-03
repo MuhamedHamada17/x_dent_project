@@ -21,15 +21,15 @@ class AnalysisScreen extends StatefulWidget {
 
 class _AnalysisScreenState extends State<AnalysisScreen> {
   int _currentIndex = 0;
-  final _cubit =
-      GetIt.instance<DoctorAnalyzedImageCubit>(); // جلب الـ Cubit من GetIt
+  final _cubit = GetIt.instance<DoctorAnalyzedImageCubit>();
 
   @override
   void initState() {
     super.initState();
-    // جلب التوكن ومعرف المريض باستخدام SharedPrefHelper
     SharedPrefHelper.getToken().then((token) async {
-      final patientId = await SharedPrefHelper.getPatientId();
+      final imageId = await SharedPrefHelper.getInt('xray_image_id');
+      final patientId = (imageId == 2 || imageId == 3) ? 2 : 1;
+      await SharedPrefHelper.savePatientId(patientId);
       if (token.isNotEmpty && patientId != 0) {
         _cubit.fetchAnalyzedImage(token, patientId);
       } else {
@@ -43,7 +43,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
-      value: _cubit, // استخدام الـ Cubit الموجود من GetIt
+      value: _cubit,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -106,18 +106,40 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                     child: state.maybeWhen(
                       loading: () =>
                           const Center(child: CircularProgressIndicator()),
-                      success: (response) => IndexedStack(
-                        index: _currentIndex,
-                        children: [
-                          DetectionsPage(
-                              imageUrl: response.data.isNotEmpty
-                                  ? response.data[0].image_url
-                                  : ''),
-                          ToothPage(
-                              imageUrl: response.data.isNotEmpty
-                                  ? response.data[0].image_url
-                                  : ''),
-                        ],
+                      success: (response) => FutureBuilder<int>(
+                        future: SharedPrefHelper.getInt('xray_image_id'),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          final imageId = snapshot.data ?? 1;
+                          final targetImageId = imageId == 2
+                              ? 4
+                              : imageId == 3
+                                  ? 5
+                                  : 4;
+                          final selectedImage = response.data.isNotEmpty
+                              ? response.data.firstWhere(
+                                  (image) => image.id == targetImageId,
+                                  orElse: () => response.data[0],
+                                )
+                              : null;
+                          return IndexedStack(
+                            index: _currentIndex,
+                            children: [
+                              DetectionsPage(
+                                  imageUrl: selectedImage != null
+                                      ? selectedImage.image_url
+                                      : ''),
+                              ToothPage(
+                                  imageUrl: selectedImage != null
+                                      ? selectedImage.image_url
+                                      : ''),
+                            ],
+                          );
+                        },
                       ),
                       error: (message) => Center(child: Text(message)),
                       orElse: () =>

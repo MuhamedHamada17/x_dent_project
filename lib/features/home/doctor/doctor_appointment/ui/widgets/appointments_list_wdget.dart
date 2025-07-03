@@ -22,7 +22,6 @@ class AppointmentsListWidget extends StatelessWidget {
             itemCount: data.appointments.length,
             itemBuilder: (context, index) {
               final appointment = data.appointments[index];
-              // تحديد تاريخ اليوم بناءً على أول موعد أو اليوم الحالي
               final displayDate =
                   index == 0 ? appointment.appointmentDate : null;
               return Column(

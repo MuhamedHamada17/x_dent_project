@@ -148,10 +148,7 @@ class PatientDetailsScreen extends StatelessWidget {
                                             label: "Age",
                                             value:
                                                 "${data.patient.age == "N/A" ? "18" : data.patient.age} Years"),
-                                        InfoRow(
-                                            label: "Gender",
-                                            value:
-                                                "Male"), // افتراضي لأنه مش في الموديل
+                                        InfoRow(label: "Gender", value: "Male"),
                                         InfoRow(
                                             label: "First Appt",
                                             value: data

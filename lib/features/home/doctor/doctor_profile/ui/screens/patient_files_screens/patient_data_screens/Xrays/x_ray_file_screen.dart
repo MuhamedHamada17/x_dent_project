@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:x_dent_project/core/helpers/extentions.dart';
+import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
 import 'package:x_dent_project/core/theiming/colors.dart';
@@ -10,11 +11,13 @@ import 'package:x_dent_project/core/widgets/app_text_button.dart';
 class XrayFileScreen extends StatelessWidget {
   final String imageUrl;
   final String uploadedAt;
+  final int imageId;
 
   const XrayFileScreen({
     super.key,
     required this.imageUrl,
     required this.uploadedAt,
+    required this.imageId,
   });
 
   @override
@@ -96,7 +99,8 @@ class XrayFileScreen extends StatelessWidget {
               backgroundColor: ColorsManager.Blue,
               buttonText: "Analyze",
               textStyle: TextStyles.font22WhiteMedium,
-              onPressed: () {
+              onPressed: () async {
+                await SharedPrefHelper.setData('xray_image_id', imageId);
                 context.pushNamed(Routes.AnalysisScreen);
               },
             ),

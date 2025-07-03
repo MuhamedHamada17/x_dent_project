@@ -9,18 +9,15 @@ class DoctorsAppointmentsCubit extends Cubit<DoctorsAppointmentsState> {
       : super(const DoctorsAppointmentsState.initial());
 
   Future<void> getAppointments() async {
-    // إصدار حالة التحميل فقط إذا لم يكن الـ Cubit مغلقًا
     if (!isClosed) {
       emit(const DoctorsAppointmentsState.loading());
     }
     try {
       final data = await repository.fetchAllAppointments();
-      // إصدار حالة النجاح فقط إذا لم يكن الـ Cubit مغلقًا
       if (!isClosed) {
         emit(DoctorsAppointmentsState.loaded(data));
       }
     } catch (e) {
-      // إصدار حالة الخطأ فقط إذا لم يكن الـ Cubit مغلقًا
       if (!isClosed) {
         emit(DoctorsAppointmentsState.error(e.toString()));
       }

@@ -104,7 +104,6 @@ class XraysScreen extends StatelessWidget {
                                         .map((entry) {
                                       final xray = entry.value;
                                       final uploadedAt = xray.uploaded_at;
-                                      // تحويل uploaded_at لتاريخ بس
                                       final formattedDate =
                                           DateFormat('yyyy-MM-dd').format(
                                         DateTime.parse(uploadedAt),
@@ -120,6 +119,8 @@ class XraysScreen extends StatelessWidget {
                                                   arguments: {
                                                     'imageUrl': xray.image_url,
                                                     'uploadedAt': formattedDate,
+                                                    'imageId': xray
+                                                        .id, // تمرير imageId
                                                   },
                                                 );
                                               } else {

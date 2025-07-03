@@ -32,13 +32,24 @@ class DetectionsPage extends StatelessWidget {
           children: [
             verticalSpace(12),
             Center(
-              child: imageUrl.isNotEmpty
-                  ? Image.network(
-                      imageUrl,
-                      errorBuilder: (context, error, stackTrace) =>
-                          Image.asset("assets/png/Xray_diagnoses.png"),
-                    )
-                  : Image.asset("assets/png/Xray_diagnoses.png"),
+              child: FutureBuilder(
+                future: Future.delayed(Duration(seconds: 11)),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator(
+                      color: ColorsManager.Blue,
+                    );
+                  } else {
+                    return imageUrl.isNotEmpty
+                        ? Image.network(
+                            imageUrl,
+                            errorBuilder: (context, error, stackTrace) =>
+                                Image.asset("assets/png/Xray_diagnoses.png"),
+                          )
+                        : Image.asset("assets/png/Xray_diagnoses.png");
+                  }
+                },
+              ),
             ),
             verticalSpace(8),
             Text(
