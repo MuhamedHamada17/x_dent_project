@@ -6,6 +6,7 @@ import 'package:x_dent_project/core/helpers/extentions.dart';
 import 'package:x_dent_project/core/helpers/shared_pref_helper.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
 import 'package:x_dent_project/core/routing/routes.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/core/networking/api_service.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_profile/data/repos/patient_details_repo.dart';
@@ -25,7 +26,10 @@ class PatientDetailsScreen extends StatelessWidget {
       builder: (context, tokenSnapshot) {
         if (tokenSnapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+                child: CircularProgressIndicator(
+              color: ColorsManager.Blue,
+            )),
           );
         }
         if (!tokenSnapshot.hasData || tokenSnapshot.data == null) {
@@ -53,7 +57,10 @@ class PatientDetailsScreen extends StatelessWidget {
           builder: (context, patientIdSnapshot) {
             if (patientIdSnapshot.connectionState == ConnectionState.waiting) {
               return const Scaffold(
-                body: Center(child: CircularProgressIndicator()),
+                body: Center(
+                    child: CircularProgressIndicator(
+                  color: ColorsManager.Blue,
+                )),
               );
             }
             if (!patientIdSnapshot.hasData || patientIdSnapshot.data == 0) {
@@ -96,7 +103,7 @@ class PatientDetailsScreen extends StatelessWidget {
                           return state.when(
                             initial: () => Text("Patient Details",
                                 style: TextStyles.font20BlackRegular),
-                            loading: () => Text("Loading...",
+                            loading: () => Text("\n Loading...",
                                 style: TextStyles.font20BlackRegular),
                             success: (data) => Text(
                               data.patient.name,
@@ -123,8 +130,15 @@ class PatientDetailsScreen extends StatelessWidget {
                               return state.when(
                                 initial: () =>
                                     const Center(child: Text("Please wait...")),
-                                loading: () => const Center(
-                                    child: CircularProgressIndicator()),
+                                loading: () => Center(
+                                    child: Column(
+                                  children: [
+                                    verticalSpace(200),
+                                    CircularProgressIndicator(
+                                      color: ColorsManager.Blue,
+                                    ),
+                                  ],
+                                )),
                                 success: (data) => Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

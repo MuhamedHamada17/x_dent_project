@@ -29,7 +29,10 @@ class _DoctorAppointmentsScreenState extends State<DoctorAppointmentsScreen> {
       future: SharedPrefHelper.getToken(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(
+              child: CircularProgressIndicator(
+            color: ColorsManager.Blue,
+          ));
         }
         if (!snapshot.hasData || snapshot.data!.isEmpty) {
           return const Center(child: Text('يرجى تسجيل الدخول أولاً'));

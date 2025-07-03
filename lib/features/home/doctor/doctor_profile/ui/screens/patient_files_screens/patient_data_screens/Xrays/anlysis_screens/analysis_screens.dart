@@ -104,8 +104,15 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   ),
                   Expanded(
                     child: state.maybeWhen(
-                      loading: () =>
-                          const Center(child: CircularProgressIndicator()),
+                      loading: () => Center(
+                          child: Column(
+                        children: [
+                          verticalSpace(200),
+                          CircularProgressIndicator(
+                            color: ColorsManager.Blue,
+                          ),
+                        ],
+                      )),
                       success: (response) => FutureBuilder<int>(
                         future: SharedPrefHelper.getInt('xray_image_id'),
                         builder: (context, snapshot) {

@@ -30,9 +30,17 @@ class PatientFilesScreen extends StatelessWidget {
       future: _getAuthData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Scaffold(
+          return Scaffold(
             backgroundColor: Colors.white,
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+                child: Column(
+              children: [
+                verticalSpace(200),
+                CircularProgressIndicator(
+                  color: ColorsManager.Blue,
+                ),
+              ],
+            )),
           );
         }
 
@@ -109,8 +117,15 @@ class PatientFilesScreen extends StatelessWidget {
                         return state.when(
                           initial: () =>
                               const Center(child: Text("Initializing...")),
-                          loading: () =>
-                              const Center(child: CircularProgressIndicator()),
+                          loading: () => Center(
+                              child: Column(
+                            children: [
+                              verticalSpace(200),
+                              CircularProgressIndicator(
+                                color: ColorsManager.Blue,
+                              ),
+                            ],
+                          )),
                           success: (data) => ListView.separated(
                             itemCount: data.patients.length,
                             separatorBuilder: (context, index) => Divider(
