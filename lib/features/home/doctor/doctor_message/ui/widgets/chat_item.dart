@@ -79,7 +79,7 @@ class ChatItem extends StatelessWidget {
                                 "mohamed hamada",
                                 style: TextStyles.font20BlackRegular,
                               ),
-                              Text("11:30 AM",
+                              Text("11:31 AM",
                                   style: TextStyles.font14GreyRegular)
                             ],
                           ),
