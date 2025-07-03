@@ -74,8 +74,8 @@ class _EditTreatmentPlanState extends State<EditTreatmentPlan> {
               await context
                   .read<DoctorPatientTreatmentPlanCubit>()
                   .deleteTreatmentPlan(widget.planId);
-              Navigator.pop(dialogContext); // Close confirmation dialog
-              Navigator.pop(context); // Close EditTreatmentPlan dialog
+              Navigator.pop(dialogContext);
+              Navigator.pop(context);
             },
             child: const Text(
               "Delete",

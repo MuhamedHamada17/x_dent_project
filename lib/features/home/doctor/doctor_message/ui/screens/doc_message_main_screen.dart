@@ -41,7 +41,7 @@ class DoctorMessageScreen extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 12,
+              itemCount: 1,
               itemBuilder: (context, index) {
                 return const ChatItem();
               },

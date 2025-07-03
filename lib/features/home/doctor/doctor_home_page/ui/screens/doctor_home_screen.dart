@@ -26,10 +26,8 @@ class DoctorHomeScreen extends StatelessWidget {
           );
         }
 
-        // التحقق من وجود التوكن
         final token = snapshot.data ?? '';
         if (!snapshot.hasData || token.isEmpty) {
-          // التحقق إذا كان المستخدم مسجل دخوله أو في مرحلة الساين أب
           return FutureBuilder<bool>(
             future: SharedPrefHelper.checkIfLoggedInUser(),
             builder: (context, loginSnapshot) {
@@ -39,14 +37,12 @@ class DoctorHomeScreen extends StatelessWidget {
                 );
               }
               if (loginSnapshot.hasData && loginSnapshot.data == true) {
-                // المستخدم مسجل لكن التوكن غير موجود
                 return BlocProvider(
                   create: (context) =>
                       GetIt.I<DoctorHomeCubit>()..fetchDoctorHomeData(token),
                   child: _buildHomeContent(context),
                 );
               } else {
-                // المستخدم غير مسجل دخوله
                 return Scaffold(
                   body: Center(
                     child: Column(
@@ -72,7 +68,6 @@ class DoctorHomeScreen extends StatelessWidget {
           );
         }
 
-        // إذا كان التوكن موجود، اعرض المحتوى
         return BlocProvider(
           create: (context) =>
               GetIt.I<DoctorHomeCubit>()..fetchDoctorHomeData(token),

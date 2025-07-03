@@ -23,7 +23,6 @@ class DoctorAnalyzedImageRepoImpl implements DoctorAnalyzedImageRepo {
       if (token.isEmpty || token == 'Bearer ') {
         throw Exception('التوكن غير موجود');
       }
-      // التأكد من إضافة "Bearer " إلى التوكن
       final formattedToken =
           token.startsWith('Bearer ') ? token : 'Bearer $token';
       print(

@@ -62,7 +62,7 @@ class ReservationPage extends StatelessWidget {
                         const Icon(Icons.location_on, size: 24),
                         const SizedBox(width: 4),
                         Text(
-                          "Gehan Street, Mansoura", // يمكن استبداله بداتا من الـ API لو متوفرة
+                          "Gehan Street, Mansoura",
                           style: TextStyles.font12GreyRegular,
                         ),
                       ],
@@ -108,7 +108,6 @@ class ReservationPage extends StatelessWidget {
   }
 
   String _formatDate(String date) {
-    // تنسيق التاريخ من "2025-04-11" إلى "Apr 11, 2025"
     final parts = date.split('-');
     if (parts.length != 3) return date;
     const months = [

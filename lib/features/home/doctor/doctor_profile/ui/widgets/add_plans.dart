@@ -141,10 +141,10 @@ class _DoctorCreateTreatmentState extends State<DoctorCreateTreatment> {
                               patientId: patientId,
                             );
                         if (mounted) {
-                          Navigator.pop(context); // Close dialog
+                          Navigator.pop(context);
                           context
                               .read<DoctorPatientTreatmentPlanCubit>()
-                              .fetchTreatmentPlans(patientId); // Refresh list
+                              .fetchTreatmentPlans(patientId);
                         }
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
