@@ -30,7 +30,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         centerTitle: true,
-        title: Text("Mohamed Ahmed", style: TextStyles.font20BlackRegular),
+        title: Text(" Ahmed", style: TextStyles.font20BlackRegular),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),

@@ -38,7 +38,7 @@ class ChatItem extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Mohamed Ahmed",
+                                "Ahmed Mohamed",
                                 style: TextStyles.font20BlackRegular,
                               ),
                               Text("9:32 AM",
@@ -79,7 +79,7 @@ class ChatItem extends StatelessWidget {
                                 "mohamed hamada",
                                 style: TextStyles.font20BlackRegular,
                               ),
-                              Text("11:30 AM",
+                              Text("11:31 AM",
                                   style: TextStyles.font14GreyRegular)
                             ],
                           ),
