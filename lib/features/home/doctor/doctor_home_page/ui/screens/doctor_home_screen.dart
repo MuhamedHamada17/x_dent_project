@@ -136,8 +136,15 @@ class DoctorHomeScreen extends StatelessWidget {
                         return state.when(
                           initial: () =>
                               const Center(child: CircularProgressIndicator()),
-                          loading: () =>
-                              const Center(child: CircularProgressIndicator()),
+                          loading: () => Center(
+                              child: Column(
+                            children: [
+                              verticalSpace(200),
+                              CircularProgressIndicator(
+                                color: ColorsManager.Blue,
+                              ),
+                            ],
+                          )),
                           loaded: (model) => Column(
                             children: [
                               Row(

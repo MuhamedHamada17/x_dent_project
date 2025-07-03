@@ -43,7 +43,7 @@ class DoctorProfileMainScreen extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 50,
                       backgroundColor: ColorsManager.OfWhite,
-                      child: Text("AZ", style: TextStyles.font20BlackRegular),
+                      child: Text("OE", style: TextStyles.font20BlackRegular),
                     ),
                   ),
                   CircleAvatar(

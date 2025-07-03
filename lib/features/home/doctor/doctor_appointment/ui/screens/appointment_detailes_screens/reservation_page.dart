@@ -38,7 +38,10 @@ class ReservationPage extends StatelessWidget {
         builder: (context, state) {
           return state.when(
             initial: () => const Center(child: Text('جاري التحضير...')),
-            loading: () => const Center(child: CircularProgressIndicator()),
+            loading: () => const Center(
+                child: CircularProgressIndicator(
+              color: ColorsManager.Blue,
+            )),
             error: (message) => Center(child: Text('خطأ: $message')),
             success: (data) {
               if (data.appointment == null) {
@@ -129,7 +132,6 @@ class ReservationPage extends StatelessWidget {
   }
 
   String _formatTime(String time) {
-    // تنسيق الوقت من "11:30:00" إلى "11:30 AM"
     final parts = time.split(':');
     if (parts.length < 2) return time;
     int hour = int.parse(parts[0]);

@@ -29,7 +29,17 @@ class XraysScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+                child: Column(
+              children: [
+                SizedBox(
+                  height: 150,
+                ),
+                CircularProgressIndicator(
+                  color: ColorsManager.Blue,
+                ),
+              ],
+            )),
           );
         }
 
@@ -90,8 +100,15 @@ class XraysScreen extends StatelessWidget {
                             builder: (context, state) {
                               return state.when(
                                 initial: () => const SizedBox.shrink(),
-                                loading: () => const Center(
-                                    child: CircularProgressIndicator()),
+                                loading: () => Center(
+                                    child: Column(
+                                  children: [
+                                    verticalSpace(200),
+                                    CircularProgressIndicator(
+                                      color: ColorsManager.Blue,
+                                    ),
+                                  ],
+                                )),
                                 success: (response) {
                                   if (response.data.isEmpty) {
                                     return const Center(

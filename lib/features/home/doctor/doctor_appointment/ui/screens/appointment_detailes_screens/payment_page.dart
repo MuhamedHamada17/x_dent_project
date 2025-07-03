@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:x_dent_project/core/helpers/spacing.dart';
+import 'package:x_dent_project/core/theiming/colors.dart';
 import 'package:x_dent_project/core/theiming/styles.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_payment_appointments_cubit.dart';
 import 'package:x_dent_project/features/home/doctor/doctor_appointment/logic/doctors_payment_appointments_state.dart';
@@ -42,7 +43,10 @@ class PaymentPage extends StatelessWidget {
             },
             loading: () {
               debugPrint('PaymentPage: Loading state');
-              return const Center(child: CircularProgressIndicator());
+              return const Center(
+                  child: CircularProgressIndicator(
+                color: ColorsManager.Blue,
+              ));
             },
             error: (message) {
               debugPrint('PaymentPage: Error state - $message');
@@ -56,7 +60,10 @@ class PaymentPage extends StatelessWidget {
                   cubit.reset();
                   cubit.fetchDoctorPaymentAppointment(appointmentId!);
                 }
-                return const Center(child: CircularProgressIndicator());
+                return const Center(
+                    child: CircularProgressIndicator(
+                  color: ColorsManager.Blue,
+                ));
               }
               debugPrint(
                   'PaymentPage: Success state - Data: ${data.appointments.toJson()}');

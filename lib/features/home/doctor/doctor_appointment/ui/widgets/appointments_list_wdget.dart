@@ -16,7 +16,10 @@ class AppointmentsListWidget extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           initial: () => const Center(child: Text('جاري التحضير...')),
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(
+              child: CircularProgressIndicator(
+            color: ColorsManager.Blue,
+          )),
           error: (message) => Center(child: Text('خطأ: $message')),
           loaded: (data) => ListView.builder(
             itemCount: data.appointments.length,
