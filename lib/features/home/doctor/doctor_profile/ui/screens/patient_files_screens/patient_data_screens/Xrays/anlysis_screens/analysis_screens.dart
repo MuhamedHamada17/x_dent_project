@@ -104,15 +104,7 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                   ),
                   Expanded(
                     child: state.maybeWhen(
-                      loading: () => Center(
-                          child: Column(
-                        children: [
-                          verticalSpace(200),
-                          CircularProgressIndicator(
-                            color: ColorsManager.Blue,
-                          ),
-                        ],
-                      )),
+                      // loading: () => Center(child: Column()),
                       success: (response) => FutureBuilder<int>(
                         future: SharedPrefHelper.getInt('xray_image_id'),
                         builder: (context, snapshot) {
@@ -122,11 +114,8 @@ class _AnalysisScreenState extends State<AnalysisScreen> {
                                 child: CircularProgressIndicator());
                           }
                           final imageId = snapshot.data ?? 1;
-                          final targetImageId = imageId == 2
-                              ? 4
-                              : imageId == 3
-                                  ? 5
-                                  : 4;
+                          final targetImageId =
+                              imageId == imageId ? imageId + 2 : 5;
                           final selectedImage = response.data.isNotEmpty
                               ? response.data.firstWhere(
                                   (image) => image.id == targetImageId,
